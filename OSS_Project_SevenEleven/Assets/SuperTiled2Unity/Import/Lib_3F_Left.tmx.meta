@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bd43016949459d44ebb2aecbaa35d174
+guid: 2c459245debc4e5499f8431bebc651b2
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -7,19 +7,19 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {fileID: 11500000, guid: cc34d0f3dc257a442819830b408c5322, type: 3}
-  missingFiles:
-  - "\uAC8C\uC2DC\uD310.png"
-  errors:
-  - "Missing texture asset: \uAC8C\uC2DC\uD310.png"
+  script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
+  missingFiles: []
+  errors: []
   warnings: []
   missingSortingLayers: []
   missingLayers: []
   missingTags: []
-  importerVersion: 13
+  importerVersion: 26
   pixelsPerUnit: 100
   edgesPerEllipse: 32
   numberOfObjectsImported: 2
-  useSpriteAtlas: 1
-  atlasWidth: 2048
-  atlasHeight: 2048
+  tilesAsObjects: 0
+  sortingMode: 0
+  isIsometric: 0
+  customImporterClassName: 
+  internalTilesets: []
