@@ -1229,6 +1229,9 @@
 </data>
  </layer>
  <objectgroup id="8" name="Object Layer 1">
+  <properties>
+   <property name="unity:layer" value="NoPassing"/>
+  </properties>
   <object id="1" x="120" y="87" width="124" height="72"/>
   <object id="2" x="314" y="98" width="7" height="101"/>
   <object id="3" x="379" y="99" width="8" height="100"/>
