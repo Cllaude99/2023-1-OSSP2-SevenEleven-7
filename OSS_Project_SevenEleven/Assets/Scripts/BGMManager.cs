@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class BGMManager : MonoBehaviour
 {
-
     //*사용방법*
     //collision등을 통해 각각의 함수를 사용하여 음악을 관리
 
-    static public BGMManager instance;
-
+    static public BGMManager instance; //싱글톤
+                                       
     //Variables 
-
     //Public
     public AudioClip[] clips; //배경음악들
 
     //Private
-    private AudioSource source;
-
+    private AudioSource source; //음악 재생 위함
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f); //객체 한번만 생성
 
     private void Awake() //Start보다 먼저 실행
     {
         //Scene 전환시 객체 파괴 방지 코드
         //전활할 씬의 카메라 오브젝트는 삭제 할 것!
-
         if (instance == null)
         {
             DontDestroyOnLoad(this.gameObject);
@@ -41,7 +37,6 @@ public class BGMManager : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
     }
-
 
     //Method
     public void Play(int _playMusicTrack)
@@ -100,4 +95,5 @@ public class BGMManager : MonoBehaviour
             yield return waitTime;
         }
     }
+
 }

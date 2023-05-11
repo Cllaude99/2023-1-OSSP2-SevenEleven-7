@@ -15,12 +15,12 @@ public class TransferScene : MonoBehaviour
     public string transferMapName;  //이동할 맵의 이름
 
     //Private
-    private MovingObject thePlayer;
+    private PlayerManager thePlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        thePlayer = FindObjectOfType<MovingObject>();
+        thePlayer = FindObjectOfType<PlayerManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

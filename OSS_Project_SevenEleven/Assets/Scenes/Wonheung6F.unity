@@ -4277,16 +4277,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.4
-  runSpeed: 2.4
   walkCount: 20
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  currentMapName: 
-  walkSound_1: footsteps 1
-  walkSound_2: footsteps 2
-  walkSound_3: footsteps 3
-  walkSound_4: footsteps 4
+  animator: {fileID: 0}
+  boxCollider: {fileID: 0}
 --- !u!212 &250396127
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4411,7 +4407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4900893477420765635, guid: be67aeaffa7a3d54bbc5de268d2006ab, type: 3}
       propertyPath: m_Name
-      value: Lab
+      value: Lab0
       objectReference: {fileID: 0}
     - target: {fileID: -4900893477420765635, guid: be67aeaffa7a3d54bbc5de268d2006ab, type: 3}
       propertyPath: m_Layer
@@ -26806,7 +26802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1034945141670058077, guid: 2b7a1e71972e9fc4eb450143e457c1af, type: 3}
       propertyPath: m_Name
-      value: Classroom
+      value: Classroom0
       objectReference: {fileID: 0}
     - target: {fileID: 1034945141670058077, guid: 2b7a1e71972e9fc4eb450143e457c1af, type: 3}
       propertyPath: m_Layer
