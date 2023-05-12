@@ -72,18 +72,8 @@ public class PlayerManager : MovingObject
             animator.SetFloat("DirX", vector.x); // x벡터 값을 전달해서 animation을 실행시킴
             animator.SetFloat("DirY", vector.y); // y벡터 값을 전달해서 animation을 실행시킴
 
-            //RayCast : A -> B로 레이저를 쏴 아무것도 맞지 않는다면 hit == Null; else hit = 방해물
-            RaycastHit2D hit;
-
-            Vector2 start = transform.position; // 현재 캐릭터 위치 값
-            Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //이동하려고 하는 위치 값
-
-            boxCollider.enabled = false; //hit 값에 해당 오브젝트가 들어가지 않도록 함
-            hit = Physics2D.Linecast(start, end, layerMask);
-            boxCollider.enabled = true;
-
-            if (hit.transform != null) break; //충돌되는 물체가 있다면 break
-
+            bool checkCollisionFlag = base.CheckCollision();
+            if (checkCollisionFlag) break;
 
             animator.SetBool("Walking", true); // Bool 값을 전달해서 animation 전이
 
