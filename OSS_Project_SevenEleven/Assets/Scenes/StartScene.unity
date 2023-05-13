@@ -569,6 +569,7 @@ MonoBehaviour:
   var: []
   switch_name: []
   switches: 
+  itemList: []
 --- !u!4 &1083397249
 Transform:
   m_ObjectHideFlags: 0
