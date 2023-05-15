@@ -56,6 +56,20 @@ public class MovingObject : MonoBehaviour
             //Animation
             animator.SetFloat("DirX", vector.x); // x벡터 값을 전달해서 animation을 실행시킴
             animator.SetFloat("DirY", vector.y); // y벡터 값을 전달해서 animation을 실행시킴
+
+            while (true) //충돌체크
+            {
+                bool checkCollisionFlag = CheckCollision();
+                if (checkCollisionFlag)
+                {
+                    animator.SetBool("Walking", false); // 이동 애니메이션 false => 장애물이 있다면 움직이지 않음
+                    yield return new WaitForSeconds(1f); //1초 대기
+                }
+                else break; //만약 장애물이 없다면 break
+
+            }
+
+
             animator.SetBool("Walking", true);
 
             while (currentWalkCount < walkCount)
