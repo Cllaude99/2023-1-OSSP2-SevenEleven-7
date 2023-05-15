@@ -23,17 +23,17 @@ public class NPCManager : MovingObject
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(MoveCoroutine());
+        queue = new Queue<string>();
     }
 
     public void SetMove()
     {
-
+        StartCoroutine(MoveCoroutine());
     }
 
     public void SetNotMove()
     {
-
+        StopAllCoroutines();
     }
 
     IEnumerator MoveCoroutine()

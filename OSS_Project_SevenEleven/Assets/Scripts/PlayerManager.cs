@@ -27,24 +27,26 @@ public class PlayerManager : MovingObject
 
     private AudioManager theAudio;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
-        if (instance == null) // 처음 생성된 경우
+        if(instance == null)
         {
-            //Scene 전환시 객체 파괴 방지 코드
             DontDestroyOnLoad(this.gameObject);
-            animator = GetComponent<Animator>(); // 컴포넌트를 animator 변수에 불러옴
-            boxCollider = GetComponent<BoxCollider2D>();
-            theAudio = FindObjectOfType<AudioManager>();
             instance = this;
         }
-        else if (instance != null)
+        else
         {
             Destroy(this.gameObject);
         }
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        queue = new Queue<string>(); //큐 초기화
+        animator = GetComponent<Animator>(); // 컴포넌트를 animator 변수에 불러옴
+        boxCollider = GetComponent<BoxCollider2D>();
+        theAudio = FindObjectOfType<AudioManager>();
     }
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
