@@ -41,7 +41,7 @@ public class OrderManager : MonoBehaviour
         return tempList;
     }
 
-    public void Move(string _name, string _dir)
+    public void Move(string _name, string _dir) //특정 방향으로 이동
     {
         for (int i = 0; i < characters.Count; i++)
         {
@@ -51,6 +51,79 @@ public class OrderManager : MonoBehaviour
             }
         }
     }
+
+    public void Turn(string _name, string _dir) //특정 방향으로 회전
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (_name == characters[i].characterName)
+            {
+                characters[i].animator.SetFloat("DirX", 0f);
+                characters[i].animator.SetFloat("DirY", 0f);
+                switch (_dir)
+                {
+                    case "UP":
+                        characters[i].animator.SetFloat("DirY",1f);
+                        break;
+                    case "DOWN":
+                        characters[i].animator.SetFloat("DirY", -1f);
+                        break;
+                    case "RIGHT":
+                        characters[i].animator.SetFloat("DirX", 1f);
+                        break;
+                    case "LEFT":
+                        characters[i].animator.SetFloat("DirX", -1f);
+                        break;
+                }
+
+            }
+        }
+    }
+
+    public void SetTransparent(string _name) //투명화
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (_name == characters[i].characterName)
+            {
+                characters[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void SetUnTransparent(string _name) //투명화 해제
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (_name == characters[i].characterName)
+            {
+                characters[i].gameObject.SetActive(true);
+            }
+        }
+    }
+    
+    public void SetThorought(string _name) //Layer 통과
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (_name == characters[i].characterName)
+            {
+                characters[i].boxCollider.enabled = false;
+            }
+        }
+    }
+
+    public void SetUnThorought(string _name) //Layer 통과 불가능
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (_name == characters[i].characterName)
+            {
+                characters[i].boxCollider.enabled = true;
+            }
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
