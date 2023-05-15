@@ -24,6 +24,11 @@ public class NPCManager : MovingObject
     void Start()
     {
         queue = new Queue<string>();
+        if(npc.NPCmove)
+        {
+            SetMove();
+        }
+
     }
 
     public void SetMove()
@@ -42,24 +47,6 @@ public class NPCManager : MovingObject
         {
             for (int i = 0; i < npc.direction.Length; i++)
             {
-                switch(npc.frequency)
-                {
-                    case 1:
-                        yield return new WaitForSeconds(4f);
-                        break;
-                    case 2:
-                        yield return new WaitForSeconds(3f);
-                        break;
-                    case 3:
-                        yield return new WaitForSeconds(2f);
-                        break;
-                    case 4:
-                        yield return new WaitForSeconds(1f);
-                        break;
-                    case 5:
-                        break;
-                }
-
                 //런타임 에러 방지
                 yield return new WaitUntil(() => queue.Count < 2); //큐를 계속 0과 1사이로 유지 시킴
                 //큐가 3이 상될 경우 오버헤드 발생

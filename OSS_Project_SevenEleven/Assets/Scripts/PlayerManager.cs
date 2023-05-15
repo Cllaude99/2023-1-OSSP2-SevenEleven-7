@@ -100,6 +100,9 @@ public class PlayerManager : MovingObject
                     break;
             }
 
+            //움직이고자 하는 방향으로 Boxcolider 이동
+            boxCollider.offset = new Vector2(vector.x * 0.7f * speed * walkCount, vector.y * 0.7f * speed * walkCount);
+
             //Add Value
             while (currentWalkCount < walkCount)
             {
@@ -115,6 +118,7 @@ public class PlayerManager : MovingObject
                 if (applyRunFlag) currentWalkCount++; // Run Flag가 잡혔을 때 cuurentWalkCount를 두배씩 증가시킴
 
                 currentWalkCount++;
+                if (currentWalkCount == 12) boxCollider.offset = Vector2.zero;
 
                 yield return new WaitForSeconds(0.01f); // () 안만큼 대기
                                                         //speed = 2.4, walkcount = 20 => 2.4 * 20 = 48 
