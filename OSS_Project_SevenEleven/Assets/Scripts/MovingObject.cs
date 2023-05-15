@@ -16,7 +16,9 @@ public class MovingObject : MonoBehaviour
     public Animator animator; // 애니메이션 관리를 위한 변수
     public BoxCollider2D boxCollider;
 
-    protected void Move(string _dir, int _frequency) 
+    public string characterName;
+
+    public void Move(string _dir, int _frequency = 5) 
     {
          StartCoroutine(MoveCoroutine(_dir, _frequency));
     }
