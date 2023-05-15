@@ -52,6 +52,7 @@ public class OrderManager : MonoBehaviour
         }
     }
 
+
     public void Turn(string _name, string _dir) //특정 방향으로 회전
     {
         for (int i = 0; i < characters.Count; i++)
@@ -123,6 +124,10 @@ public class OrderManager : MonoBehaviour
             }
         }
     }
+
+    //캐릭터 추격씬 추가 예정
+
+
 
 
     // Update is called once per frame
