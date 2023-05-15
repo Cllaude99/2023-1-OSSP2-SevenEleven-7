@@ -162,7 +162,7 @@ public class Inventory : MonoBehaviour
                         inventoryTabList.Add(inventoryItemList[i]);
                 }
                 break;
-            case 1: // 기타
+            case 3: // 기타
                 for (int i = 0; i < inventoryItemList.Count; i++)
                 {
                     if (Item.ItemType.ETC == inventoryItemList[i].itemType)
@@ -189,7 +189,7 @@ public class Inventory : MonoBehaviour
             for(int i = 0; i < inventoryTabList.Count; i++)
                 slots[i].selected_Item.GetComponent<Image>().color = color;
             Description_Text.text = inventoryTabList[selectedItem].itemDescription;
-            StartCoroutine(SelectedItemEffectCoroutine);
+            StartCoroutine(SelectedItemEffectCoroutine());
         }
         else
             Description_Text.text = "해당 타입의 아이템을 소유하고 있지 않습니다.";
@@ -227,7 +227,7 @@ public class Inventory : MonoBehaviour
                 if (activated)
                 {
                     theAudio.Play(open_sound);
-                    theOrder.NotMove();
+                    //theOrder.NotMove(); -> 수정필요
                     go.SetActive(true);
                     selectedTab = 0;
                     tabActivated = true;
@@ -241,7 +241,7 @@ public class Inventory : MonoBehaviour
                     go.SetActive(false);
                     tabActivated = false;
                     itemActivated = false;
-                    theOrder.Move();
+                    //theOrder.Move(); -> 수정필요
                 }
             }
 
@@ -326,7 +326,7 @@ public class Inventory : MonoBehaviour
                             {
                                 theAudio.Play(enter_sound);
                                 stopKeyInput = true;
-                                StartCoroutine(OOCCoroutine);
+                                StartCoroutine(OOCCoroutine());
                             }
                             else if (selectedTab == 1)
                             {

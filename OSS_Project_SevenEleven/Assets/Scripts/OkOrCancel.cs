@@ -53,7 +53,7 @@ public class OkOrCancel : MonoBehaviour
         up_Panel.gameObject.SetActive(false);
         down_Panel.gameObject.SetActive(true);
 
-        StartCoroutine(ShowTwoChoiceCoroutine);
+        StartCoroutine(ShowTwoChoiceCoroutine());
     }
 
     public bool GetResult()
