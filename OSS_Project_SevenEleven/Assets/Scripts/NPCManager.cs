@@ -61,7 +61,8 @@ public class NPCManager : MovingObject
                 }
 
                 //런타임 에러 방지
-                yield return new WaitUntil(() => npcCanMove);
+                yield return new WaitUntil(() => queue.Count < 2); //큐를 계속 0과 1사이로 유지 시킴
+                //큐가 3이 상될 경우 오버헤드 발생
 
                 base.Move(npc.direction[i], npc.frequency);
 

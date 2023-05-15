@@ -11,10 +11,10 @@ public class MovingObject : MonoBehaviour
     protected int currentWalkCount; //현재 walkCount loop를 빠져나가기 위한 변수
     public LayerMask layerMask; // 통과 불가 레이어 설정
 
-    protected bool npcCanMove = true; //런타임 에러 방지
     protected Vector3 vector; // x,y,z의 값을 동시에 갖는 Vector 변수
     public Animator animator; // 애니메이션 관리를 위한 변수
     public BoxCollider2D boxCollider;
+    private bool notCoroutine = false; //코루틴 중복 실행 방지
 
     public string characterName;
     public Queue<string> queue;
@@ -22,7 +22,12 @@ public class MovingObject : MonoBehaviour
     public void Move(string _dir, int _frequency = 5) 
     {
         queue.Enqueue(_dir);
-         StartCoroutine(MoveCoroutine(_dir, _frequency));
+        if(!notCoroutine)
+        {
+            notCoroutine = true;
+            StartCoroutine(MoveCoroutine(_dir, _frequency));
+        }
+
     }
 
     IEnumerator MoveCoroutine(string _dir, int _frequency) //이동 코루틴
@@ -30,7 +35,6 @@ public class MovingObject : MonoBehaviour
         while(queue.Count != 0) //큐가 빌때까지 반복
         {
             string direction = queue.Dequeue();     
-            npcCanMove = false;
             vector.Set(0, 0, vector.z);
 
             switch (direction)
@@ -66,10 +70,10 @@ public class MovingObject : MonoBehaviour
 
             //애니메이션 끊김 현상 수정
             if (_frequency != 5) animator.SetBool("Walking", false);
-            npcCanMove = true;
         }
         animator.SetBool("Walking", false); //반복이 종료되면 애니메이션 off
         //애니메이션 지속 오류 디버그
+        notCoroutine = false;
     }
 
     protected bool CheckCollision()
