@@ -27,24 +27,26 @@ public class PlayerManager : MovingObject
 
     private AudioManager theAudio;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
-        if (instance == null) // 처음 생성된 경우
+        if(instance == null)
         {
-            //Scene 전환시 객체 파괴 방지 코드
             DontDestroyOnLoad(this.gameObject);
-            animator = GetComponent<Animator>(); // 컴포넌트를 animator 변수에 불러옴
-            boxCollider = GetComponent<BoxCollider2D>();
-            theAudio = FindObjectOfType<AudioManager>();
             instance = this;
         }
-        else if (instance != null)
+        else
         {
             Destroy(this.gameObject);
         }
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        queue = new Queue<string>(); //큐 초기화
+        animator = GetComponent<Animator>(); // 컴포넌트를 animator 변수에 불러옴
+        boxCollider = GetComponent<BoxCollider2D>();
+        theAudio = FindObjectOfType<AudioManager>();
     }
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
@@ -98,6 +100,9 @@ public class PlayerManager : MovingObject
                     break;
             }
 
+            //움직이고자 하는 방향으로 Boxcolider 이동
+            boxCollider.offset = new Vector2(vector.x * 0.7f * speed * walkCount, vector.y * 0.7f * speed * walkCount);
+
             //Add Value
             while (currentWalkCount < walkCount)
             {
@@ -113,6 +118,7 @@ public class PlayerManager : MovingObject
                 if (applyRunFlag) currentWalkCount++; // Run Flag가 잡혔을 때 cuurentWalkCount를 두배씩 증가시킴
 
                 currentWalkCount++;
+                if (currentWalkCount == 12) boxCollider.offset = Vector2.zero;
 
                 yield return new WaitForSeconds(0.01f); // () 안만큼 대기
                                                         //speed = 2.4, walkcount = 20 => 2.4 * 20 = 48 
