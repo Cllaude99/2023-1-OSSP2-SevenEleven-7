@@ -15,6 +15,7 @@ public class GhostManager : MovingObject
     private AudioManager audioManager;
     private PlayerManager thePlayer;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,6 +38,7 @@ public class GhostManager : MovingObject
         {
             // 추격 대상의 위치 가져오기
             Vector2 targetPosition = target.position;
+
 
             // 추격자와 추격 대상 사이의 방향 계산
             Vector2 direction = targetPosition - rb.position;

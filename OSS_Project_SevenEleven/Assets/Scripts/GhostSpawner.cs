@@ -16,6 +16,7 @@ public class GhostSpawner : MonoBehaviour
     void Start()
     {
         thePlayer = FindObjectOfType<PlayerManager>();
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
