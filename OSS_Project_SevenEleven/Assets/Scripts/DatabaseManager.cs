@@ -45,19 +45,21 @@ public class DatabaseManager : MonoBehaviour
         itemList.Add(new Item(10002, "2번째 부적", "오른쪽 위 부적", Item.ItemType.Quest));
         itemList.Add(new Item(10003, "3번째 부적", "왼쪽 아래 부적", Item.ItemType.Quest));
         itemList.Add(new Item(10004, "4번째 부적", "오른쪽 아래 부적", Item.ItemType.Quest));
+        itemList.Add(new Item(10005, "부적", "전체 부적", Item.ItemType.Quest));
 
-        itemList.Add(new Item(10005, "1번째 일기장", "1번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10006, "2번째 일기장", "2번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10007, "3번째 일기장", "3번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10008, "4번째 일기장", "4번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10009, "5번째 일기장", "5번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10010, "6번째 일기장", "6번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10011, "7번째 일기장", "7번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10012, "8번째 일기장", "8번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10013, "9번째 일기장", "9번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10014, "10번째 일기장", "10번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10006, "1번째 일기장", "1번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10007, "2번째 일기장", "2번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10008, "3번째 일기장", "3번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10009, "4번째 일기장", "4번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10010, "5번째 일기장", "5번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10011, "6번째 일기장", "6번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10012, "7번째 일기장", "7번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10013, "8번째 일기장", "8번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10014, "9번째 일기장", "9번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10015, "10번째 일기장", "10번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10016, "일기장", "일기장", Item.ItemType.Quest));
 
-        itemList.Add(new Item(10015, "아이스페이스 열쇠", "아이스페이스를 여는 열쇠", Item.ItemType.Quest));
+        itemList.Add(new Item(10017, "아이스페이스 열쇠", "아이스페이스를 여는 열쇠", Item.ItemType.Quest));
         //열쇠부분은 추후에 더 추가
     }
 }
