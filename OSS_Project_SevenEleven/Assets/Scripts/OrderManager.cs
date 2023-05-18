@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OrderManager : MonoBehaviour
@@ -12,9 +13,7 @@ public class OrderManager : MonoBehaviour
     private PlayerManager thePlayer; //이벤트 도중 키입력 처리 방지
     private List<MovingObject> characters;
 
-    //Public
 
-    
 
 
     // Start is called before the first frame update
@@ -40,7 +39,6 @@ public class OrderManager : MonoBehaviour
 
         return tempList;
     }
-
     public void Move(string _name, string _dir) //특정 방향으로 이동
     {
         for (int i = 0; i < characters.Count; i++)

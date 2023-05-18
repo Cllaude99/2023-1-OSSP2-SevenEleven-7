@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GhostManager : MovingObject
 {
     public Transform target; // 추격 대상(플레이어)
-    public string Ghost_walkSound;
     public string gameOver;  //게임오버씬
+    public float lifeTime;
+    public GameObject GhostPrefab;
 
     private Rigidbody2D rb;
 
@@ -21,11 +22,13 @@ public class GhostManager : MovingObject
         audioManager = FindObjectOfType<AudioManager>();
         boxCollider = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerManager>();
+        Destroy(GameObject.Find(GhostPrefab.name), lifeTime);
         StartCoroutine(GhostCoroutine());
     }
 
     private void Update()
     {
+        
     }
 
     IEnumerator GhostCoroutine()
