@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="4" tileheight="4" infinite="0" nextlayerid="11" nextobjectid="95">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="4" tileheight="4" infinite="0" nextlayerid="11" nextobjectid="105">
  <tileset firstgid="1" source="Wonheung_Arisu.tsx"/>
  <tileset firstgid="18770" source="Wonheung_classroom.tsx"/>
  <tileset firstgid="49395" source="Wonheung_Ispace.tsx"/>
@@ -1676,5 +1676,9 @@
   <object id="92" x="688.905" y="320.237" width="40.5238" height="110.699"/>
   <object id="93" x="486.286" y="385.471" width="28.6632" height="52.3845"/>
   <object id="94" x="492.216" y="415.122" width="67.2103" height="62.2683"/>
+  <object id="101" x="280" y="800" width="168" height="57"/>
+  <object id="102" x="632" y="798" width="90" height="54"/>
+  <object id="103" x="797" y="679" width="46" height="82"/>
+  <object id="104" x="795" y="159" width="57" height="81"/>
  </objectgroup>
 </map>
