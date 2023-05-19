@@ -57,25 +57,35 @@ public class Inventory : MonoBehaviour
         inventoryItemList = new List<Item>();
         inventoryTabList = new List<Item>();
         slots = tf.GetComponentsInChildren<InventorySlot>();
+
+        // ! 아래는 아이템 샘플 테스트입니다. 플레이모드에서 아이템들이 잘 들어가나 확인용이고 마무리단계에선 모두 지워야합니다
+        inventoryItemList.Add(new Item(10001, "1번째 부적", "왼쪽 위 부적", Item.ItemType.Quest));
+        inventoryItemList.Add(new Item(10002, "2번째 부적", "오른쪽 위 부적", Item.ItemType.Quest));
+        inventoryItemList.Add(new Item(10003, "3번째 부적", "왼쪽 아래 부적", Item.ItemType.Quest));
+        inventoryItemList.Add(new Item(10004, "4번째 부적", "오른쪽 아래 부적", Item.ItemType.Quest));
+        inventoryItemList.Add(new Item(10005, "부적", "전체 부적", Item.ItemType.Quest));
+
+        inventoryItemList.Add(new Item(10006, "1번째 일기장", "1번째 일기장", Item.ItemType.Quest));
+        inventoryItemList.Add(new Item(10007, "2번째 일기장", "2번째 일기장", Item.ItemType.Quest));
     }
 
     public void GetAnItem(int _itemID, int _count = 1)
     {
-        for(int i=0;i<theDatabase.itemList.Count; i++) // 데이터베이스 아이템 검색
+        for (int i = 0; i < theDatabase.itemList.Count; i++) // 데이터베이스 아이템 검색
         {
-            if(_itemID == theDatabase.itemList[i].itemID) // 데이터베이스에 아이템 발견
+            if (_itemID == theDatabase.itemList[i].itemID) // 데이터베이스에 아이템 발견
             {
                 var clone = Instantiate(prefab_Floating_Text, PlayerManager.instance.transform.position, Quaternion.Euler(Vector3.zero));
                 clone.GetComponent<FloatingText>().text.text = theDatabase.itemList[i].itemName + " " + _count + "개 획득 +";
                 clone.transform.SetParent(this.transform);
 
-                for(int j=0;j<inventoryItemList.Count; j++) // 소지품에 같은 아이템이 있는지 확인.
+                for (int j = 0; j < inventoryItemList.Count; j++) // 소지품에 같은 아이템이 있는지 확인.
                 {
-                    if(inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템이 있는 경우 
+                    if (inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템이 있는 경우 
                     {
-                        if(inventoryItemList[j].itemType == Item.ItemType.Use) // 소모품인 경우 개수 증감
+                        if (inventoryItemList[j].itemType == Item.ItemType.Use) // 소모품인 경우 개수 증감
                         {
-                            inventoryItemList[j].itemCount += _count;                            
+                            inventoryItemList[j].itemCount += _count;
                         }
                         else
                         {
@@ -110,7 +120,7 @@ public class Inventory : MonoBehaviour
         StopAllCoroutines();
         Color color = selectedTabImages[selectedTab].GetComponent<Image>().color;
         color.a = 0f;
-        for(int i=0; i < selectedTabImages.Length; i++)
+        for (int i = 0; i < selectedTabImages.Length; i++)
         {
             selectedTabImages[i].GetComponent<Image>().color = color;
         }
@@ -122,7 +132,7 @@ public class Inventory : MonoBehaviour
         while (tabActivated)
         {
             Color color = selectedTabImages[0].GetComponent<Image>().color;
-            while(color.a < 0.5f)
+            while (color.a < 0.5f)
             {
                 color.a += 0.03f;
                 selectedTabImages[selectedTab].GetComponent<Image>().color = color;
@@ -144,39 +154,18 @@ public class Inventory : MonoBehaviour
         RemoveSlot();
         selectedItem = 0;
 
-        switch (selectedTab)
+        if (selectedTab == 0) // 퀘스트 선택한 경우
         {
-            case 0: // 소모품 선택한 경우
-                for(int i=0;i<inventoryItemList.Count; i++)
-                {
-                    if (Item.ItemType.Use == inventoryItemList[i].itemType)
-                        inventoryTabList.Add(inventoryItemList[i]);
-                }
-                break;
-            case 1: // 장비 선택한 경우
-                for (int i = 0; i < inventoryItemList.Count; i++)
-                {
-                    if (Item.ItemType.Equip == inventoryItemList[i].itemType)
-                        inventoryTabList.Add(inventoryItemList[i]);
-                }
-                break;
-            case 2: // 퀘스트 선택한 경우
-                for (int i = 0; i < inventoryItemList.Count; i++)
-                {
-                    if (Item.ItemType.Quest == inventoryItemList[i].itemType)
-                        inventoryTabList.Add(inventoryItemList[i]);
-                }
-                break;
-            case 3: // 기타
-                for (int i = 0; i < inventoryItemList.Count; i++)
-                {
-                    if (Item.ItemType.ETC == inventoryItemList[i].itemType)
-                        inventoryTabList.Add(inventoryItemList[i]);
-                }
-                break;
-        } // 탬에 따른 아이템 분류. 그것을 인벤토리 탭 리스트에 추가
+            for (int i = 0; i < inventoryItemList.Count; i++)
+            {
+                if (Item.ItemType.Quest == inventoryItemList[i].itemType)
+                    inventoryTabList.Add(inventoryItemList[i]);
+            }
+        }   //그것을 인벤토리 탭 리스트에 추가
 
-        for(int i = 0; i < inventoryTabList.Count; i++)
+
+
+        for (int i = 0; i < inventoryTabList.Count; i++)
         {
             slots[i].gameObject.SetActive(true);
             slots[i].Additem(inventoryTabList[i]);
@@ -191,7 +180,7 @@ public class Inventory : MonoBehaviour
         {
             Color color = slots[0].selected_Item.GetComponent<Image>().color;
             color.a = 0f;
-            for(int i = 0; i < inventoryTabList.Count; i++)
+            for (int i = 0; i < inventoryTabList.Count; i++)
                 slots[i].selected_Item.GetComponent<Image>().color = color;
             Description_Text.text = inventoryTabList[selectedItem].itemDescription;
             StartCoroutine(SelectedItemEffectCoroutine());
@@ -223,7 +212,7 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!stopKeyInput)
+        if (!stopKeyInput)
         {
             if (Input.GetKeyDown(KeyCode.I)) //  I키를 누르면 인벤토리 창 활성화
             {
@@ -237,7 +226,7 @@ public class Inventory : MonoBehaviour
                     selectedTab = 0;
                     tabActivated = true;
                     itemActivated = false;
-                    ShowTab();                    
+                    ShowTab();
                 }
                 else
                 {
@@ -287,7 +276,7 @@ public class Inventory : MonoBehaviour
 
                 else if (itemActivated)
                 {
-                    if(inventoryTabList.Count > 0)
+                    if (inventoryTabList.Count > 0)
                     {
                         if (Input.GetKeyDown(KeyCode.DownArrow))
                         {
@@ -343,7 +332,7 @@ public class Inventory : MonoBehaviour
                             }
                         }
                     }
-                    
+
                     if (Input.GetKeyDown(KeyCode.X))
                     {
                         theAudio.Play(cancel_sound);
@@ -367,9 +356,9 @@ public class Inventory : MonoBehaviour
         yield return new WaitUntil(() => !theOOC.activated);
         if (theOOC.GetResult())
         {
-            for(int i = 0; i < inventoryItemList.Count; i++)
+            for (int i = 0; i < inventoryItemList.Count; i++)
             {
-                if(inventoryItemList[i].itemID == inventoryTabList[selectedItem].itemID)
+                if (inventoryItemList[i].itemID == inventoryTabList[selectedItem].itemID)
                 {
                     //theDatabase.UseItem(inventoryItemList[i].itemID); -> 소모품이 있을 경우에만 넣어줌 (지금은 물약같은게 없으므로 패스)
 
@@ -377,7 +366,7 @@ public class Inventory : MonoBehaviour
                         inventoryItemList[i].itemCount--;
                     else
                         inventoryItemList.RemoveAt(i);
-                    
+
                     ShowItem();
                     break;
                 }
