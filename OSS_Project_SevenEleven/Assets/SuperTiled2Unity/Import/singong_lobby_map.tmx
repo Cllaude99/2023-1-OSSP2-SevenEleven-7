@@ -510,11 +510,10 @@
 </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="6" x="184" y="88" width="15.9091" height="799.909"/>
+  <object id="6" x="120" y="88" width="79.9091" height="799.909"/>
   <object id="9" x="200" y="88.087" width="399.667" height="122.58"/>
-  <object id="11" x="599.813" y="88.1875" width="16.1875" height="799.813"/>
-  <object id="12" x="306" y="814.5" width="25.125" height="68.125"/>
-  <object id="13" x="358.375" y="814.25" width="24.375" height="68.625"/>
+  <object id="11" x="599.813" y="88.1875" width="98.8542" height="799.813"/>
+  <object id="12" x="306" y="814.5" width="75.625" height="68.125"/>
   <object id="14" x="480" y="796.75" width="79.75" height="35.75"/>
   <object id="15" x="488.125" y="833.25" width="19.625" height="30.5"/>
   <object id="16" x="536.125" y="833.25" width="19.75" height="30.75"/>
@@ -526,6 +525,6 @@
   <object id="22" x="481" y="353" width="86.5" height="196.5"/>
   <object id="23" x="200.182" y="741.182" width="47.6364" height="90.4545"/>
   <object id="24" x="200.125" y="608.458" width="47.625" height="91.5417"/>
-  <object id="26" x="184.25" y="888" width="431.75" height="23.5"/>
+  <object id="26" x="184.25" y="888" width="431.75" height="61.5"/>
  </objectgroup>
 </map>
