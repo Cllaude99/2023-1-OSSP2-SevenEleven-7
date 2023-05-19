@@ -27,16 +27,7 @@ public class DatabaseManager : MonoBehaviour
 
     public List<Item> itemList = new List<Item>();
 
-    /* public void UseItem(int _itemID) 소모품이 있는 경우 포함시키면 좋을 것 같습니다.(소모품이 없으면 제거해도 되는 코드) ex. 물약 
-    {
-        switch (_itemID)
-        {
-            case 10015:
-                Debug.Log("아이스페이스가 열렸습니다.");
-                break;            
-        }
-    }
-    */
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +51,9 @@ public class DatabaseManager : MonoBehaviour
         itemList.Add(new Item(10016, "일기장", "일기장", Item.ItemType.Quest));
 
         itemList.Add(new Item(10017, "아이스페이스 열쇠", "아이스페이스를 여는 열쇠", Item.ItemType.Quest));
-        itemList.Add(new Item(10018, "5층 실험실 열쇠", "5층 실험실 열쇠", Item.ItemType.Quest));        
+        itemList.Add(new Item(10018, "5층 실험실 열쇠", "5층 실험실 열쇠", Item.ItemType.Quest));
+
+        itemList.Add(new Item(10019, "학생증", "학생증", Item.ItemType.Quest));
+        itemList.Add(new Item(10020, "지갑", "지갑", Item.ItemType.Quest));
     }
 }
