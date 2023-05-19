@@ -154,7 +154,7 @@ public class Inventory : MonoBehaviour
         RemoveSlot();
         selectedItem = 0;
 
-        if (selectedTab == 0) // 퀘스트 선택한 경우
+        if (selectedTab == 0) // 퀘스트 아이템을 선택한 경우
         {
             for (int i = 0; i < inventoryItemList.Count; i++)
             {
