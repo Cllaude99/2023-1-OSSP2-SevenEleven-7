@@ -60,6 +60,6 @@ public class DatabaseManager : MonoBehaviour
         itemList.Add(new Item(10016, "일기장", "일기장", Item.ItemType.Quest));
 
         itemList.Add(new Item(10017, "아이스페이스 열쇠", "아이스페이스를 여는 열쇠", Item.ItemType.Quest));
-        //열쇠부분은 추후에 더 추가
+        itemList.Add(new Item(10018, "5층 실험실 열쇠", "5층 실험실 열쇠", Item.ItemType.Quest));        
     }
 }
