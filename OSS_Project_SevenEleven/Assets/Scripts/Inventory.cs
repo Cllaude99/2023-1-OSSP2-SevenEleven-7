@@ -75,25 +75,10 @@ public class Inventory : MonoBehaviour
         {
             if (_itemID == theDatabase.itemList[i].itemID) // 데이터베이스에 아이템 발견
             {
-                var clone = Instantiate(prefab_Floating_Text, PlayerManager.instance.transform.position, Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = theDatabase.itemList[i].itemName + " " + _count + "개 획득 +";
-                clone.transform.SetParent(this.transform);
-
-                for (int j = 0; j < inventoryItemList.Count; j++) // 소지품에 같은 아이템이 있는지 확인.
-                {
-                    if (inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템이 있는 경우 
-                    {
-                        if (inventoryItemList[j].itemType == Item.ItemType.Use) // 소모품인 경우 개수 증감
-                        {
-                            inventoryItemList[j].itemCount += _count;
-                        }
-                        else
-                        {
-                            inventoryItemList.Add(theDatabase.itemList[i]); // 소모품이 아닌 경우 아이템 대입
-                        }
-                        return;
-                    }
-                }
+                //var clone = Instantiate(prefab_Floating_Text, PlayerManager.instance.transform.position, Quaternion.Euler(Vector3.zero));
+                //clone.GetComponent<FloatingText>().text.text = theDatabase.itemList[i].itemName + " " + _count + "개 획득 +";
+                //clone.transform.SetParent(this.transform);
+                
                 inventoryItemList.Add(theDatabase.itemList[i]); // 소지품에 해당 아이템이 없는 경우 소지품에 해당 아이템 추가
                 inventoryItemList[inventoryItemList.Count - 1].itemCount = _count;
                 return;
