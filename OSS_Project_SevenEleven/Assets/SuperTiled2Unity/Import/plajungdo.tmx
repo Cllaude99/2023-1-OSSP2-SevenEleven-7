@@ -2441,7 +2441,7 @@
   <object id="29" x="1243" y="303.25" width="36.75" height="89.1667"/>
   <object id="30" x="1241.75" y="392" width="37.25" height="75.1667"/>
   <object id="32" x="1240.25" y="466.75" width="37.5" height="60.5"/>
-  <object id="33" x="1268.25" y="200.75" width="87.5" height="643.25"/>
+  <object id="33" x="1268.25" y="200.75" width="87.5" height="719.25"/>
   <object id="34" x="1260.5" y="916.5" width="99" height="323.5"/>
   <object id="35" x="576.25" y="895.625">
    <polygon points="0,0 24.875,-27.125 25,-0.25"/>
@@ -2459,9 +2459,9 @@
   <object id="41" x="666.25" y="502.75" width="25.75" height="32.75"/>
   <object id="42" x="666.5" y="535.75" width="25.75" height="19.75"/>
   <object id="43" x="729" y="504" width="54.75" height="33.75"/>
-  <object id="44" x="586.5" y="437.5" width="182.5" height="64"/>
+  <object id="44" x="571.167" y="437.5" width="215.167" height="64"/>
   <object id="45" x="612.5" y="243" width="131" height="193"/>
-  <object id="46" x="596.5" y="362.5" width="164" height="74"/>
+  <object id="46" x="596.5" y="356.5" width="164" height="80"/>
   <object id="49" x="914.5" y="539.5" width="46" height="71"/>
   <object id="50" x="312" y="484.5" width="43" height="70"/>
   <object id="51" x="359" y="723" width="51" height="69"/>

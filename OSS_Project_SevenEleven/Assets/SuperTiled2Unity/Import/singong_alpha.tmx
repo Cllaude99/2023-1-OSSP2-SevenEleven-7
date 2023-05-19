@@ -619,16 +619,7 @@
  </layer>
  <objectgroup id="5" name="nopass">
   <object id="1" x="313.957" y="400.087" width="59.7935" height="79.913"/>
-  <object id="2" x="427.969" y="424.031" width="8.03125" height="55.9063"/>
-  <object id="8" x="540.109" y="423.922" width="8.03125" height="55.9063"/>
-  <object id="10" x="648.166" y="424.41" width="8.03125" height="55.9063"/>
-  <object id="11" x="748.166" y="424.41" width="8.03125" height="55.9063"/>
-  <object id="12" x="450.455" y="422.909" width="67.6969" height="20.9091"/>
-  <object id="14" x="453.909" y="444" width="62.0909" height="36"/>
-  <object id="19" x="569.682" y="444.182" width="62.0909" height="36"/>
-  <object id="22" x="674.045" y="444.364" width="62.0909" height="36"/>
-  <object id="23" x="590.091" y="418.273" width="25.3636" height="25.6364"/>
-  <object id="24" x="674.091" y="418.364" width="59.6969" height="25.6364"/>
+  <object id="12" x="429.122" y="418.909" width="365.03" height="62.9091"/>
   <object id="26" x="791.909" y="384.091" width="8.09091" height="96"/>
   <object id="27" x="1077.09" y="282.182" width="38.5455" height="92.5455"/>
   <object id="35" x="160.727" y="281.909" width="38.5455" height="92.5455"/>
@@ -644,30 +635,24 @@
   <object id="50" x="234" y="172" width="59.6364" height="93.8182"/>
   <object id="51" x="234" y="266" width="59" height="25.8182"/>
   <object id="57" x="478.515" y="172.424" width="59.6364" height="93.8182"/>
-  <object id="58" x="714.848" y="172.091" width="59.6364" height="93.8182"/>
-  <object id="59" x="990.182" y="172.424" width="59.6364" height="93.8182"/>
+  <object id="58" x="714.848" y="172.091" width="59.6364" height="119.818"/>
+  <object id="59" x="990.182" y="172.424" width="59.6364" height="115.818"/>
   <object id="60" x="478.318" y="267" width="59.9773" height="26"/>
-  <object id="62" x="714.5" y="265.909" width="3.72727" height="26"/>
-  <object id="63" x="769.955" y="266.273" width="3.72727" height="26"/>
-  <object id="64" x="990.386" y="266.75" width="3.72727" height="26"/>
-  <object id="65" x="1045.39" y="266.5" width="3.72727" height="26"/>
   <object id="66" x="1050.18" y="172.546" width="25.0909" height="46.7273"/>
-  <object id="69" x="971.455" y="229.909" width="18.5454" height="46.7273"/>
-  <object id="70" x="971.818" y="172.636" width="18.5454" height="46.7273"/>
-  <object id="71" x="775.205" y="172.386" width="22.8409" height="46.7273"/>
-  <object id="72" x="775.33" y="224.386" width="18.8409" height="46.7273"/>
+  <object id="70" x="971.818" y="172.636" width="18.5454" height="108.727"/>
+  <object id="71" x="775.205" y="172.386" width="22.8409" height="104.727"/>
   <object id="73" x="691.83" y="172.636" width="22.8409" height="46.7273"/>
   <object id="74" x="538.943" y="225" width="11.5682" height="50.5455"/>
   <object id="75" x="460.08" y="176.886" width="17.5909" height="46.7273"/>
   <object id="76" x="216.398" y="172.454" width="17.3864" height="46.7273"/>
   <object id="77" x="220.216" y="219.727" width="13.3864" height="46.2273"/>
   <object id="78" x="120" y="80" width="1038.67" height="90.6667"/>
-  <object id="80" x="120.5" y="172" width="27.5" height="347"/>
-  <object id="82" x="1132" y="171" width="28.3333" height="309"/>
-  <object id="88" x="148.375" y="480.125" width="55.125" height="39.375"/>
-  <object id="89" x="204.25" y="504.5" width="72.25" height="15.375"/>
-  <object id="90" x="276" y="480.182" width="760.182" height="39.4545"/>
-  <object id="91" x="1036.73" y="500.182" width="71.8182" height="19.4545"/>
-  <object id="92" x="1108.18" y="480.182" width="51.6364" height="39.8182"/>
+  <object id="80" x="87.1667" y="172" width="60.8333" height="347"/>
+  <object id="82" x="1132" y="171" width="74.3333" height="309"/>
+  <object id="88" x="148.375" y="480.125" width="55.125" height="80.375"/>
+  <object id="89" x="204.25" y="504.5" width="72.25" height="56.375"/>
+  <object id="90" x="276" y="480.182" width="760.182" height="81.4545"/>
+  <object id="91" x="1036.73" y="500.182" width="71.8182" height="61.4545"/>
+  <object id="92" x="1108.18" y="480.182" width="51.6364" height="80.8182"/>
  </objectgroup>
 </map>
