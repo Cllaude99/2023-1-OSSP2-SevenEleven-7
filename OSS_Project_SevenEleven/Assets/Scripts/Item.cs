@@ -5,10 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class Item
 {
-    public int itemID; // 아이템의 고유 ID값. 중복 불가능. (50001, 50002)
-    public string itemName; // 아이템의 이름. 중복 가능/ (고대유물, 고대유물)
+    public int itemID; // 아이템의 고유 ID값. 중복 불가능. (10001, 10002)
+    public string itemName; // 아이템의 이름. 중복 가능/ (ex. 열쇠,열쇠 ) -> 하지만 아이템별로 이름을 모두 다르게 해줄 예정
     public string itemDescription; // 아이템 설명.
-    public int itemCount; // 소지개수.
+    public int itemCount; // 소지 개수.
     public Sprite itemIcon;// 아이템의 아이콘.
     public ItemType itemType;
 

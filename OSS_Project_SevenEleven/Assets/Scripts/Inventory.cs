@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
     public GameObject go; // 인벤토리 활성화 비활성화.
     public GameObject[] selectedTabImages;
     public GameObject go_OOC; // 선택지 활성화 비활성화
+    public GameObject prefab_Floating_Text; // 플로팅 텍스트
 
     private int selectedItem; // 선택된 아이템.
     private int selectedTab; // 선택된 탭
@@ -64,17 +65,21 @@ public class Inventory : MonoBehaviour
         {
             if(_itemID == theDatabase.itemList[i].itemID) // 데이터베이스에 아이템 발견
             {
+                var clone = Instantiate(prefab_Floating_Text, PlayerManager.instance.transform.position, Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = theDatabase.itemList[i].itemName + " " + _count + "개 획득 +";
+                clone.transform.SetParent(this.transform);
+
                 for(int j=0;j<inventoryItemList.Count; j++) // 소지품에 같은 아이템이 있는지 확인.
                 {
-                    if(inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템이 있는 경우 -> 개수만 증감시켜줌
+                    if(inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템이 있는 경우 
                     {
-                        if(inventoryItemList[j].itemType == Item.ItemType.Use)
+                        if(inventoryItemList[j].itemType == Item.ItemType.Use) // 소모품인 경우 개수 증감
                         {
                             inventoryItemList[j].itemCount += _count;                            
                         }
                         else
                         {
-                            inventoryItemList.Add(theDatabase.itemList[i]);
+                            inventoryItemList.Add(theDatabase.itemList[i]); // 소모품이 아닌 경우 아이템 대입
                         }
                         return;
                     }
