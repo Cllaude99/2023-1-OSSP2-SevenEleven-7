@@ -16659,10 +16659,8 @@
  </layer>
  <objectgroup id="2" name="Object Layer 1">
   <object id="1" x="55.3333" y="-418.666" width="140.667" height="653.666"/>
-  <object id="2" x="-195.333" y="-498" width="263.667" height="121"/>
   <object id="3" x="-280" y="-436" width="93.9997" height="904"/>
   <object id="4" x="-202.667" y="474.667" width="398.667" height="97.3333"/>
-  <object id="5" x="126.333" y="232.75" width="70.6667" height="244"/>
   <object id="7" x="-202.666" y="454.667" width="215" height="22"/>
  </objectgroup>
 </map>

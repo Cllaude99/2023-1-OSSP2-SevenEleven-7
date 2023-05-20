@@ -14466,10 +14466,8 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="5" x="931.25" y="488" width="408.417" height="45.8333"/>
-  <object id="6" x="1332" y="487.5" width="53" height="376.5"/>
-  <object id="7" x="1076.97" y="836.083" width="321.733" height="51.9167"/>
-  <object id="9" x="936.333" y="772" width="163.667" height="115"/>
-  <object id="10" x="871" y="489" width="88" height="397"/>
+  <object id="5" x="920.25" y="488" width="419.417" height="45.8333"/>
+  <object id="6" x="1332" y="487.5" width="53" height="397.167"/>
+  <object id="9" x="921.333" y="772" width="178.667" height="115"/>
  </objectgroup>
 </map>
