@@ -14,6 +14,8 @@ public class PlayerManager : MovingObject
     public float runSpeed; // 달리기 속력
 
     public string currentMapName;
+    public string currentSceneName; // 캐릭터가 어느 씬에 있는지 확인하기 위한 용도.
+
     public string walkSound_1; // 이름으로 접근해서 사운드 이용
     public string walkSound_2;
     public string walkSound_3;
@@ -22,10 +24,11 @@ public class PlayerManager : MovingObject
     // Private
 
     private float applyRunSpeed; // 실제 적용 RunSpeed
-    private bool canMove = true; //코루틴 다중 실행 방지
+    public bool canMove = true; //코루틴 다중 실행 방지
     private bool applyRunFlag = false;
 
     private AudioManager theAudio;
+    private SaveNLoad theSaveNLoad;
 
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class PlayerManager : MovingObject
         animator = GetComponent<Animator>(); // 컴포넌트를 animator 변수에 불러옴
         boxCollider = GetComponent<BoxCollider2D>();
         theAudio = FindObjectOfType<AudioManager>();
+        theSaveNLoad = FindObjectOfType<SaveNLoad>();
     }
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
@@ -137,6 +141,15 @@ public class PlayerManager : MovingObject
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F5)) // F5 키를 통해 저장
+        {
+            theSaveNLoad.CallSave();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F9)) // F9 키를 통해 불러오기
+        {
+            theSaveNLoad.CallLoad();
+        }
 
         if (canMove) //코루틴 다중 실행 방지 분기문
         {
