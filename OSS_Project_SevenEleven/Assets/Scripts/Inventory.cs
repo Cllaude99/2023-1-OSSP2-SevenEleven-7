@@ -69,6 +69,15 @@ public class Inventory : MonoBehaviour
         inventoryItemList.Add(new Item(10007, "2번째 일기장", "2번째 일기장", Item.ItemType.Quest));
     }
 
+    public List<Item> SaveItem()
+    {
+        return inventoryItemList;
+    }
+    public void LoadItem(List<Item> _itemList)
+    {
+        inventoryItemList = _itemList;
+    }
+
     public void GetAnItem(int _itemID, int _count = 1)
     {
         for (int i = 0; i < theDatabase.itemList.Count; i++) // 데이터베이스 아이템 검색
