@@ -5365,11 +5365,9 @@
   </properties>
   <object id="22" x="-188.561" y="-93.8862" width="42.6038" height="39.448"/>
   <object id="23" x="-99.409" y="-97.0421" width="26.0357" height="28.4026"/>
-  <object id="25" x="-456.019" y="-168.048" width="35.5032" height="281.659"/>
   <object id="28" x="-421.305" y="112.032" width="638.269" height="27.6136"/>
   <object id="29" x="-421.305" y="-168.048" width="64.6947" height="63.1168"/>
   <object id="30" x="-321.896" y="-168.048" width="362.922" height="63.1168"/>
   <object id="31" x="75.7402" y="-168.837" width="140.435" height="64.6947"/>
-  <object id="32" x="216.175" y="-168.048" width="28.4026" height="306.905"/>
  </objectgroup>
 </map>

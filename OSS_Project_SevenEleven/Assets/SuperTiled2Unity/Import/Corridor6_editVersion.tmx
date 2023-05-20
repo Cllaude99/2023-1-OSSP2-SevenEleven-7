@@ -4967,17 +4967,14 @@
   <properties>
    <property name="unity:layer" value="NoPassing"/>
   </properties>
-  <object id="21" x="-539" y="-173" width="51" height="278"/>
   <object id="22" x="-488" y="-172" width="212" height="52"/>
   <object id="23" x="-57" y="-172" width="272" height="51"/>
   <object id="24" x="-77" y="-165" width="21" height="33"/>
   <object id="25" x="-155" y="-303" width="91" height="103"/>
   <object id="27" x="-62" y="-237" width="10" height="72"/>
-  <object id="28" x="216" y="-173" width="23" height="278"/>
   <object id="29" x="43" y="105" width="198" height="39"/>
   <object id="30" x="-318" y="104" width="277" height="42"/>
   <object id="31" x="-541" y="104" width="140" height="41"/>
-  <object id="32" x="-543" y="145" width="785" height="21"/>
   <object id="34" x="-276" y="-236" width="95" height="63"/>
   <object id="35" x="-181" y="-254" width="25" height="16"/>
   <object id="37" x="-277" y="-125" width="87" height="6"/>
