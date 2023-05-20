@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour
 
         thePlayer = FindObjectOfType<PlayerManager>();
         bounds = FindObjectsOfType<Bound>();
-        theCamera = FindObjectOfType<CameraManger>();
+        theCamera = FindObjectOfType<CameraManager>();
 
-        theCamera.targer = GameObject.Find("Player");
+        theCamera.target = GameObject.Find("Player");
 
         /*
          캐릭터가 있던 맵의 BoxCollider를 카메라 바운드로 지정하기 위해서, currentMapName과 BoundName을 조건 비교한뒤
