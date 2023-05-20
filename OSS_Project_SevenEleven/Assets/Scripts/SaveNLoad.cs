@@ -8,17 +8,17 @@ using UnityEngine.SceneManagement;
 public class SaveNLoad : MonoBehaviour
 {
     [System.Serializable]
-    public class Data // ¸ðµç ¼¼ÀÌºê ±â·ÏµéÀ» ´ãÀ» Å¬·¡½º
+    public class Data // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
     {
         public float playerX;
         public float playerY;
         public float playerZ;
 
-        public List<int> playerItemInventory; // °¡Áö°í ÀÖ´ø ¾ÆÀÌÅÛÀÇ ¾ÆÀÌµð°ªÀ» ÀúÀå
+        public List<int> playerItemInventory; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public List<int> playerItemInventoryCount; 
 
-        public string mapName; // Ä³¸¯ÅÍ°¡ ¾î´À ¸Ê¿¡ ÀÖ¾ú´ÂÁö
-        public string sceneName; // Ä³¸¯ÅÍ°¡ ¾î´À ¾À¿¡ ÀÖ¾ú´ÂÁö
+        public string mapName; // Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½
+        public string sceneName; // Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½
 
         public List<bool> swList;
         public List<string> swNameList;
@@ -27,15 +27,15 @@ public class SaveNLoad : MonoBehaviour
     }
 
     private DatabaseManager theDatabase;
-    private PlayerManager thePlayer; // ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡°ªÀ» ¾Ë±âÀ§ÇÑ º¯¼ö
+    private PlayerManager thePlayer; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private Inventory theInven;
 
     public Data data;
 
-    private Vector3 vector; // vector¿¡ ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¸¦ ´ã°í playerX,playerY,playerZ¿¡ ³Ö°í ºÒ·¯ÁÙ ¿¹Á¤
+    private Vector3 vector; // vectorï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ playerX,playerY,playerZï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
-    public void CallSave() // ¼¼ÀÌºê°¡ ÀÌ·ç¾îÁö´Â ¿ªÇÒ
+    public void CallSave() // ï¿½ï¿½ï¿½Ìºê°¡ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         theDatabase = FindObjectOfType<DatabaseManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
@@ -48,7 +48,7 @@ public class SaveNLoad : MonoBehaviour
         data.mapName = thePlayer.currentMapName;
         data.sceneName = thePlayer.currentSceneName;
 
-        Debug.Log("±âÃÊ µ¥ÀÌÅÍ ¼º°ø");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
         data.playerItemInventory.Clear();
         data.playerItemInventoryCount.Clear();
@@ -68,7 +68,7 @@ public class SaveNLoad : MonoBehaviour
 
         for(int i=0;i<itemList.Count; i++)
         {
-            Debug.Log("ÀÎº¥Åä¸®ÀÇ ¾ÆÀÌÅÛ ÀúÀå ¿Ï·á : " + itemList[i].itemID);
+            Debug.Log("ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ : " + itemList[i].itemID);
             data.playerItemInventory.Add(itemList[i].itemID);
             data.playerItemInventoryCount.Add(itemList[i].itemCount);
         }
@@ -79,10 +79,10 @@ public class SaveNLoad : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
 
-        Debug.Log(Application.dataPath + "ÀÇ À§Ä¡¿¡ ÀúÀåÇß½À´Ï´Ù.");
+        Debug.Log(Application.dataPath + "ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
     }
 
-    public void CallLoad() // ·Îµå°¡ ÀÌ·ç¾îÁö´Â ¿ªÇÒ
+    public void CallLoad() // ï¿½Îµå°¡ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
@@ -115,7 +115,7 @@ public class SaveNLoad : MonoBehaviour
                     if(data.playerItemInventory[i] == theDatabase.itemList[x].itemID)
                     {
                         itemList.Add(theDatabase.itemList[x]);
-                        Debug.Log("ÀÎº¥Åä¸® ¾ÆÀÌÅÛÀ» ·ÎµåÇß½À´Ï´Ù : " + theDatabase.itemList[x].itemID);
+                        Debug.Log("ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ : " + theDatabase.itemList[x].itemID);
                         break;
                     }
                 }
@@ -128,7 +128,7 @@ public class SaveNLoad : MonoBehaviour
 
             theInven.LoadItem(itemList);
 
-            // ÇöÀç ¾À°ú ´Ù¸¥¾À¿¡ ÀÖ´Â °´Ã¼µéÀº ÂüÁ¶ ºÒ°¡´ÉÀÌ±â ¶§¹®¿¡ ¾ÀÀÌµ¿ÀÌ ÀÌ·ç¾îÁö°í ³­ ÈÄ ±× ¾À¿¡ ºÙ¾îÀÕ´Â ¸ÊÀÇ ¹Ù¿îµå¸¦ ÂüÁ¶ÇÔ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½Õ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             GameManager theGM = FindObjectOfType<GameManager>();
             theGM.LoadStart();
 
@@ -136,7 +136,7 @@ public class SaveNLoad : MonoBehaviour
         }
         else
         {
-            Debug.Log("ÀúÀåµÈ ¼¼ÀÌºê ÆÄÀÏÀÌ ¾ø½À´Ï´Ù.");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
         }
 
         file.Close();
