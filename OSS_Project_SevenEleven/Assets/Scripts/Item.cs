@@ -17,7 +17,7 @@ public class Item
         Use, // 소모품 아이템
         Equip, // 장비 아이템
         Quest, // 퀘스트 아이템 -> 만들고자 하는 게임에서는 퀘스트 아이템만 사용됨
-        ETC // 기타 아이템
+        ETC // 기타 아이템.
     }
 
     public Item(int _itemID, string _itemName, string _itemDes, ItemType _itemType, int _itemCount = 1)
