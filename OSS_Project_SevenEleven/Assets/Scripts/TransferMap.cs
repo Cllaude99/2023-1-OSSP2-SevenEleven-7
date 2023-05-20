@@ -15,7 +15,6 @@ public class TransferMap : MonoBehaviour
     public Transform target;
 
     public BoxCollider2D targetBound;
-
     //Private
     private PlayerManager thePlayer;
     private CameraManager theCamera;

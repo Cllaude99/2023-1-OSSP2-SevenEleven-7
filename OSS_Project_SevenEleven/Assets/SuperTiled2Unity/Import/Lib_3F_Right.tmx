@@ -433,7 +433,6 @@
   <object id="36" x="231.5" y="487" width="544" height="84.5"/>
   <object id="37" x="40.9091" y="14" width="39.2727" height="73.0909"/>
   <object id="40" x="240.5" y="759.5" width="589.5" height="87"/>
-  <object id="41" x="-48.5" y="800" width="371" height="90.5"/>
  </objectgroup>
  <objectgroup id="24" name="Object Layer 2">
   <object id="38" x="232.5" y="476.5" width="550" height="133.5"/>

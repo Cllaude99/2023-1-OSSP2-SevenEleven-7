@@ -8505,12 +8505,8 @@
   <object id="23" x="-101.333" y="-664" width="129.333" height="102.667"/>
   <object id="24" x="-102.667" y="-400" width="66.6667" height="722.667"/>
   <object id="25" x="-36" y="273.333" width="286.667" height="53.3333"/>
-  <object id="26" x="-128" y="-561.333" width="25.3333" height="161.333"/>
-  <object id="28" x="29.3333" y="-662.667" width="66.6667" height="52"/>
   <object id="30" x="97.3333" y="-662.667" width="90.6667" height="102.667"/>
   <object id="31" x="188" y="-557.333" width="82.6667" height="158.667"/>
-  <object id="32" x="232" y="-396" width="49.3333" height="77.3333"/>
   <object id="33" x="189.333" y="-320" width="62.6667" height="366.667"/>
-  <object id="34" x="250.667" y="44" width="30.6667" height="282.667"/>
  </objectgroup>
 </map>
