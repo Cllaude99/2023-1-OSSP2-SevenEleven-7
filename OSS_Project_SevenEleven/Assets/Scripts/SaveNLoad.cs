@@ -8,17 +8,17 @@ using UnityEngine.SceneManagement;
 public class SaveNLoad : MonoBehaviour
 {
     [System.Serializable]
-    public class Data // ��� ���̺� ��ϵ��� ���� Ŭ����
+    public class Data 
     {
         public float playerX;
         public float playerY;
         public float playerZ;
 
-        public List<int> playerItemInventory; // ������ �ִ� �������� ���̵��� ����
+        public List<int> playerItemInventory; 
         public List<int> playerItemInventoryCount; 
 
-        public string mapName; // ĳ���Ͱ� ��� �ʿ� �־�����
-        public string sceneName; // ĳ���Ͱ� ��� ���� �־�����
+        public string mapName; 
+        public string sceneName; 
 
         public List<bool> swList;
         public List<string> swNameList;
@@ -27,15 +27,15 @@ public class SaveNLoad : MonoBehaviour
     }
 
     private DatabaseManager theDatabase;
-    private PlayerManager thePlayer; // �÷��̾��� ��ġ���� �˱����� ����
+    private PlayerManager thePlayer; 
     private Inventory theInven;
 
     public Data data;
 
-    private Vector3 vector; // vector�� �÷��̾��� ��ġ�� ��� playerX,playerY,playerZ�� �ְ� �ҷ��� ����
+    private Vector3 vector; 
 
 
-    public void CallSave() // ���̺갡 �̷������ ����
+    public void CallSave() 
     {
         theDatabase = FindObjectOfType<DatabaseManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
@@ -48,7 +48,7 @@ public class SaveNLoad : MonoBehaviour
         data.mapName = thePlayer.currentMapName;
         data.sceneName = thePlayer.currentSceneName;
 
-        Debug.Log("���� ������ ����");
+        Debug.Log("기초 데이터 성공");
 
         data.playerItemInventory.Clear();
         data.playerItemInventoryCount.Clear();
@@ -68,7 +68,7 @@ public class SaveNLoad : MonoBehaviour
 
         for(int i=0;i<itemList.Count; i++)
         {
-            Debug.Log("�κ��丮�� ������ ���� �Ϸ� : " + itemList[i].itemID);
+            Debug.Log("인벤토리의 아이템 저장 완료 : " + itemList[i].itemID);
             data.playerItemInventory.Add(itemList[i].itemID);
             data.playerItemInventoryCount.Add(itemList[i].itemCount);
         }
@@ -79,10 +79,10 @@ public class SaveNLoad : MonoBehaviour
         bf.Serialize(file, data);
         file.Close();
 
-        Debug.Log(Application.dataPath + "�� ��ġ�� �����߽��ϴ�.");
+        Debug.Log(Application.dataPath + "의 위치에 저장했습니다.");
     }
 
-    public void CallLoad() // �ε尡 �̷������ ����
+    public void CallLoad() 
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
@@ -115,7 +115,7 @@ public class SaveNLoad : MonoBehaviour
                     if(data.playerItemInventory[i] == theDatabase.itemList[x].itemID)
                     {
                         itemList.Add(theDatabase.itemList[x]);
-                        Debug.Log("�κ��丮 �������� �ε��߽��ϴ� : " + theDatabase.itemList[x].itemID);
+                        Debug.Log("인벤토리 아이템을 로드했습니다 : " + theDatabase.itemList[x].itemID);
                         break;
                     }
                 }
@@ -128,7 +128,8 @@ public class SaveNLoad : MonoBehaviour
 
             theInven.LoadItem(itemList);
 
-            // ���� ���� �ٸ����� �ִ� ��ü���� ���� �Ұ����̱� ������ ���̵��� �̷������ �� �� �� ���� �پ��մ� ���� �ٿ�带 ������
+            // 카메라 바운드로 설정해야할 BoxCollider가 다른씬에 있다면, 불러올 수 가 없다.
+            // 그래서 씬이동이 이루어지고, 그 씬에 붙어있는 맵의 바운드를 참조해야한다!.
             GameManager theGM = FindObjectOfType<GameManager>();
             theGM.LoadStart();
 
@@ -136,7 +137,7 @@ public class SaveNLoad : MonoBehaviour
         }
         else
         {
-            Debug.Log("����� ���̺� ������ �����ϴ�.");
+            Debug.Log("저장된 세이브 파일이 없습니다.");
         }
 
         file.Close();
