@@ -5310,10 +5310,8 @@
   <properties>
    <property name="unity:layer" value="NoPassing"/>
   </properties>
-  <object id="11" x="-529.994" y="-156.217" width="40.8946" height="260.907"/>
   <object id="12" x="-489.099" y="103.872" width="238.006" height="83.4249"/>
   <object id="13" x="1.63578" y="104.69" width="213.47" height="77.6997"/>
-  <object id="14" x="215.923" y="-156.217" width="42.5304" height="260.907"/>
   <object id="15" x="-489.099" y="-156.217" width="705.022" height="40.0767"/>
   <object id="18" x="-421.214" y="-115.323" width="53.1629" height="45.8019"/>
   <object id="22" x="-249.457" y="103.872" width="65.4313" height="195.476"/>
