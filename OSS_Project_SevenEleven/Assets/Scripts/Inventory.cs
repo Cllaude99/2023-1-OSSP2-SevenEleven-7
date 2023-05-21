@@ -33,10 +33,20 @@ public class Inventory : MonoBehaviour
     public GameObject go_OOC; // 선택지 활성화 비활성화
     public GameObject prefab_Floating_Text; // 플로팅 텍스트
 
+    public GameObject menu_obj; // 메뉴연결용 오브젝트
+
+
     private int selectedItem; // 선택된 아이템.
     private int selectedTab; // 선택된 탭
 
+    private int page; 
+    private int slotCount; // 활성화된 슬롯개수
+    private const int MAX_SLOTS_COUNT = 10; // 최대슬롯개수
+
+
     private bool activated; // 인벤토리 활성화시 true.
+    private bool activated_Menu; // 인벤토리&메뉴UI 동기화용변수.
+
     private bool tabActivated; // 탭 활성화시 true.
     private bool itemActivated; // 아이템 활성화시 true.
     private bool stopKeyInput; // 키입력 제한 (소비할 때 질의가 나올 텐데, 그 때 키입력 방지)
@@ -57,16 +67,6 @@ public class Inventory : MonoBehaviour
         inventoryItemList = new List<Item>();
         inventoryTabList = new List<Item>();
         slots = tf.GetComponentsInChildren<InventorySlot>();
-
-        // ! 아래는 아이템 샘플 테스트입니다. 플레이모드에서 아이템들이 잘 들어가나 확인용이고 마무리단계에선 모두 지워야합니다
-        inventoryItemList.Add(new Item(10001, "1번째 부적", "왼쪽 위 부적", Item.ItemType.Quest));
-        inventoryItemList.Add(new Item(10002, "2번째 부적", "오른쪽 위 부적", Item.ItemType.Quest));
-        inventoryItemList.Add(new Item(10003, "3번째 부적", "왼쪽 아래 부적", Item.ItemType.Quest));
-        inventoryItemList.Add(new Item(10004, "4번째 부적", "오른쪽 아래 부적", Item.ItemType.Quest));
-        inventoryItemList.Add(new Item(10005, "부적", "전체 부적", Item.ItemType.Quest));
-
-        inventoryItemList.Add(new Item(10006, "1번째 일기장", "1번째 일기장", Item.ItemType.Quest));
-        inventoryItemList.Add(new Item(10007, "2번째 일기장", "2번째 일기장", Item.ItemType.Quest));
     }
 
     public List<Item> SaveItem()
@@ -147,6 +147,7 @@ public class Inventory : MonoBehaviour
         inventoryTabList.Clear();
         RemoveSlot();
         selectedItem = 0;
+        page = 0;
 
         if (selectedTab == 0) // 퀘스트 아이템을 선택한 경우
         {
@@ -159,28 +160,40 @@ public class Inventory : MonoBehaviour
 
 
 
-        for (int i = 0; i < inventoryTabList.Count; i++)
-        {
-            slots[i].gameObject.SetActive(true);
-            slots[i].Additem(inventoryTabList[i]);
-        } // 인벤토리 탭 리스트의 내용을, 인벤토리 슬롯에 추가
+        ShowPage();
 
         SelectedItem();
     }// 아이템 활성화 (inventoryTabList에 조건에 맞는 아이템들만 넣어주고, 인벤토리 슬롯에 출력)
+    
+    public void ShowPage()
+    {
+        slotCount = -1;
+        for (int i = page*MAX_SLOTS_COUNT; i < inventoryTabList.Count; i++)
+        {
+            slotCount = i - (page * MAX_SLOTS_COUNT);
+            slots[slotCount].gameObject.SetActive(true);
+            slots[slotCount].Additem(inventoryTabList[i]);
+
+            if (slotCount == MAX_SLOTS_COUNT-1)
+                break;
+
+        } // 인벤토리 탭 리스트의 내용을, 인벤토리 슬롯에 추가
+    }
+
     public void SelectedItem()
     {
         StopAllCoroutines();
-        if (inventoryTabList.Count > 0)
+        if (slotCount> -1)
         {
             Color color = slots[0].selected_Item.GetComponent<Image>().color;
             color.a = 0f;
-            for (int i = 0; i < inventoryTabList.Count; i++)
+            for (int i = 0; i <= slotCount; i++)
                 slots[i].selected_Item.GetComponent<Image>().color = color;
             Description_Text.text = inventoryTabList[selectedItem].itemDescription;
             StartCoroutine(SelectedItemEffectCoroutine());
         }
         else
-            Description_Text.text = "해당 타입의 아이템을 소유하고 있지 않습니다.";
+            Description_Text.text = "Nothing in my pocket...";
     }// 선택된 아이템을 제외하고, 다른 모든 탭의 컬러 알파값을 0으로 조정.
     IEnumerator SelectedItemEffectCoroutine()
     {
@@ -208,10 +221,10 @@ public class Inventory : MonoBehaviour
     {
         if (!stopKeyInput)
         {
-            if (Input.GetKeyDown(KeyCode.I)) //  I키를 누르면 인벤토리 창 활성화
+            if (Input.GetKeyDown(KeyCode.I)|| activated_Menu) //  I키를 누르거나 메뉴UI에서인벤토리버튼을 누르면 인벤토리 창 활성화
             {
                 activated = !activated;
-
+                activated_Menu = false;
                 if (activated)
                 {
                     theAudio.Play(open_sound);
@@ -274,7 +287,18 @@ public class Inventory : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.DownArrow))
                         {
-                            if (selectedItem < inventoryItemList.Count - 2)
+                            if (selectedItem + 2 > slotCount)
+                            {
+                                if(page<(inventoryTabList.Count-1)/MAX_SLOTS_COUNT)
+                                    page++;
+                                else
+                                    page = 0;
+                                RemoveSlot();
+                                ShowPage();
+                                selectedItem = -2;
+                            }
+
+                            if (selectedItem < slotCount - 1)
                                 selectedItem += 2;
                             else
                                 selectedItem %= 2;
@@ -283,16 +307,37 @@ public class Inventory : MonoBehaviour
                         }
                         else if (Input.GetKeyDown(KeyCode.UpArrow))
                         {
+                            if (selectedItem -2 < 0)
+                            {
+                                if (page !=0)
+                                    page--;
+                                else
+                                    page = (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT;
+                                RemoveSlot();
+                                ShowPage();
+                            }
+
                             if (selectedItem > 1)
                                 selectedItem -= 2;
                             else
-                                selectedItem = inventoryItemList.Count - 1 - selectedItem;
+                                selectedItem = slotCount - selectedItem;
                             theAudio.Play(key_sound);
                             SelectedItem();
                         }
                         else if (Input.GetKeyDown(KeyCode.RightArrow))
                         {
-                            if (selectedItem < inventoryTabList.Count - 1)
+                            if (selectedItem + 1 > slotCount)
+                            {
+                                if (page < (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT)
+                                    page++;
+                                else
+                                    page = 0;
+                                RemoveSlot();
+                                ShowPage();
+                                selectedItem = -1;
+                            }
+
+                            if (selectedItem < slotCount)
                                 selectedItem++;
                             else
                                 selectedItem = 0;
@@ -301,10 +346,20 @@ public class Inventory : MonoBehaviour
                         }
                         else if (Input.GetKeyDown(KeyCode.LeftArrow))
                         {
+                            if (selectedItem - 1 < 0)
+                            {
+                                if (page != 0)
+                                    page--;
+                                else
+                                    page = (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT;
+                                RemoveSlot();
+                                ShowPage();
+                            }
+
                             if (selectedItem > 0)
                                 selectedItem--;
                             else
-                                selectedItem = inventoryTabList.Count - 1;
+                                selectedItem = slotCount;
                             theAudio.Play(key_sound);
                             SelectedItem();
                         }
@@ -343,10 +398,22 @@ public class Inventory : MonoBehaviour
         }
     }
 
+
+    public void OnclickFromMenu()  //메뉴 UI에서 인벤토리UI 접근용 변수
+    {
+        activated_Menu= true;
+    }
+
+    public void Close_Menu()   // 인벤토리 UI 열면 메뉴 UI 닫기(레이어 문제해결용)
+    {
+        menu_obj.SetActive(false);
+    }
+
+
     IEnumerator OOCCoroutine()
     {
         go_OOC.SetActive(true);
-        theOOC.ShowTwoChoice("사용", "취소");
+        theOOC.ShowTwoChoice("Use", "Cancel");
         yield return new WaitUntil(() => !theOOC.activated);
         if (theOOC.GetResult())
         {
