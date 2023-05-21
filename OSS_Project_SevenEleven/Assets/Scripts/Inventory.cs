@@ -399,12 +399,13 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void OnclickFromMenu()  //메뉴 UI에서 인벤토리UI 접근용 변수
+    public void OnclickFromMenu()  //메뉴 UI에서 인벤토리UI 접근용 변수(인벤토리버튼온클릭이랑연결)
     {
-        activated_Menu= true;
+        if(go.activeSelf==false)
+            activated_Menu= true;
     }
 
-    public void Close_Menu()   // 인벤토리 UI 열면 메뉴 UI 닫기(레이어 문제해결용)
+    public void Close_Menu()   // 인벤토리 UI 열면 메뉴 UI 닫기(인벤토리버튼온클릭이랑연결)
     {
         menu_obj.SetActive(false);
     }
