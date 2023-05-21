@@ -33,6 +33,9 @@ public class Inventory : MonoBehaviour
     public GameObject go_OOC; // 선택지 활성화 비활성화
     public GameObject prefab_Floating_Text; // 플로팅 텍스트
 
+    public GameObject menu_obj; // 메뉴연결용 오브젝트
+
+
     private int selectedItem; // 선택된 아이템.
     private int selectedTab; // 선택된 탭
 
@@ -40,7 +43,10 @@ public class Inventory : MonoBehaviour
     private int slotCount; // 활성화된 슬롯개수
     private const int MAX_SLOTS_COUNT = 10; // 최대슬롯개수
 
+
     private bool activated; // 인벤토리 활성화시 true.
+    private bool activated_Menu; // 인벤토리&메뉴UI 동기화용변수.
+
     private bool tabActivated; // 탭 활성화시 true.
     private bool itemActivated; // 아이템 활성화시 true.
     private bool stopKeyInput; // 키입력 제한 (소비할 때 질의가 나올 텐데, 그 때 키입력 방지)
@@ -215,10 +221,10 @@ public class Inventory : MonoBehaviour
     {
         if (!stopKeyInput)
         {
-            if (Input.GetKeyDown(KeyCode.I)) //  I키를 누르면 인벤토리 창 활성화
+            if (Input.GetKeyDown(KeyCode.I)|| activated_Menu) //  I키를 누르거나 메뉴UI에서인벤토리버튼을 누르면 인벤토리 창 활성화
             {
                 activated = !activated;
-
+                activated_Menu = false;
                 if (activated)
                 {
                     theAudio.Play(open_sound);
@@ -391,6 +397,18 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+
+    public void OnclickFromMenu()  //메뉴 UI에서 인벤토리UI 접근용 변수
+    {
+        activated_Menu= true;
+    }
+
+    public void Close_Menu()   // 인벤토리 UI 열면 메뉴 UI 닫기(레이어 문제해결용)
+    {
+        menu_obj.SetActive(false);
+    }
+
 
     IEnumerator OOCCoroutine()
     {
