@@ -413,7 +413,7 @@ public class Inventory : MonoBehaviour
     IEnumerator OOCCoroutine()
     {
         go_OOC.SetActive(true);
-        theOOC.ShowTwoChoice("사용", "취소");
+        theOOC.ShowTwoChoice("Use", "Cancel");
         yield return new WaitUntil(() => !theOOC.activated);
         if (theOOC.GetResult())
         {
