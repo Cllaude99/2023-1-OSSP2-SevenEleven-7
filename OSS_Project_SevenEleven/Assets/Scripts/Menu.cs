@@ -36,6 +36,7 @@ public class Menu : MonoBehaviour
 
     public GameObject savecanvas_obj;
     public GameObject inventory_canvas_obj;
+    public GameObject load_canvas_obj;
 
 
     //
@@ -62,19 +63,45 @@ public class Menu : MonoBehaviour
         savecanvas_obj.SetActive(true);
     }
 
-    public void Open_Inventory_Canvas()   // 인벤토리 버튼누르면 인벤토리canvas 띄움
+    public void Save_Canvas_Resume()   // 세이브 컨버스에서 Resume버튼 누르면 메뉴 컨버스로
     {
-        theAudio.Play(call_sound);
-        inventory_canvas_obj.SetActive(true);
+        savecanvas_obj.SetActive(false);
+        theAudio.Play(cancel_sound);
     }
 
+    public void Open_Inventory_Canvas()   // 인벤토리 버튼누르면 인벤토리canvas 띄움
+    {
+        menu_obj.SetActive(false);
+        theAudio.Play(call_sound);
+        inventory_canvas_obj.SetActive(true);
+        
+    }
+
+    public void Inventory_Canvas_Resume()   // Inventory 컨버스에서 Resume버튼 누르면 메뉴 컨버스로
+    {
+        inventory_canvas_obj.SetActive(false);
+        theAudio.Play(cancel_sound);
+    }
+
+    public void Open_load_Canvas()   // 로드 버튼누르면 이어하기 컨버스 띄움
+    {
+        theAudio.Play(call_sound);
+        load_canvas_obj.SetActive(true);
+    }
+
+    public void Load_Canvas_Resume()   // Load 컨버스에서 Resume버튼 누르면 메뉴 컨버스로
+    {
+        load_canvas_obj.SetActive(false);
+        theAudio.Play(cancel_sound);
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))  //ESC 입력을 받으면 메뉴 화면 ON/OFF
         {
-            if(savecanvas_obj.activeSelf==false && inventory_canvas_obj.activeSelf == false)        // save캔버스나 inventory캔버스가 메뉴 캔버스 위에 없을경우
+            if(savecanvas_obj.activeSelf==false && inventory_canvas_obj.activeSelf == false
+                && load_canvas_obj.activeSelf == false)        //  메뉴 캔버스 만 띄어져있을경우
             {
                 activated = !activated;
 
@@ -96,9 +123,14 @@ public class Menu : MonoBehaviour
                 savecanvas_obj.SetActive(false);
                 theAudio.Play(cancel_sound);
             }
-            else if (inventory_canvas_obj.activeSelf == true)   //메뉴 캔버스위에 세이브 캔버스가 있을경우 
+            else if (inventory_canvas_obj.activeSelf == true)   //메뉴 캔버스위에 인벤토리 캔버스가 있을경우 
             {
                 inventory_canvas_obj.SetActive(false);
+                theAudio.Play(cancel_sound);
+            }
+            else if (load_canvas_obj.activeSelf == true)   //메뉴 캔버스위에 load 캔버스가 있을경우 
+            {
+                load_canvas_obj.SetActive(false);
                 theAudio.Play(cancel_sound);
             }
 
