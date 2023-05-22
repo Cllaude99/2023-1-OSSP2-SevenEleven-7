@@ -19,7 +19,7 @@ public class PlayerManager : MovingObject
     public string walkSound_1; // 이름으로 접근해서 사운드 이용
     public string walkSound_2;
     public string walkSound_3;
-    public string walkSound_4; 
+    public string walkSound_4;
 
     // Private
 
@@ -32,7 +32,7 @@ public class PlayerManager : MovingObject
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             DontDestroyOnLoad(this.gameObject);
             instance = this;
@@ -137,18 +137,48 @@ public class PlayerManager : MovingObject
         canMove = true; //방향키 입력이 가능하도록 함
     } // 다중 처리 기능 함수
 
+    public void CallSave1()
+    {
+        theSaveNLoad.CallSave(1);
+    }
+
+    public void CallSave2()
+    {
+        theSaveNLoad.CallSave(2);
+    }
+
+    public void CallSave3()
+    {
+        theSaveNLoad.CallSave(3);
+    }
+
+    public void LoadSave1()
+    {
+        theSaveNLoad.CallLoad(1);
+    }
+
+    public void LoadSave2()
+    {
+        theSaveNLoad.CallLoad(2);
+    }
+
+    public void LoadSave3()
+    {
+        theSaveNLoad.CallLoad(3);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5)) // F5 키를 통해 저장
         {
-            theSaveNLoad.CallSave();
+            theSaveNLoad.CallSave(1);
         }
 
         if (Input.GetKeyDown(KeyCode.F9)) // F9 키를 통해 불러오기
         {
-            theSaveNLoad.CallLoad();
+            theSaveNLoad.CallLoad(1);
         }
 
         if (canMove) //코루틴 다중 실행 방지 분기문

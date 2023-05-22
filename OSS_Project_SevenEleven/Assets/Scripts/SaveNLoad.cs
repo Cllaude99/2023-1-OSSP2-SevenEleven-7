@@ -8,17 +8,17 @@ using UnityEngine.SceneManagement;
 public class SaveNLoad : MonoBehaviour
 {
     [System.Serializable]
-    public class Data 
+    public class Data
     {
         public float playerX;
         public float playerY;
         public float playerZ;
 
-        public List<int> playerItemInventory; 
-        public List<int> playerItemInventoryCount; 
+        public List<int> playerItemInventory;
+        public List<int> playerItemInventoryCount;
 
-        public string mapName; 
-        public string sceneName; 
+        public string mapName;
+        public string sceneName;
 
         public List<bool> swList;
         public List<string> swNameList;
@@ -27,15 +27,15 @@ public class SaveNLoad : MonoBehaviour
     }
 
     private DatabaseManager theDatabase;
-    private PlayerManager thePlayer; 
+    private PlayerManager thePlayer;
     private Inventory theInven;
 
     public Data data;
 
-    private Vector3 vector; 
+    private Vector3 vector;
 
 
-    public void CallSave() 
+    public void CallSave(int k)
     {
         theDatabase = FindObjectOfType<DatabaseManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
@@ -53,7 +53,7 @@ public class SaveNLoad : MonoBehaviour
         data.playerItemInventory.Clear();
         data.playerItemInventoryCount.Clear();
 
-        for(int i=0; i < theDatabase.var_name.Length; i++)
+        for (int i = 0; i < theDatabase.var_name.Length; i++)
         {
             data.varNameList.Add(theDatabase.var_name[i]);
             data.varNumberList.Add(theDatabase.var[i]);
@@ -66,7 +66,7 @@ public class SaveNLoad : MonoBehaviour
 
         List<Item> itemList = theInven.SaveItem();
 
-        for(int i=0;i<itemList.Count; i++)
+        for (int i = 0; i < itemList.Count; i++)
         {
             Debug.Log("인벤토리의 아이템 저장 완료 : " + itemList[i].itemID);
             data.playerItemInventory.Add(itemList[i].itemID);
@@ -74,7 +74,7 @@ public class SaveNLoad : MonoBehaviour
         }
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.dataPath + "/SaveFile.dat");
+        FileStream file = File.Create(Application.dataPath + "/SaveFile" + k + ".dat");
 
         bf.Serialize(file, data);
         file.Close();
@@ -82,12 +82,12 @@ public class SaveNLoad : MonoBehaviour
         Debug.Log(Application.dataPath + "의 위치에 저장했습니다.");
     }
 
-    public void CallLoad() 
+    public void CallLoad(int k)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.dataPath + "/SaveFile.dat", FileMode.Open);
+        FileStream file = File.Open(Application.dataPath + "/SaveFile" + k + ".dat", FileMode.Open);
 
-        if(file != null && file.Length > 0)
+        if (file != null && file.Length > 0)
         {
             data = (Data)bf.Deserialize(file);
 
@@ -108,11 +108,11 @@ public class SaveNLoad : MonoBehaviour
 
             List<Item> itemList = new List<Item>();
 
-            for(int i=0; i < data.playerItemInventory.Count; i++)
+            for (int i = 0; i < data.playerItemInventory.Count; i++)
             {
-                for(int x = 0; x < theDatabase.itemList.Count; x++)
+                for (int x = 0; x < theDatabase.itemList.Count; x++)
                 {
-                    if(data.playerItemInventory[i] == theDatabase.itemList[x].itemID)
+                    if (data.playerItemInventory[i] == theDatabase.itemList[x].itemID)
                     {
                         itemList.Add(theDatabase.itemList[x]);
                         Debug.Log("인벤토리 아이템을 로드했습니다 : " + theDatabase.itemList[x].itemID);
@@ -121,7 +121,7 @@ public class SaveNLoad : MonoBehaviour
                 }
             }
 
-            for(int i=0;i<data.playerItemInventoryCount.Count; i++)
+            for (int i = 0; i < data.playerItemInventoryCount.Count; i++)
             {
                 itemList[i].itemCount = data.playerItemInventoryCount[i];
             }
@@ -133,7 +133,7 @@ public class SaveNLoad : MonoBehaviour
             GameManager theGM = FindObjectOfType<GameManager>();
             theGM.LoadStart();
 
-            SceneManager.LoadScene(data.sceneName); 
+            SceneManager.LoadScene(data.sceneName);
         }
         else
         {
