@@ -39,6 +39,17 @@ public class OrderManager : MonoBehaviour
 
         return tempList;
     }
+
+    public void NotMove()
+    {
+        thePlayer.notMove = true;
+    }
+
+    public void Move()
+    {
+        thePlayer.notMove = false;
+    }
+
     public void Move(string _name, string _dir) //특정 방향으로 이동
     {
         for (int i = 0; i < characters.Count; i++)
