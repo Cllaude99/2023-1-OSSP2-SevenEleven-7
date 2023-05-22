@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="400" tilewidth="4" tileheight="4" infinite="1" nextlayerid="9" nextobjectid="27">
+ <properties>
+  <property name="unity:layer" value="NoPassing"/>
+ </properties>
  <tileset firstgid="1" source="Wonheung6F_maps&amp;tiles/Inside_A4(tiled).tsx"/>
  <tileset firstgid="34561" source="Wonheung6F_maps&amp;tiles/계단 및 복도 타일.tsx"/>
  <tileset firstgid="49786" source="Wonheung6F_maps&amp;tiles/Wonheung_6F_used.tsx"/>

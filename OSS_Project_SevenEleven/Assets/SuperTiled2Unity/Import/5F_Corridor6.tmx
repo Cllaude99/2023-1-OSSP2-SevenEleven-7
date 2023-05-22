@@ -13477,6 +13477,9 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
+  <properties>
+   <property name="unity:layer" value="NoPassing"/>
+  </properties>
   <object id="2" x="1032" y="416.5" width="60" height="97.1667"/>
   <object id="5" x="1091" y="497" width="250.5" height="18"/>
   <object id="7" x="563.5" y="751.5" width="781" height="14"/>
