@@ -13,6 +13,8 @@ public class PlayerManager : MovingObject
 
     public float runSpeed; // 달리기 속력
 
+    public bool notMove = false;
+
     public string currentMapName;
     public string currentSceneName; // 캐릭터가 어느 씬에 있는지 확인하기 위한 용도.
 
@@ -55,7 +57,7 @@ public class PlayerManager : MovingObject
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
     {
-        while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0) // 단일 코루틴 속 이동을 계속 가능하게 함
+        while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0 && !notMove) // 단일 코루틴 속 이동을 계속 가능하게 함
         {
             //Runs
             if (Input.GetKey(KeyCode.LeftShift))
@@ -181,7 +183,7 @@ public class PlayerManager : MovingObject
             theSaveNLoad.CallLoad(1);
         }
 
-        if (canMove) //코루틴 다중 실행 방지 분기문
+        if (canMove && !notMove) //코루틴 다중 실행 방지 분기문
         {
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) //방향키에 따라 -1 또는 1 리턴
             {
