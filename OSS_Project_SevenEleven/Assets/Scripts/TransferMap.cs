@@ -13,7 +13,7 @@ public class TransferMap : MonoBehaviour
 
     //Public 
     public Transform target;
-
+    public string transferMapName;
     public BoxCollider2D targetBound;
     //Private
     private PlayerManager thePlayer;
@@ -30,6 +30,7 @@ public class TransferMap : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
+            thePlayer.currentMapName = transferMapName;
             theCamera.SetBound(targetBound);
             theCamera.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, theCamera.transform.position.z);
             thePlayer.transform.position = target.transform.position;
