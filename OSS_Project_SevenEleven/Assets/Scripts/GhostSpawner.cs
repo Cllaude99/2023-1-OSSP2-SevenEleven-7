@@ -22,8 +22,8 @@ public class GhostSpawner : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Vector3 spawnPoint = SpawnPoint.position;
-        GameObject instance = Instantiate(GhostPrefab, spawnPoint, Quaternion.identity);
+        instance = Instantiate(GhostPrefab, spawnPoint, Quaternion.identity);
         instance.GetComponent<GhostManager>().target = thePlayer.transform;
-        ghostSpawner.SetActive(false);
+        ghostSpawner.SetActive(false); //한번만 소환
     }
 }

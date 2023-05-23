@@ -19,6 +19,7 @@ public class TransferMap : MonoBehaviour
     private PlayerManager thePlayer;
     private CameraManager theCamera;
 
+
     // Start is called before the first frame update
     void Start()
     {
