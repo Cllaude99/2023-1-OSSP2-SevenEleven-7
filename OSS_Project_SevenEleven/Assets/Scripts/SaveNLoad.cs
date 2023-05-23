@@ -29,6 +29,7 @@ public class SaveNLoad : MonoBehaviour
     private DatabaseManager theDatabase;
     private PlayerManager thePlayer;
     private Inventory theInven;
+    public GameObject load_canvas_obj;
 
     public Data data;
 
@@ -134,6 +135,8 @@ public class SaveNLoad : MonoBehaviour
             theGM.LoadStart();
 
             SceneManager.LoadScene(data.sceneName);
+            load_canvas_obj = GameObject.Find("Load_UI");
+            load_canvas_obj.SetActive(false);
         }
         else
         {
