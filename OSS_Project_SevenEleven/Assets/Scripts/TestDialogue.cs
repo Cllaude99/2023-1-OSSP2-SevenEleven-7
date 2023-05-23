@@ -22,4 +22,6 @@ public class TestDialogue : MonoBehaviour
             theDM.ShowDialogue(dialogue);
         }
     }
+
+
 }

@@ -15,15 +15,20 @@ public class GhostManager : MovingObject
     private AudioManager audioManager;
     private PlayerManager thePlayer;
 
+    BGMManager BGM;
+
+    public int PlayMusicTrack;
 
     private void Start()
     {
+        BGM = FindObjectOfType<BGMManager>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         audioManager = FindObjectOfType<AudioManager>();
         boxCollider = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerManager>();
         Destroy(GameObject.Find(GhostPrefab.name), lifeTime);
+        BGM.Play(PlayMusicTrack);
         StartCoroutine(GhostCoroutine());
     }
 
