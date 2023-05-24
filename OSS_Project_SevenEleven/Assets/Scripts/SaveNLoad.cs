@@ -30,11 +30,12 @@ public class SaveNLoad : MonoBehaviour
     private PlayerManager thePlayer;
     private Inventory theInven;
     public GameObject load_canvas_obj;
-
     public Data data;
 
     private Vector3 vector;
 
+    public List<string> item_id__should_destroy;
+    public int item_count;
 
     public void CallSave(int k)
     {
@@ -128,6 +129,15 @@ public class SaveNLoad : MonoBehaviour
             }
 
             theInven.LoadItem(itemList);
+
+            item_count = 0;
+            for (int i = 0; i < data.playerItemInventoryCount.Count; i++)
+            {
+                item_id__should_destroy.Add((data.playerItemInventory[i]).ToString());
+                item_count++;
+            }
+
+
 
             // 카메라 바운드로 설정해야할 BoxCollider가 다른씬에 있다면, 불러올 수 가 없다.
             // 그래서 씬이동이 이루어지고, 그 씬에 붙어있는 맵의 바운드를 참조해야한다!.
