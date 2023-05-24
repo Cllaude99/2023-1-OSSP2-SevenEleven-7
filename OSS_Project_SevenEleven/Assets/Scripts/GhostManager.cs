@@ -15,16 +15,26 @@ public class GhostManager : MovingObject
     private AudioManager audioManager;
     private PlayerManager thePlayer;
 
+    BGMManager BGM;
+
+    public int PlayMusicTrack;
 
     private void Start()
     {
+        BGM = FindObjectOfType<BGMManager>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         audioManager = FindObjectOfType<AudioManager>();
         boxCollider = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerManager>();
         Destroy(GameObject.Find(GhostPrefab.name), lifeTime);
-        StartCoroutine(GhostCoroutine());
+
+        BGM.Play(PlayMusicTrack);//생성시 브금 재생
+        BGM.Loop();
+        Invoke("stopBGM", lifeTime); //소멸시 브금 중지
+        thePlayer.istransfer = false; //맵 자동 이동 버그 수정
+
+        StartCoroutine(GhostCoroutine()); //코루틴 실행
     }
 
     private void Update()
@@ -36,6 +46,10 @@ public class GhostManager : MovingObject
     {
         while (true)
         {
+
+            if (thePlayer.istransfer) Invoke("warpGhost", 1f);
+            thePlayer.istransfer = false;
+
             // 추격 대상의 위치 가져오기
             Vector2 targetPosition = target.position;
 
@@ -60,8 +74,6 @@ public class GhostManager : MovingObject
             animator.SetFloat("DirX", vector.x); // x벡터 값을 전달해서 animation을 실행시킴
             animator.SetFloat("DirY", vector.y); // y벡터 값을 전달해서 animation을 실행시킴
             animator.SetBool("Walking", true);
-
-
 
             while (currentWalkCount < walkCount)
             {
@@ -92,5 +104,16 @@ public class GhostManager : MovingObject
             thePlayer.currentMapName = gameOver; // 만약 이동 영역과 부딪힌다면 이동할 맵의 이름을 Player오브젝트로 넘겨줌
             SceneManager.LoadScene(gameOver); // transferMapName으로 이동
         }
+    }
+
+    void warpGhost()
+    {
+        this.gameObject.transform.position = GameObject.Find(thePlayer.current_transfer).GetComponent<TransferMap>().target.transform.position;
+    }
+
+    void stopBGM()
+    {
+        BGM.FadeOutMusic();
+        BGM.UnLoop();
     }
 }

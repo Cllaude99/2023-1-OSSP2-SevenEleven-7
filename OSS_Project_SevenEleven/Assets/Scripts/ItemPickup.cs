@@ -14,7 +14,8 @@ public class ItemPickup : MonoBehaviour
         {
             AudioManager.instance.Play(pickUpSound);
             Inventory.instance.GetAnItem(itemID, _count); // 인벤토리에 획득한 아이템 추가하는 과정
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }

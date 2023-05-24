@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="290" height="250" tilewidth="4" tileheight="4" infinite="0" nextlayerid="11" nextobjectid="37">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="290" height="250" tilewidth="4" tileheight="4" infinite="0" nextlayerid="11" nextobjectid="37">
  <tileset firstgid="1" source="singong_road_asset.tsx"/>
  <tileset firstgid="30101" source="singong_lobby_asset.tsx"/>
  <tileset firstgid="60201" source="Forest_A2.tsx"/>
@@ -1530,7 +1530,9 @@
  <objectgroup id="10" name="nopass">
   <object id="2" x="160" y="83" width="542" height="305"/>
   <object id="4" x="705.333" y="80.6667" width="449.212" height="252.667"/>
-  <object id="5" x="760.667" y="336.667" width="399.334" height="281.333"/>
+  <object id="5" x="760.667" y="336.667" width="399.334" height="281.333">
+   <polygon points="0,0 399.334,0 399.334,281.333 0,281.333 0,155.833 81,156.833 79.5,97.833 0,97.333"/>
+  </object>
   <object id="7" x="761" y="620">
    <polygon points="0,0 170.5,76.5 237.5,76.5 236.5,-2.5"/>
   </object>
@@ -1541,8 +1543,12 @@
   <object id="14" x="704" y="334.667" width="56" height="99.3333"/>
   <object id="15" x="706.667" y="493.333" width="53.3333" height="94"/>
   <object id="17" x="293" y="481" width="106.5" height="214.5"/>
-  <object id="33" x="1001" y="619" width="156" height="302.5"/>
-  <object id="34" x="61.3333" y="85.3333" width="98" height="832.667"/>
+  <object id="33" x="1001" y="619" width="156" height="302.5">
+   <polygon points="0,0 156,0 156,302.5 0,302.5 0,257 146.667,258.333 144.667,81 0,79.6667"/>
+  </object>
+  <object id="34" x="61.3333" y="85.3333" width="98" height="832.667">
+   <polygon points="0,0 98,0 98,302.667 20,302.667 19,695.667 98,699.667 98,832.667 0,832.667"/>
+  </object>
   <object id="35" x="758.667" y="919.333" width="242.667" height="78"/>
  </objectgroup>
 </map>

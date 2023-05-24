@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="400" height="400" tilewidth="4" tileheight="4" infinite="1" nextlayerid="9" nextobjectid="26">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="400" height="400" tilewidth="4" tileheight="4" infinite="1" nextlayerid="9" nextobjectid="27">
  <tileset firstgid="1" source="Inside_A4(tiled).tsx"/>
  <tileset firstgid="34561" source="계단 및 복도 타일.tsx"/>
  <tileset firstgid="49786" source="Wonheung_6F_used.tsx"/>
@@ -15774,8 +15774,7 @@
   </data>
  </layer>
  <objectgroup id="8" name="Object Layer 1">
-  <object id="1" x="-511.333" y="-50" width="628.75" height="51.5"/>
-  <object id="2" x="-536.667" y="-53.3333" width="38" height="269.667"/>
+  <object id="1" x="-511.333" y="-50" width="528.083" height="51.5"/>
   <object id="3" x="-537.333" y="210.833" width="153.167" height="57.3333"/>
   <object id="4" x="-323.416" y="207.5" width="22.4167" height="55.1667"/>
   <object id="6" x="-146.917" y="207.667" width="23.1667" height="55.3333"/>
@@ -15789,10 +15788,10 @@
   <object id="17" x="357.114" y="-35.1667">
    <polygon points="0,0 -45.1142,-120.333 5.55251,-120.333"/>
   </object>
-  <object id="18" x="183.5" y="-184" width="168" height="34.5"/>
   <object id="19" x="100" y="-156" width="92" height="101.333"/>
   <object id="21" x="99.25" y="-83" width="18.25" height="84.5"/>
   <object id="24" x="-234.458" y="207.432" width="22.3333" height="55.7349"/>
   <object id="25" x="-59.7917" y="208.303" width="23.8333" height="53.0303"/>
+  <object id="26" x="62.875" y="-49.75" width="54.6667" height="51.5"/>
  </objectgroup>
 </map>

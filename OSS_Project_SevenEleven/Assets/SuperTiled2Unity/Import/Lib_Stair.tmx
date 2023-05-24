@@ -206,9 +206,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" x="111.75" y="21.25" width="87.75" height="19.25"/>
   <object id="2" x="185.25" y="23.25" width="47" height="259"/>
   <object id="3" x="79.75" y="22.5" width="42.5" height="261"/>
-  <object id="4" x="71.75" y="270" width="162" height="25.25"/>
  </objectgroup>
 </map>

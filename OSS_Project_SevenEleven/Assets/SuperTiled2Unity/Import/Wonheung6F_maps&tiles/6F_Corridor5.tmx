@@ -11406,7 +11406,6 @@
   </data>
  </layer>
  <objectgroup id="8" name="Object Layer 1">
-  <object id="1" x="-248.5" y="-172.5" width="250" height="15"/>
   <object id="2" x="-11.5" y="-172.5" width="145.5" height="83.5"/>
   <object id="11" x="-260.334" y="146.333" width="391.667" height="18.3333"/>
   <object id="12" x="-280" y="-171.5" width="34.3333" height="334.833"/>
@@ -11417,8 +11416,7 @@
    <polygon points="0,0 164.167,24.5 0,22.5"/>
   </object>
   <object id="15" x="298.667" y="7.33333">
-   <polygon points="0,0 -168,18 -1.53425,40.6667"/>
+   <polygon points="-1.63636,-0.727273 -168,18 -1.53425,40.6667"/>
   </object>
-  <object id="16" x="285.333" y="-115.333" width="12.6667" height="290"/>
  </objectgroup>
 </map>

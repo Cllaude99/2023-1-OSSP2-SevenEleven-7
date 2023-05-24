@@ -13,23 +13,31 @@ public class PlayerManager : MovingObject
 
     public float runSpeed; // 달리기 속력
 
+    public bool notMove = false;
+
     public string currentMapName;
+    public string currentSceneName; // 캐릭터가 어느 씬에 있는지 확인하기 위한 용도.
+
     public string walkSound_1; // 이름으로 접근해서 사운드 이용
     public string walkSound_2;
     public string walkSound_3;
-    public string walkSound_4; 
+    public string walkSound_4;
 
     // Private
 
     private float applyRunSpeed; // 실제 적용 RunSpeed
-    private bool canMove = true; //코루틴 다중 실행 방지
+    public bool canMove = true; //코루틴 다중 실행 방지
     private bool applyRunFlag = false;
 
     private AudioManager theAudio;
+    private SaveNLoad theSaveNLoad;
+
+    public string current_transfer;
+    public bool istransfer = false;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             DontDestroyOnLoad(this.gameObject);
             instance = this;
@@ -47,11 +55,12 @@ public class PlayerManager : MovingObject
         animator = GetComponent<Animator>(); // 컴포넌트를 animator 변수에 불러옴
         boxCollider = GetComponent<BoxCollider2D>();
         theAudio = FindObjectOfType<AudioManager>();
+        theSaveNLoad = FindObjectOfType<SaveNLoad>();
     }
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
     {
-        while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0) // 단일 코루틴 속 이동을 계속 가능하게 함
+        while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0 && !notMove) // 단일 코루틴 속 이동을 계속 가능하게 함
         {
             //Runs
             if (Input.GetKey(KeyCode.LeftShift))
@@ -133,12 +142,51 @@ public class PlayerManager : MovingObject
         canMove = true; //방향키 입력이 가능하도록 함
     } // 다중 처리 기능 함수
 
+    public void CallSave1()
+    {
+        theSaveNLoad.CallSave(1);
+    }
+
+    public void CallSave2()
+    {
+        theSaveNLoad.CallSave(2);
+    }
+
+    public void CallSave3()
+    {
+        theSaveNLoad.CallSave(3);
+    }
+
+    public void LoadSave1()
+    {
+        theSaveNLoad.CallLoad(1);
+    }
+
+    public void LoadSave2()
+    {
+        theSaveNLoad.CallLoad(2);
+    }
+
+    public void LoadSave3()
+    {
+        theSaveNLoad.CallLoad(3);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F5)) // F5 키를 통해 저장
+        {
+            theSaveNLoad.CallSave(1);
+        }
 
-        if (canMove) //코루틴 다중 실행 방지 분기문
+        if (Input.GetKeyDown(KeyCode.F9)) // F9 키를 통해 불러오기
+        {
+            theSaveNLoad.CallLoad(1);
+        }
+
+        if (canMove && !notMove) //코루틴 다중 실행 방지 분기문
         {
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) //방향키에 따라 -1 또는 1 리턴
             {
