@@ -19,6 +19,7 @@ public class TransferMap : MonoBehaviour
     private PlayerManager thePlayer;
     private CameraManager theCamera;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +29,14 @@ public class TransferMap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.name == "Player")
         {
+            if (!thePlayer.istransfer) thePlayer.istransfer = true;
+            thePlayer.current_transfer = this.gameObject.name;
+
             thePlayer.currentMapName = transferMapName;
+
             theCamera.SetBound(targetBound);
             theCamera.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, theCamera.transform.position.z);
             thePlayer.transform.position = target.transform.position;
