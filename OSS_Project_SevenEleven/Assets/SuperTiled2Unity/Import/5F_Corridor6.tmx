@@ -13480,11 +13480,11 @@
   <properties>
    <property name="unity:layer" value="NoPassing"/>
   </properties>
-  <object id="2" x="1032" y="323.167" width="60" height="197.5"/>
-  <object id="5" x="1091" y="497" width="250.5" height="23.6667"/>
-  <object id="7" x="563.5" y="743.833" width="781" height="21.6667"/>
-  <object id="10" x="563" y="499" width="248" height="21.5"/>
-  <object id="13" x="810.667" y="323.334" width="61" height="196.916"/>
-  <object id="20" x="940.333" y="322" width="23.9167" height="126.333"/>
+  <object id="2" x="1030.73" y="323.167" width="61.2727" height="198.045"/>
+  <object id="5" x="1091" y="497" width="250.5" height="24.2121"/>
+  <object id="7" x="563.5" y="742.561" width="781" height="22.9394"/>
+  <object id="10" x="563" y="499" width="248" height="22.2273"/>
+  <object id="13" x="810.667" y="323.334" width="63" height="197.916"/>
+  <object id="20" x="939.97" y="322" width="24.2803" height="126.333"/>
  </objectgroup>
 </map>

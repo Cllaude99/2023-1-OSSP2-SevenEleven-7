@@ -16661,9 +16661,9 @@
   <properties>
    <property name="unity:layer" value="NoPassing"/>
   </properties>
-  <object id="1" x="47.3333" y="-418.666" width="148.667" height="663.166"/>
-  <object id="3" x="-290" y="-436" width="114.5" height="904"/>
-  <object id="4" x="-202.667" y="468.167" width="398.667" height="103.833"/>
-  <object id="7" x="-202.666" y="452.167" width="218.75" height="24.5"/>
+  <object id="1" x="45.8333" y="-418.666" width="150.167" height="665.166"/>
+  <object id="3" x="-290" y="-436" width="116" height="904"/>
+  <object id="4" x="-202.667" y="466.167" width="398.667" height="105.833"/>
+  <object id="7" x="-202.666" y="452.167" width="220.75" height="24.5"/>
  </objectgroup>
 </map>
