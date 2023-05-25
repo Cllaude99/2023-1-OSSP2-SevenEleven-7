@@ -12072,11 +12072,11 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="7" x="154.333" y="115.666" width="92" height="90.6667"/>
-  <object id="10" x="-447.667" y="114" width="373.667" height="74"/>
-  <object id="12" x="-421" y="-168" width="42" height="55"/>
-  <object id="13" x="-341" y="-168" width="276" height="54"/>
-  <object id="16" x="-29.5" y="-167.5" width="244.5" height="54.5">
+  <object id="7" x="150" y="110.666" width="96.3333" height="95.6667"/>
+  <object id="10" x="-447.667" y="110.333" width="377.667" height="77.6667"/>
+  <object id="12" x="-421" y="-168" width="41.0909" height="57.5"/>
+  <object id="13" x="-339.818" y="-168" width="271.75" height="57"/>
+  <object id="16" x="-27.875" y="-167.5" width="255.542" height="56.125">
    <properties>
     <property name="unity:layer" value="NoPassing"/>
    </properties>

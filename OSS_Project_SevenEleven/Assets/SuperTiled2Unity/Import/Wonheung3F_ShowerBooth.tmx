@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="4" tileheight="4" infinite="0" nextlayerid="9" nextobjectid="48">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="4" tileheight="4" infinite="0" nextlayerid="9" nextobjectid="48">
  <tileset firstgid="1" source="Wonheung_showerbooth.tsx"/>
  <tileset firstgid="7570" source="Wonheung_classroom.tsx"/>
  <tileset firstgid="38195" source="화장실.tsx"/>
@@ -1232,24 +1232,24 @@
   <properties>
    <property name="unity:layer" value="NoPassing"/>
   </properties>
-  <object id="2" x="314" y="98" width="7" height="101"/>
-  <object id="3" x="379" y="99" width="8" height="100"/>
-  <object id="6" x="440" y="100" width="5" height="101"/>
-  <object id="7" x="505" y="100" width="8" height="99"/>
-  <object id="8" x="578" y="99" width="9" height="99"/>
-  <object id="11" x="316" y="292" width="6" height="73"/>
-  <object id="13" x="376" y="288" width="8" height="70"/>
-  <object id="15" x="440" y="290" width="5" height="70"/>
-  <object id="17" x="504" y="294" width="10" height="65"/>
-  <object id="19" x="585" y="294" width="7" height="65"/>
-  <object id="23" x="0" y="440" width="799" height="359"/>
-  <object id="31" x="0.988386" y="-0.988386" width="241.166" height="160.119"/>
-  <object id="32" x="214.48" y="1.97677" width="586.113" height="76.1058"/>
-  <object id="34" x="679.021" y="2.96516" width="122.56" height="441.809"/>
+  <object id="2" x="311.667" y="98" width="12.6667" height="106"/>
+  <object id="3" x="375.667" y="99" width="11.3333" height="105.667"/>
+  <object id="6" x="435" y="100" width="13.6667" height="104"/>
+  <object id="7" x="503.333" y="100" width="13" height="100.667"/>
+  <object id="8" x="575.333" y="99" width="13.6667" height="101.667"/>
+  <object id="11" x="312.333" y="292" width="11.6667" height="78.3333"/>
+  <object id="13" x="376" y="292.333" width="12.3333" height="77.6667"/>
+  <object id="15" x="436" y="292" width="12.3333" height="70"/>
+  <object id="17" x="504.182" y="295.333" width="12.1818" height="65"/>
+  <object id="19" x="583.75" y="295.75" width="12.5" height="74.75"/>
+  <object id="23" x="0" y="434" width="799" height="365"/>
+  <object id="31" x="0.988386" y="-0.988386" width="241.166" height="168.119"/>
+  <object id="32" x="120.48" y="1.97677" width="680.113" height="165.106"/>
+  <object id="34" x="679.021" y="2.96516" width="122.56" height="437.309"/>
   <object id="39" x="313.319" y="77.0941" width="276.748" height="79.0709"/>
   <object id="42" x="316.284" y="320.237" width="276.748" height="50.4077"/>
-  <object id="43" x="1.97677" y="94.8851" width="70.1754" height="132.444"/>
-  <object id="45" x="0" y="319.249" width="70.1754" height="120.583"/>
+  <object id="43" x="0.22677" y="94.8851" width="75.2587" height="136.808"/>
+  <object id="45" x="0" y="315.916" width="76.4254" height="123.916"/>
   <object id="47" x="117.618" y="369.657" width="359.773" height="69.1871"/>
  </objectgroup>
 </map>

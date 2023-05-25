@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="544" height="300" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="20">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="544" height="300" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="21">
  <tileset firstgid="1" source="Wonheung6F_maps&amp;tiles/계단 및 복도 타일.tsx"/>
  <tileset firstgid="15226" source="Wonheung6F_maps&amp;tiles/Inside_A4(tiled).tsx"/>
  <tileset firstgid="49786" source="Wonheung6F_maps&amp;tiles/Wonheung_6F_used.tsx"/>
@@ -13480,12 +13480,11 @@
   <properties>
    <property name="unity:layer" value="NoPassing"/>
   </properties>
-  <object id="2" x="1032" y="416.5" width="60" height="97.1667"/>
-  <object id="5" x="1091" y="497" width="250.5" height="18"/>
-  <object id="7" x="563.5" y="751.5" width="781" height="14"/>
-  <object id="10" x="563" y="499" width="248" height="16"/>
-  <object id="13" x="810.667" y="414.667" width="58.3333" height="98.333"/>
-  <object id="18" x="1033" y="323.5" width="58.5" height="90.5"/>
-  <object id="19" x="810.5" y="323.5" width="59" height="89"/>
+  <object id="2" x="1030.73" y="323.167" width="61.2727" height="198.045"/>
+  <object id="5" x="1091" y="497" width="250.5" height="24.2121"/>
+  <object id="7" x="563.5" y="742.561" width="781" height="22.9394"/>
+  <object id="10" x="563" y="499" width="248" height="22.2273"/>
+  <object id="13" x="810.667" y="323.334" width="63" height="197.916"/>
+  <object id="20" x="939.97" y="322" width="24.2803" height="126.333"/>
  </objectgroup>
 </map>

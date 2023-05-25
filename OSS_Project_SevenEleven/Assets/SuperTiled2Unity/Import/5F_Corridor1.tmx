@@ -14679,15 +14679,14 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="4" x="1019.5" y="220" width="226" height="64"/>
-  <object id="7" x="962.667" y="220" width="56.6667" height="62.8713"/>
+  <object id="4" x="962.5" y="220" width="283" height="65.125"/>
   <object id="29" x="967.5" y="1085.75" width="51.5833" height="52.5833"/>
-  <object id="30" x="1015.5" y="1105.08" width="228.167" height="32.9167"/>
-  <object id="61" x="961" y="380" width="58.75" height="705.375"/>
-  <object id="62" x="1245.5" y="220" width="30" height="383.5"/>
-  <object id="63" x="1244" y="668" width="32.5" height="63.5"/>
-  <object id="64" x="1244" y="795.5" width="139" height="96"/>
-  <object id="65" x="1243.33" y="1116.33" width="141" height="21.6667">
+  <object id="30" x="1015.5" y="1098.08" width="228.667" height="39.9167"/>
+  <object id="61" x="961" y="380" width="60.3864" height="705.375"/>
+  <object id="62" x="1242.95" y="220" width="37.2727" height="385.091"/>
+  <object id="63" x="1242.41" y="666.534" width="34.0909" height="66.75"/>
+  <object id="64" x="1242.9" y="795.5" width="140.097" height="97.7841"/>
+  <object id="65" x="1243.33" y="1115.24" width="141" height="22.7576">
    <properties>
     <property name="unity:layer" value="NoPassing"/>
    </properties>
