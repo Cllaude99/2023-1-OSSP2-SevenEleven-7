@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="544" height="300" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="18">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="544" height="300" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="22">
  <tileset firstgid="1" source="계단 및 복도 타일.tsx"/>
  <tileset firstgid="15226" source="Inside_A4(tiled).tsx"/>
  <tileset firstgid="49786" source="Wonheung_6F_used.tsx"/>
@@ -8317,7 +8317,7 @@
 20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,
 20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,
 20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,
-20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,
+20810,20810,20810,20810,1610633547,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,
 20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,
 20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810,20810
 </chunk>
@@ -13422,16 +13422,19 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="2" x="1032" y="416.5" width="60" height="97.1667"/>
-  <object id="5" x="1091" y="497" width="250.5" height="18"/>
-  <object id="7" x="563.5" y="751.5" width="781" height="14"/>
-  <object id="10" x="563" y="499" width="248" height="16"/>
-  <object id="13" x="810.667" y="414.667" width="58.3333" height="98.333"/>
-  <object id="14" x="873" y="443">
+  <properties>
+   <property name="unity:layer" value="NoPassing"/>
+  </properties>
+  <object id="2" x="1032" y="416.5" width="308" height="103.712"/>
+  <object id="7" x="600" y="743.75" width="739.955" height="21.75"/>
+  <object id="13" x="600.167" y="414.667" width="271.833" height="105.458"/>
+  <object id="14" x="885.333" y="444.542">
    <polygon points="0,0 36,-93.9091 -2,-93.5701"/>
   </object>
-  <object id="15" x="1032.81" y="441.333">
+  <object id="15" x="1024.31" y="443.583">
    <polygon points="0,0 -33.3947,-93 1.85526,-92.6643"/>
   </object>
+  <object id="18" x="1023.88" y="416" width="8.8125" height="28.0313"/>
+  <object id="21" x="871.455" y="414.636" width="16.5455" height="29.3949"/>
  </objectgroup>
 </map>

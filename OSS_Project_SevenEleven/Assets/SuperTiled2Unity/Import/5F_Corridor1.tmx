@@ -14682,11 +14682,11 @@
   <object id="4" x="1019.5" y="220" width="226" height="64"/>
   <object id="7" x="962.667" y="220" width="56.6667" height="62.8713"/>
   <object id="29" x="967.5" y="1085.75" width="51.5833" height="52.5833"/>
-  <object id="30" x="1015.5" y="1105.08" width="228.167" height="32.9167"/>
+  <object id="30" x="1015.5" y="1100.08" width="228.667" height="37.9167"/>
   <object id="61" x="961" y="380" width="58.75" height="705.375"/>
-  <object id="62" x="1245.5" y="220" width="30" height="383.5"/>
-  <object id="63" x="1244" y="668" width="32.5" height="63.5"/>
-  <object id="64" x="1244" y="795.5" width="139" height="96"/>
+  <object id="62" x="1243.5" y="220" width="36.7273" height="384.364"/>
+  <object id="63" x="1243.5" y="667.625" width="33" height="64.75"/>
+  <object id="64" x="1243.81" y="795.5" width="139.188" height="96.875"/>
   <object id="65" x="1243.33" y="1116.33" width="141" height="21.6667">
    <properties>
     <property name="unity:layer" value="NoPassing"/>

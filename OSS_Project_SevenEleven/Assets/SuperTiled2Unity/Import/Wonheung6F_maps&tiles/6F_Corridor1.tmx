@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="560" height="350" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="52">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="560" height="350" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="52">
  <tileset firstgid="1" source="계단 및 복도 타일.tsx"/>
  <tileset firstgid="15226" source="Inside_A4(tiled).tsx"/>
  <tileset firstgid="49786" source="Walls.tsx"/>
@@ -14661,27 +14661,28 @@
   </data>
  </layer>
  <objectgroup id="3" name="Object Layer 1">
-  <object id="4" x="1019.5" y="220" width="226" height="64"/>
-  <object id="7" x="962.667" y="220" width="56.6667" height="62.8713"/>
-  <object id="11" x="1245" y="229" width="52.5" height="142.083"/>
-  <object id="17" x="1245" y="420.833" width="51.8333" height="74.5152"/>
-  <object id="18" x="1245.5" y="550" width="52" height="74.7955"/>
-  <object id="19" x="1245.17" y="677.792" width="52.3333" height="75.2311"/>
-  <object id="20" x="961.5" y="548.856" width="56.75" height="74.6667"/>
-  <object id="21" x="961.333" y="677.568" width="57.1667" height="73.8409"/>
-  <object id="22" x="962.167" y="806.163" width="56.5" height="73.3447"/>
-  <object id="23" x="962.5" y="933.375" width="55.8334" height="74.019"/>
-  <object id="26" x="912" y="429.5" width="61.1667" height="686"/>
-  <object id="27" x="1291.67" y="311.5" width="130.833" height="572.583"/>
-  <object id="28" x="1245.43" y="800.174" width="51.4015" height="83.4621"/>
-  <object id="29" x="967.5" y="1085.75" width="51.5833" height="52.5833"/>
-  <object id="30" x="1015.5" y="1105.08" width="291.167" height="32.9167"/>
-  <object id="31" x="1250.58" y="1061.42" width="54.3334" height="58.5833"/>
-  <object id="32" x="1297.09" y="1121.67" width="122.023" height="17"/>
+  <properties>
+   <property name="unity:layer" value="NoPassing"/>
+  </properties>
+  <object id="4" x="972.167" y="220" width="273.333" height="64.6667"/>
+  <object id="11" x="1242.5" y="219.5" width="180" height="161.583"/>
+  <object id="17" x="1243" y="411.833" width="53.8333" height="97.0152"/>
+  <object id="18" x="1243" y="539.25" width="54.5" height="97.2955"/>
+  <object id="19" x="1242.67" y="667.292" width="54.8333" height="97.7311"/>
+  <object id="20" x="961.5" y="539.038" width="59.6591" height="97.7576"/>
+  <object id="21" x="961.333" y="667.204" width="59.6667" height="97.3864"/>
+  <object id="22" x="962.167" y="795.163" width="59" height="96.8447"/>
+  <object id="23" x="962.5" y="922.375" width="57.8334" height="98.019"/>
+  <object id="26" x="912" y="429.5" width="77.1667" height="686"/>
+  <object id="27" x="1275.17" y="311.5" width="147.333" height="572.583"/>
+  <object id="28" x="1243.18" y="795.174" width="179.318" height="97.9621"/>
+  <object id="29" x="911.5" y="1082.25" width="110.083" height="56.0833"/>
+  <object id="30" x="1015.5" y="1099.08" width="291.167" height="38.9167"/>
+  <object id="31" x="1243.91" y="1052.09" width="68.1667" height="67.9166"/>
+  <object id="32" x="1297.09" y="1113.67" width="122.023" height="25"/>
   <object id="39" x="1185.67" y="928.167" width="24.3333" height="74.5833"/>
-  <object id="44" x="1310.5" y="926.667" width="25.6667" height="73"/>
-  <object id="48" x="1336.17" y="937.083" width="29.4167" height="77.1591"/>
-  <object id="50" x="935.542" y="999.284" width="51.5833" height="116.341"/>
-  <object id="51" x="974.667" y="381.678" width="44.6667" height="91.644"/>
+  <object id="44" x="1307.5" y="919.667" width="28.6667" height="85.6667"/>
+  <object id="48" x="1335.17" y="935.75" width="36.75" height="86.8258"/>
+  <object id="51" x="963.334" y="380.223" width="57.4546" height="128.735"/>
  </objectgroup>
 </map>
