@@ -101,6 +101,7 @@ public class GhostManager : MovingObject
     {
         if (collision.gameObject.name == "Player")
         {
+            stopBGM();
             thePlayer.currentMapName = gameOver; // 만약 이동 영역과 부딪힌다면 이동할 맵의 이름을 Player오브젝트로 넘겨줌
             SceneManager.LoadScene(gameOver); // transferMapName으로 이동
         }
@@ -108,7 +109,7 @@ public class GhostManager : MovingObject
 
     void warpGhost()
     {
-        this.gameObject.transform.position = GameObject.Find(thePlayer.current_transfer).GetComponent<TransferMap>().target.transform.position;
+        this.gameObject.transform.position = thePlayer.current_transfer.GetComponent<TransferMap>().target.transform.position;
     }
 
     void stopBGM()

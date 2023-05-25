@@ -33,7 +33,7 @@ public class TransferMap : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             if (!thePlayer.istransfer) thePlayer.istransfer = true;
-            thePlayer.current_transfer = this.gameObject.name;
+            thePlayer.current_transfer = this.gameObject;
 
             thePlayer.currentMapName = transferMapName;
 

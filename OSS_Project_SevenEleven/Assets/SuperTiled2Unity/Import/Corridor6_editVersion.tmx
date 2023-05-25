@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="400" height="400" tilewidth="4" tileheight="4" infinite="1" nextlayerid="10" nextobjectid="38">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="400" tilewidth="4" tileheight="4" infinite="1" nextlayerid="10" nextobjectid="38">
  <tileset firstgid="1" source="계단 및 복도 타일.tsx"/>
  <tileset firstgid="15226" source="Inside_A4(tiled).tsx"/>
  <tileset firstgid="49786" source="Wonheung3F_중앙계단쪽_사물함타일셋.tsx"/>
@@ -4968,15 +4968,15 @@
    <property name="unity:layer" value="NoPassing"/>
   </properties>
   <object id="22" x="-488" y="-172" width="212" height="52"/>
-  <object id="23" x="-57" y="-172" width="272" height="51"/>
-  <object id="24" x="-77" y="-165" width="21" height="33"/>
+  <object id="23" x="-56" y="-172" width="272.273" height="52.3333"/>
+  <object id="24" x="-80" y="-172.333" width="24" height="44.6667"/>
   <object id="25" x="-155" y="-303" width="91" height="103"/>
   <object id="27" x="-62" y="-237" width="10" height="72"/>
-  <object id="29" x="43" y="105" width="198" height="39"/>
-  <object id="30" x="-318" y="104" width="277" height="42"/>
-  <object id="31" x="-541" y="104" width="140" height="41"/>
-  <object id="34" x="-276" y="-236" width="95" height="63"/>
+  <object id="29" x="40.25" y="104" width="200.75" height="44.25"/>
+  <object id="30" x="-324" y="103.818" width="287.875" height="42.1818"/>
+  <object id="31" x="-541" y="104" width="144.909" height="41"/>
+  <object id="34" x="-276" y="-236" width="224" height="63.6667"/>
   <object id="35" x="-181" y="-254" width="25" height="16"/>
-  <object id="37" x="-277" y="-125" width="87" height="6"/>
+  <object id="37" x="-276" y="-124" width="88.5" height="4.13636"/>
  </objectgroup>
 </map>

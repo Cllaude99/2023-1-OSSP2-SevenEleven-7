@@ -11409,13 +11409,13 @@
   <properties>
    <property name="unity:layer" value="NoPassing"/>
   </properties>
-  <object id="2" x="-11.5" y="-172.5" width="145.5" height="83.5"/>
-  <object id="11" x="-260.334" y="146.333" width="391.667" height="18.3333"/>
-  <object id="12" x="-280" y="-171.5" width="34.3333" height="334.833"/>
-  <object id="13" x="134" y="-90">
+  <object id="2" x="-18.5" y="-172.5" width="152.5" height="91"/>
+  <object id="11" x="-260.334" y="137.333" width="395.667" height="27.3333"/>
+  <object id="12" x="-280" y="-171.5" width="42.8333" height="334.833"/>
+  <object id="13" x="134" y="-81.5">
    <polygon points="0,0 163.5,-24.5 0,-22.5"/>
   </object>
-  <object id="14" x="132" y="149.167">
+  <object id="14" x="130.5" y="140.167">
    <polygon points="0,0 164.167,24.5 0,22.5"/>
   </object>
   <object id="15" x="298.667" y="7.33333">

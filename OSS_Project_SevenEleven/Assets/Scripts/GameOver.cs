@@ -6,7 +6,7 @@ public class GameOver : MonoBehaviour
 {
 
     //Variables 
-
+    
     //Public
     public string startPoint; // 맵이 이동되면 플레이어가 시작할 위치
 
