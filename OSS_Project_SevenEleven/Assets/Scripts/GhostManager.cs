@@ -47,7 +47,7 @@ public class GhostManager : MovingObject
         while (true)
         {
 
-            if (thePlayer.istransfer) Invoke("warpGhost", 1f);
+            if (thePlayer.istransfer) Invoke("warpGhost", 2.5f);
             thePlayer.istransfer = false;
 
             // 추격 대상의 위치 가져오기

@@ -18,6 +18,8 @@ public class TransferMap : MonoBehaviour
     //Private
     private PlayerManager thePlayer;
     private CameraManager theCamera;
+    private FadeManager theFade;
+    private OrderManager theOrder;
 
 
     // Start is called before the first frame update
@@ -25,6 +27,8 @@ public class TransferMap : MonoBehaviour
     {
         thePlayer = FindObjectOfType<PlayerManager>();
         theCamera = FindObjectOfType<CameraManager>();
+        theFade = FindObjectOfType<FadeManager>();
+        theOrder = FindObjectOfType<OrderManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,14 +36,27 @@ public class TransferMap : MonoBehaviour
 
         if (collision.gameObject.name == "Player")
         {
-            if (!thePlayer.istransfer) thePlayer.istransfer = true;
-            thePlayer.current_transfer = this.gameObject;
-
-            thePlayer.currentMapName = transferMapName;
-
-            theCamera.SetBound(targetBound);
-            theCamera.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, theCamera.transform.position.z);
-            thePlayer.transform.position = target.transform.position;
+            StartCoroutine(TransferCoroutine());
         }
+    }
+
+    IEnumerator TransferCoroutine()
+    {
+        theOrder.NotMove();
+        theFade.Fadeout();
+
+        yield return new WaitForSeconds(1f);
+        if (!thePlayer.istransfer) thePlayer.istransfer = true;
+        thePlayer.current_transfer = this.gameObject;
+
+        thePlayer.currentMapName = transferMapName;
+
+        theCamera.SetBound(targetBound);
+        theCamera.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, theCamera.transform.position.z);
+        thePlayer.transform.position = target.transform.position;
+
+        theFade.FadeIn();
+        yield return new WaitForSeconds(0.5f);
+        theOrder.Move();
     }
 }
