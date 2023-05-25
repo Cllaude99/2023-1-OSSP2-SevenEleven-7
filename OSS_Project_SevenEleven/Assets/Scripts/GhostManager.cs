@@ -109,7 +109,7 @@ public class GhostManager : MovingObject
 
     void warpGhost()
     {
-        this.gameObject.transform.position = GameObject.Find(thePlayer.current_transfer).GetComponent<TransferMap>().target.transform.position;
+        this.gameObject.transform.position = thePlayer.current_transfer.GetComponent<TransferMap>().target.transform.position;
     }
 
     void stopBGM()
