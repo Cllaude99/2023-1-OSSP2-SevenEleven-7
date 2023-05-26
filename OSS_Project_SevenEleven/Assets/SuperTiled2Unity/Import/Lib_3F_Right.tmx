@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="4" tileheight="4" infinite="0" nextlayerid="25" nextobjectid="42">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="200" height="200" tilewidth="4" tileheight="4" infinite="0" nextlayerid="25" nextobjectid="42">
  <tileset firstgid="1" source="LibraryA.tsx"/>
  <tileset firstgid="30101" source="Library_stair.tsx"/>
  <tileset firstgid="60201" source="LibraryB.tsx"/>
@@ -412,31 +412,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="23" name="Object Layer 1">
-  <properties>
-   <property name="unity:layer" value="NoPassing"/>
-  </properties>
-  <object id="7" x="-48" y="-116" width="905" height="116"/>
-  <object id="10" x="799" y="-100" width="111" height="948"/>
-  <object id="18" x="-50" y="-105.333" width="89.6667" height="993.667"/>
-  <object id="21" x="40.6667" y="118" width="26.3333" height="295"/>
-  <object id="24" x="40" y="457.667" width="27.6667" height="271.667"/>
-  <object id="25" x="68" y="455.333" width="30" height="256.667"/>
-  <object id="26" x="243" y="677.333" width="136.333" height="70.6667"/>
-  <object id="27" x="383.333" y="677.333" width="136.667" height="71"/>
-  <object id="29" x="66" y="115.667" width="35.6667" height="284.333"/>
-  <object id="30" x="615" y="677" width="136" height="70"/>
-  <object id="31" x="233" y="8.5" width="541" height="82.5"/>
-  <object id="32" x="232" y="135.5" width="544" height="84"/>
-  <object id="33" x="232" y="256.5" width="543" height="83"/>
-  <object id="34" x="232.5" y="376" width="537.5" height="83.5"/>
-  <object id="36" x="231.5" y="487" width="544" height="84.5"/>
-  <object id="37" x="40.9091" y="14" width="39.2727" height="73.0909"/>
-  <object id="40" x="240.5" y="759.5" width="589.5" height="87"/>
- </objectgroup>
- <objectgroup id="24" name="Object Layer 2">
-  <object id="38" x="232.5" y="476.5" width="550" height="133.5"/>
- </objectgroup>
  <layer id="3" name="Tile Layer 3" width="200" height="200">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -3293,4 +3268,32 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="23" name="Object Layer 1">
+  <properties>
+   <property name="unity:layer" value="NoPassing"/>
+  </properties>
+  <object id="7" x="-48" y="-116" width="905" height="116.188"/>
+  <object id="10" x="799" y="-100" width="111" height="948"/>
+  <object id="18" x="-50" y="-105.333" width="90.394" height="993.667"/>
+  <object id="21" x="23.1667" y="118" width="43.8333" height="295"/>
+  <object id="24" x="40" y="455.485" width="27.6667" height="273.849"/>
+  <object id="25" x="68" y="455.333" width="32.1818" height="260.303"/>
+  <object id="26" x="243" y="677.333" width="136.333" height="70.6667"/>
+  <object id="27" x="383.333" y="677.333" width="136.667" height="71"/>
+  <object id="29" x="66" y="115.667" width="38.394" height="284.333"/>
+  <object id="30" x="615" y="677" width="136" height="70"/>
+  <object id="31" x="233" y="-16.5" width="541" height="107.5"/>
+  <object id="32" x="232" y="135.5" width="544" height="84"/>
+  <object id="33" x="232" y="256.5" width="543" height="83"/>
+  <object id="34" x="232.5" y="376" width="537.5" height="83.5"/>
+  <object id="36" x="231.5" y="487" width="544" height="84.5"/>
+  <object id="37" x="32.6591" y="-0.5" width="47.5227" height="125.091"/>
+  <object id="40" x="240.5" y="759.5" width="589.5" height="87"/>
+ </objectgroup>
+ <objectgroup id="24" name="Object Layer 2">
+  <properties>
+   <property name="unity:layer" value="NoPassing"/>
+  </properties>
+  <object id="38" x="232.5" y="476.5" width="550" height="133.5"/>
+ </objectgroup>
 </map>

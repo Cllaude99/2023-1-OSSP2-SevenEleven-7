@@ -39,7 +39,7 @@ public class DatabaseManager : MonoBehaviour
         itemList.Add(new Item(10005, "부적", "전체 부적", Item.ItemType.Quest));
 
         itemList.Add(new Item(10006, "1번째 일기장", "1번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10007, "2번째 일기장", "2번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10007, "1번째 일기장", "2번째 일기장", Item.ItemType.Quest));
         itemList.Add(new Item(10008, "3번째 일기장", "3번째 일기장", Item.ItemType.Quest));
         itemList.Add(new Item(10009, "4번째 일기장", "4번째 일기장", Item.ItemType.Quest));
         itemList.Add(new Item(10010, "5번째 일기장", "5번째 일기장", Item.ItemType.Quest));
@@ -48,12 +48,23 @@ public class DatabaseManager : MonoBehaviour
         itemList.Add(new Item(10013, "8번째 일기장", "8번째 일기장", Item.ItemType.Quest));
         itemList.Add(new Item(10014, "9번째 일기장", "9번째 일기장", Item.ItemType.Quest));
         itemList.Add(new Item(10015, "10번째 일기장", "10번째 일기장", Item.ItemType.Quest));
-        itemList.Add(new Item(10016, "일기장", "일기장", Item.ItemType.Quest));
 
-        itemList.Add(new Item(10017, "아이스페이스 열쇠", "아이스페이스를 여는 열쇠", Item.ItemType.Quest));
-        itemList.Add(new Item(10018, "5층 실험실 열쇠", "5층 실험실 열쇠", Item.ItemType.Quest));
+        itemList.Add(new Item(10016, "일기장", "1번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10017, "일기장", "2번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10018, "일기장", "3번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10019, "일기장", "4번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10020, "일기장", "5번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10021, "일기장", "6번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10022, "일기장", "7번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10023, "일기장", "8번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10024, "일기장", "9번째 일기장", Item.ItemType.Quest));
+        itemList.Add(new Item(10025, "일기장", "10번째 일기장", Item.ItemType.Quest));
+        
 
-        itemList.Add(new Item(10019, "학생증", "학생증", Item.ItemType.Quest));
-        itemList.Add(new Item(10020, "지갑", "지갑", Item.ItemType.Quest));
+        itemList.Add(new Item(10026, "아이스페이스 열쇠", "아이스페이스를 여는 열쇠", Item.ItemType.Quest));
+        itemList.Add(new Item(10027, "5층 실험실 열쇠", "5층 실험실 열쇠", Item.ItemType.Quest));
+
+        itemList.Add(new Item(10028, "학생증", "학생증", Item.ItemType.Quest));
+        itemList.Add(new Item(10029, "지갑", "지갑", Item.ItemType.Quest));
     }
 }
