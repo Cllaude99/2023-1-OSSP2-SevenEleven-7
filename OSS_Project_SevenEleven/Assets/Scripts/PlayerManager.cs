@@ -35,6 +35,8 @@ public class PlayerManager : MovingObject
     public GameObject current_transfer;
     public bool istransfer = false;
 
+    public bool ghostNotMove = false;
+
     private void Awake()
     {
         if (instance == null)

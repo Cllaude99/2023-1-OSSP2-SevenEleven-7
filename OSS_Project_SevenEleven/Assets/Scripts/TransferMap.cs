@@ -21,7 +21,6 @@ public class TransferMap : MonoBehaviour
     private FadeManager theFade;
     private OrderManager theOrder;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +32,6 @@ public class TransferMap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.name == "Player")
         {
             StartCoroutine(TransferCoroutine());
@@ -42,6 +40,7 @@ public class TransferMap : MonoBehaviour
 
     IEnumerator TransferCoroutine()
     {
+        thePlayer.ghostNotMove = true;
         theOrder.NotMove();
         theFade.Fadeout();
 
@@ -58,5 +57,7 @@ public class TransferMap : MonoBehaviour
         theFade.FadeIn();
         yield return new WaitForSeconds(0.5f);
         theOrder.Move();
+        thePlayer.istransfer = false;
+        thePlayer.ghostNotMove = false;
     }
 }
