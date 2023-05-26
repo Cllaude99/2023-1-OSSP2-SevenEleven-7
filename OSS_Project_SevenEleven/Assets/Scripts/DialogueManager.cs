@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
 
     private List<string> listSentences;
     private List<Sprite> listSprites;
-    private List<Sprite> listDialogueWindows;
+    private List<Sprite> listDialogueWindows; //리스트에 배열이 들어감
 
     private int count; // 대화 진행 상황 카운트.
 
@@ -71,7 +71,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         //animSprite.SetBool("Appear", true);
-        animDialogueWindow.SetBool("Appear", true);
+        animDialogueWindow.SetBool("Appear", true);//이미지를 화면 안으로 불러옴
         StartCoroutine(StartDialogueCoroutine());
     }
     public void ExitDialogue()
@@ -79,7 +79,7 @@ public class DialogueManager : MonoBehaviour
         text.text = "";
         count = 0;
         listSentences.Clear();
-        listSprites.Clear();
+        //listSprites.Clear();
         listDialogueWindows.Clear();
         //animSprite.SetBool("Appear", false);
         animDialogueWindow.SetBool("Appear", false);
@@ -108,7 +108,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     //animSprite.SetBool("Change", true);
                     yield return new WaitForSeconds(0.1f);
-                    //rendererSprite.GetComponent<SpriteRenderer>().sprite = listSprites[count];
+                    //rendererSprite.GetComponent<SpriteRenderer>().sprite = listSprites[count]; //이미지를 교체해서 넣어줌
                     //animSprite.SetBool("Change", false);
                 }
                 else
@@ -124,6 +124,7 @@ public class DialogueManager : MonoBehaviour
             rendererDialogueWindow.GetComponent<SpriteRenderer>().sprite = listDialogueWindows[count];
             //rendererSprite.GetComponent<SpriteRenderer>().sprite = listSprites[count];
         }
+
         keyActivated = true;
         for (int i = 0; i < listSentences[count].Length; i++)
         {

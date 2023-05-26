@@ -228,7 +228,7 @@ public class Inventory : MonoBehaviour
                 if (activated)
                 {
                     theAudio.Play(open_sound);
-                    //theOrder.NotMove(); -> 수정필요
+                    theOrder.NotMove();
                     go.SetActive(true);
                     selectedTab = 0;
                     tabActivated = true;
@@ -242,7 +242,7 @@ public class Inventory : MonoBehaviour
                     go.SetActive(false);
                     tabActivated = false;
                     itemActivated = false;
-                    //theOrder.Move(); -> 수정필요
+                    theOrder.Move();
                 }
             }
 

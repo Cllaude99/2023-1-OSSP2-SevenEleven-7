@@ -19,6 +19,8 @@ public class GhostManager : MovingObject
 
     public int PlayMusicTrack;
 
+    public bool ghostcanMove = true;
+
     private void Start()
     {
         BGM = FindObjectOfType<BGMManager>();
@@ -34,12 +36,16 @@ public class GhostManager : MovingObject
         Invoke("stopBGM", lifeTime); //소멸시 브금 중지
         thePlayer.istransfer = false; //맵 자동 이동 버그 수정
 
-        StartCoroutine(GhostCoroutine()); //코루틴 실행
+
     }
 
     private void Update()
     {
-        
+        if (!thePlayer.ghostNotMove&&ghostcanMove)
+        {
+            ghostcanMove = false; //중복 코루틴 방지
+            StartCoroutine(GhostCoroutine()); //코루틴 실행
+        }
     }
 
     IEnumerator GhostCoroutine()
@@ -48,6 +54,7 @@ public class GhostManager : MovingObject
         {
 
             if (thePlayer.istransfer) Invoke("warpGhost", 1f);
+
             thePlayer.istransfer = false;
 
             // 추격 대상의 위치 가져오기
@@ -59,12 +66,12 @@ public class GhostManager : MovingObject
             direction.Normalize(); // 방향 벡터 정규화
 
             //정규환 된 벡터를 통해 vector값 결정 (1,0,0) or (0,1,0)
-            if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) //x의 벡터값이 더 크다면 x의 벡터값만 단위화
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) //x의 벡터값이 더 크다면 x의 벡터값만 단위화
             {
                 vector.x = Mathf.Sign(direction.x);
                 vector.y = 0;
             }
-            else if(Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
+            else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
             {
                 vector.x = 0;
                 vector.y = Mathf.Sign(direction.y);
@@ -95,6 +102,7 @@ public class GhostManager : MovingObject
             currentWalkCount = 0;
             animator.SetBool("Walking", false);
         }
+        ghostcanMove = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

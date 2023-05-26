@@ -5763,7 +5763,7 @@
   </properties>
   <object id="1" x="-240" y="-679.333" width="478.667" height="119.333"/>
   <object id="2" x="-156.667" y="-595.333" width="36.6667" height="76.6667"/>
-  <object id="3" x="-199.333" y="-491.333" width="134" height="58"/>
+  <object id="3" x="-203" y="-494.333" width="140.667" height="61"/>
   <object id="4" x="64" y="-491.333" width="135.333" height="58.6667"/>
   <object id="5" x="64" y="-412" width="136" height="59.3333"/>
   <object id="6" x="-200" y="-412.667" width="135.333" height="59.3333"/>
@@ -5778,7 +5778,7 @@
   <object id="15" x="-288" y="-678" width="46" height="718"/>
   <object id="16" x="-288" y="40" width="568" height="67"/>
   <object id="17" x="242" y="1" width="38" height="37"/>
-  <object id="18" x="241" y="-479" width="38" height="437"/>
-  <object id="19" x="240" y="-680" width="39" height="159"/>
+  <object id="18" x="239.545" y="-480.909" width="44.7045" height="441.134"/>
+  <object id="19" x="237.75" y="-680" width="53.75" height="160.636"/>
  </objectgroup>
 </map>

@@ -41,9 +41,6 @@ public class Menu : MonoBehaviour
     public GameObject inventory_canvas_obj;
     public GameObject load_canvas_obj;
 
-
-    //
-
     public void Exit()          //게임(애플리케이션) 종료를 위한 함수
     {
         Application.Quit();
@@ -55,7 +52,7 @@ public class Menu : MonoBehaviour
     {
         activated= false;
         menu_obj.SetActive(false);
-        //theOrder.Move(); 
+        theOrder.Move(); 
         theAudio.Play(cancel_sound);
     }
 
@@ -173,7 +170,7 @@ public class Menu : MonoBehaviour
 
                 if (activated)                  // activated변수가 1이면 메뉴창열기
                 {
-                    //theOrder.NotMove();       // 메뉴 화면을 누르면 캐릭터들이 멈춤
+                    theOrder.NotMove();       // 메뉴 화면을 누르면 캐릭터들이 멈춤
                     menu_obj.SetActive(true);
                     theAudio.Play(call_sound);
                 }
@@ -181,7 +178,7 @@ public class Menu : MonoBehaviour
                 {
                     menu_obj.SetActive(false);
                     theAudio.Play(cancel_sound);
-                    //theOrder.Move();          // 게임을 재개하면 다시 움직임
+                    theOrder.Move();          // 게임을 재개하면 다시 움직임
                 }
             }
             else if(savecanvas_obj.activeSelf == true)   //메뉴 캔버스위에 세이브 캔버스가 있을경우 
