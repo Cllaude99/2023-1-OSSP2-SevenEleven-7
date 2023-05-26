@@ -57,7 +57,6 @@ public class TransferMap : MonoBehaviour
         theFade.FadeIn();
         yield return new WaitForSeconds(0.5f);
         theOrder.Move();
-        thePlayer.istransfer = false;
         thePlayer.ghostNotMove = false;
     }
 }
