@@ -62,7 +62,7 @@ public class PlayerManager : MovingObject
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
     {
-        while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0 && !notMove) // 단일 코루틴 속 이동을 계속 가능하게 함
+        while ((Input.GetAxisRaw("Vertical") != 0 && !notMove) || (Input.GetAxisRaw("Horizontal") != 0 && !notMove)) // 단일 코루틴 속 이동을 계속 가능하게 함
         {
             //Runs
             if (Input.GetKey(KeyCode.LeftShift))
