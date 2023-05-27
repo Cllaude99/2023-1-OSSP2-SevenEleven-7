@@ -19,7 +19,7 @@ public class CameraShake : MonoBehaviour
     {
         theCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         theCamera.GetComponent<CameraManager>().enabled = false;            //카메라매니저가 계속 카메라 위치수정해서 off
-        
+        theAudio.Play(crash_sound);
         onShakeCamera(shake_strength, shake_duration);
                                                                              
         //theCamera.GetComponent<CameraManager>().enabled = true;             //테스팅용 카메라 다시돌아오게
@@ -68,7 +68,7 @@ public class CameraShake : MonoBehaviour
         while (fall_second > 0.0f)
         {
 
-            theCamera.transform.position = Vector3.MoveTowards(theCamera.transform.position, endPosition, 5f);      //5f속도만큼 목표위치로 카메라이동
+            theCamera.transform.position = Vector3.MoveTowards(theCamera.transform.position, endPosition, 3f);      //5f속도만큼 목표위치로 카메라이동
 
             fall_second -= Time.deltaTime;
 
