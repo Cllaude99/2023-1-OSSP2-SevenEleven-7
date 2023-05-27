@@ -37,6 +37,7 @@ public class PlayerManager : MovingObject
 
     public bool ghostNotMove = false;
 
+    public bool isDeathPoint = false;
     private void Awake()
     {
         if (instance == null)
@@ -195,6 +196,14 @@ public class PlayerManager : MovingObject
                 canMove = false;
                 StartCoroutine(MoveCoroutine());
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "DeathPoint")
+        {
+            isDeathPoint = true;
         }
     }
 }

@@ -21,6 +21,7 @@ public class GhostManager : MovingObject
 
     public bool ghostcanMove = true;
 
+
     private void Start()
     {
         BGM = FindObjectOfType<BGMManager>();
@@ -29,6 +30,7 @@ public class GhostManager : MovingObject
         audioManager = FindObjectOfType<AudioManager>();
         boxCollider = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerManager>();
+
         Destroy(GameObject.Find(GhostPrefab.name), lifeTime);
 
         BGM.Play(PlayMusicTrack);//생성시 브금 재생
@@ -48,8 +50,14 @@ public class GhostManager : MovingObject
 
     IEnumerator GhostCoroutine()
     {
-        if (thePlayer.istransfer) Invoke("warpGhost", 1f);
+        if (thePlayer.isDeathPoint)
+        {
+            BGM.FadeOutMusic();
+            Destroy(GameObject.Find(GhostPrefab.name));
+            thePlayer.isDeathPoint = false;
+        }
 
+        if (thePlayer.istransfer) Invoke("warpGhost", 1f);
         thePlayer.istransfer = false;
 
         // 추격 대상의 위치 가져오기
@@ -109,6 +117,7 @@ public class GhostManager : MovingObject
             thePlayer.currentMapName = gameOver; // 만약 이동 영역과 부딪힌다면 이동할 맵의 이름을 Player오브젝트로 넘겨줌
             SceneManager.LoadScene(gameOver); // transferMapName으로 이동
         }
+
     }
 
     void warpGhost()
