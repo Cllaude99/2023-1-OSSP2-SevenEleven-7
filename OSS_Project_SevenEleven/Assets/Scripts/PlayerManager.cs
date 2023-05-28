@@ -23,6 +23,15 @@ public class PlayerManager : MovingObject
     public string walkSound_3;
     public string walkSound_4;
 
+    // 스테미나 기능 추가
+
+    public float maxStemina; // 최대 스테미나
+    public float currentStemina; // 현재 스테미나
+    public float decreaseStemina; // 감소시킬 스테미나의 수치
+    public float recoverStemina; // 회복 시킬 스테미나의 수치
+
+
+
     // Private
 
     private float applyRunSpeed; // 실제 적용 RunSpeed
@@ -66,16 +75,21 @@ public class PlayerManager : MovingObject
         while ((Input.GetAxisRaw("Vertical") != 0 && !notMove) || (Input.GetAxisRaw("Horizontal") != 0 && !notMove)) // 단일 코루틴 속 이동을 계속 가능하게 함
         {
             //Runs
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift)&& currentStemina > decreaseStemina)
             {
                 applyRunSpeed = runSpeed;
                 applyRunFlag = true;
+
+                if (currentStemina < decreaseStemina) currentStemina = 0;
+                else currentStemina -= decreaseStemina; //현재 스테미나가 0보다 크다면 계속 감소
             }
             else
             {
                 applyRunSpeed = 0;
                 applyRunFlag = false;
             }
+
+
 
             //Vector Set
             vector.Set(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), transform.position.z); //벡터값 설정
@@ -126,6 +140,7 @@ public class PlayerManager : MovingObject
                 {
                     transform.Translate(0, vector.y * (speed + applyRunSpeed), 0);
                 }
+
 
                 if (applyRunFlag) currentWalkCount++; // Run Flag가 잡혔을 때 cuurentWalkCount를 두배씩 증가시킴
 
@@ -187,6 +202,12 @@ public class PlayerManager : MovingObject
         if (Input.GetKeyDown(KeyCode.F9)) // F9 키를 통해 불러오기
         {
             theSaveNLoad.CallLoad(1);
+        }
+
+        if (!applyRunFlag)
+        {
+            if (currentStemina + recoverStemina > maxStemina) currentStemina = maxStemina;
+            else currentStemina += recoverStemina * Time.deltaTime;
         }
 
         if (canMove && !notMove) //코루틴 다중 실행 방지 분기문
