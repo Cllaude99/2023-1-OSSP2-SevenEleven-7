@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="560" height="350" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="52">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="560" height="350" tilewidth="4" tileheight="4" infinite="1" nextlayerid="4" nextobjectid="52">
  <tileset firstgid="1" source="계단 및 복도 타일.tsx"/>
  <tileset firstgid="15226" source="Inside_A4(tiled).tsx"/>
  <tileset firstgid="49786" source="Walls.tsx"/>
@@ -14674,7 +14674,7 @@
   <object id="22" x="962.167" y="795.163" width="59" height="96.8447"/>
   <object id="23" x="962.5" y="922.375" width="57.8334" height="98.019"/>
   <object id="26" x="912" y="429.5" width="77.1667" height="686"/>
-  <object id="27" x="1275.17" y="311.5" width="147.333" height="572.583"/>
+  <object id="27" x="1275.17" y="413.063" width="147.333" height="471.02"/>
   <object id="28" x="1243.18" y="795.174" width="179.318" height="97.9621"/>
   <object id="29" x="911.5" y="1082.25" width="110.083" height="56.0833"/>
   <object id="30" x="1015.5" y="1099.08" width="291.167" height="38.9167"/>
