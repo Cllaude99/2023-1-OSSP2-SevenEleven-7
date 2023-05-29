@@ -225,6 +225,7 @@ public class PlayerManager : MovingObject
         if (collision.gameObject.name == "DeathPoint")
         {
             isDeathPoint = true;
+            collision.gameObject.SetActive(false);
         }
     }
 }
