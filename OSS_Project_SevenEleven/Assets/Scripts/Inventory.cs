@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
     private OrderManager theOrder;
     private AudioManager theAudio;
     private OkOrCancel theOOC;
+    private DialogueManager theDialogueManager;
+    private Menu theMenu;
 
     public string key_sound;
     public string enter_sound;
@@ -35,7 +37,6 @@ public class Inventory : MonoBehaviour
 
     public GameObject menu_obj; // 메뉴연결용 오브젝트
 
-
     private int selectedItem; // 선택된 아이템.
     private int selectedTab; // 선택된 탭
 
@@ -44,7 +45,7 @@ public class Inventory : MonoBehaviour
     private const int MAX_SLOTS_COUNT = 10; // 최대슬롯개수
 
 
-    private bool activated; // 인벤토리 활성화시 true.
+    public bool activated; // 인벤토리 활성화시 true.
     private bool activated_Menu; // 인벤토리&메뉴UI 동기화용변수.
 
     private bool tabActivated; // 탭 활성화시 true.
@@ -63,6 +64,8 @@ public class Inventory : MonoBehaviour
         theOrder = FindObjectOfType<OrderManager>();
         theDatabase = FindObjectOfType<DatabaseManager>();
         theOOC = FindObjectOfType<OkOrCancel>();
+        theDialogueManager = FindObjectOfType<DialogueManager>();
+        theMenu = FindObjectOfType<Menu>();
 
         inventoryItemList = new List<Item>();
         inventoryTabList = new List<Item>();
@@ -219,181 +222,185 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!stopKeyInput)
+        if (theDialogueManager.talking == false)
         {
-            if (Input.GetKeyDown(KeyCode.I)|| activated_Menu) //  I키를 누르거나 메뉴UI에서인벤토리버튼을 누르면 인벤토리 창 활성화
+            if (!stopKeyInput)
             {
-                activated = !activated;
-                activated_Menu = false;
-                if (activated)
+                if ((Input.GetKeyDown(KeyCode.I) && theMenu.activated == false) || activated_Menu) //  I키를 누르거나 메뉴UI에서인벤토리버튼을 누르면 인벤토리 창 활성화
                 {
-                    theAudio.Play(open_sound);
-                    theOrder.NotMove();
-                    go.SetActive(true);
-                    selectedTab = 0;
-                    tabActivated = true;
-                    itemActivated = false;
-                    ShowTab();
-                }
-                else
-                {
-                    theAudio.Play(cancel_sound);
-                    StopAllCoroutines();
-                    go.SetActive(false);
-                    tabActivated = false;
-                    itemActivated = false;
-                    theOrder.Move();
-                }
-            }
-
-            if (activated)
-            {
-                if (tabActivated)
-                {
-                    if (Input.GetKeyDown(KeyCode.RightArrow))
+                    activated = !activated;
+                    activated_Menu = false;
+                    theMenu.activated = false;
+                    if (activated)
                     {
-                        if (selectedTab < selectedTabImages.Length - 1)
-                            selectedTab++;
-                        else
-                            selectedTab = 0;
-                        theAudio.Play(key_sound);
-                        SelectedTab();
+                        theAudio.Play(open_sound);
+                        theOrder.NotMove();
+                        go.SetActive(true);
+                        selectedTab = 0;
+                        tabActivated = true;
+                        itemActivated = false;
+                        ShowTab();
                     }
-                    else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                    {
-                        if (selectedTab > 0)
-                            selectedTab--;
-                        else
-                            selectedTab = selectedTabImages.Length - 1;
-                        theAudio.Play(key_sound);
-                        SelectedTab();
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Z))
-                    {
-                        theAudio.Play(enter_sound);
-                        Color color = selectedTabImages[selectedTab].GetComponent<Image>().color;
-                        color.a = 0.25f;
-                        selectedTabImages[selectedTab].GetComponent<Image>().color = color;
-                        itemActivated = true;
-                        tabActivated = false;
-                        preventExec = true;
-                        ShowItem();
-                    }
-                }// 탭 활성화시 키입력 처리.
-
-                else if (itemActivated)
-                {
-                    if (inventoryTabList.Count > 0)
-                    {
-                        if (Input.GetKeyDown(KeyCode.DownArrow))
-                        {
-                            if (selectedItem + 2 > slotCount)
-                            {
-                                if(page<(inventoryTabList.Count-1)/MAX_SLOTS_COUNT)
-                                    page++;
-                                else
-                                    page = 0;
-                                RemoveSlot();
-                                ShowPage();
-                                selectedItem = -2;
-                            }
-
-                            if (selectedItem < slotCount - 1)
-                                selectedItem += 2;
-                            else
-                                selectedItem %= 2;
-                            theAudio.Play(key_sound);
-                            SelectedItem();
-                        }
-                        else if (Input.GetKeyDown(KeyCode.UpArrow))
-                        {
-                            if (selectedItem -2 < 0)
-                            {
-                                if (page !=0)
-                                    page--;
-                                else
-                                    page = (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT;
-                                RemoveSlot();
-                                ShowPage();
-                            }
-
-                            if (selectedItem > 1)
-                                selectedItem -= 2;
-                            else
-                                selectedItem = slotCount - selectedItem;
-                            theAudio.Play(key_sound);
-                            SelectedItem();
-                        }
-                        else if (Input.GetKeyDown(KeyCode.RightArrow))
-                        {
-                            if (selectedItem + 1 > slotCount)
-                            {
-                                if (page < (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT)
-                                    page++;
-                                else
-                                    page = 0;
-                                RemoveSlot();
-                                ShowPage();
-                                selectedItem = -1;
-                            }
-
-                            if (selectedItem < slotCount)
-                                selectedItem++;
-                            else
-                                selectedItem = 0;
-                            theAudio.Play(key_sound);
-                            SelectedItem();
-                        }
-                        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                        {
-                            if (selectedItem - 1 < 0)
-                            {
-                                if (page != 0)
-                                    page--;
-                                else
-                                    page = (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT;
-                                RemoveSlot();
-                                ShowPage();
-                            }
-
-                            if (selectedItem > 0)
-                                selectedItem--;
-                            else
-                                selectedItem = slotCount;
-                            theAudio.Play(key_sound);
-                            SelectedItem();
-                        }
-                        else if (Input.GetKeyDown(KeyCode.Z) && !preventExec)
-                        {
-                            if (selectedTab == 0) // 소모품
-                            {
-                                theAudio.Play(enter_sound);
-                                stopKeyInput = true;
-                                StartCoroutine(OOCCoroutine());
-                            }
-                            else if (selectedTab == 1)
-                            {
-                                // 장비 장착
-                            }
-                            else // 퀘스트, 기타의 경우 비프음 출력
-                            {
-                                theAudio.Play(beep_sound);
-                            }
-                        }
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.X))
+                    else
                     {
                         theAudio.Play(cancel_sound);
                         StopAllCoroutines();
+                        go.SetActive(false);
+                        tabActivated = false;
                         itemActivated = false;
-                        tabActivated = true;
-                        ShowTab();
+                        theOrder.Move();
                     }
-                }// 아이템 활성화시 키입력 처리.
+                }
 
-                if (Input.GetKeyUp(KeyCode.Z)) // 중복 실행 방지.
-                    preventExec = false;
+                if (activated)
+                {
+                    if (tabActivated)
+                    {
+                        if (Input.GetKeyDown(KeyCode.RightArrow))
+                        {
+                            if (selectedTab < selectedTabImages.Length - 1)
+                                selectedTab++;
+                            else
+                                selectedTab = 0;
+                            theAudio.Play(key_sound);
+                            SelectedTab();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                        {
+                            if (selectedTab > 0)
+                                selectedTab--;
+                            else
+                                selectedTab = selectedTabImages.Length - 1;
+                            theAudio.Play(key_sound);
+                            SelectedTab();
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Z))
+                        {
+                            theAudio.Play(enter_sound);
+                            Color color = selectedTabImages[selectedTab].GetComponent<Image>().color;
+                            color.a = 0.25f;
+                            selectedTabImages[selectedTab].GetComponent<Image>().color = color;
+                            itemActivated = true;
+                            tabActivated = false;
+                            preventExec = true;
+                            ShowItem();
+                        }
+                    }// 탭 활성화시 키입력 처리.
+
+                    else if (itemActivated)
+                    {
+                        if (inventoryTabList.Count > 0)
+                        {
+                            if (Input.GetKeyDown(KeyCode.DownArrow))
+                            {
+                                if (selectedItem + 2 > slotCount)
+                                {
+                                    if (page < (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT)
+                                        page++;
+                                    else
+                                        page = 0;
+                                    RemoveSlot();
+                                    ShowPage();
+                                    selectedItem = -2;
+                                }
+
+                                if (selectedItem < slotCount - 1)
+                                    selectedItem += 2;
+                                else
+                                    selectedItem %= 2;
+                                theAudio.Play(key_sound);
+                                SelectedItem();
+                            }
+                            else if (Input.GetKeyDown(KeyCode.UpArrow))
+                            {
+                                if (selectedItem - 2 < 0)
+                                {
+                                    if (page != 0)
+                                        page--;
+                                    else
+                                        page = (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT;
+                                    RemoveSlot();
+                                    ShowPage();
+                                }
+
+                                if (selectedItem > 1)
+                                    selectedItem -= 2;
+                                else
+                                    selectedItem = slotCount - selectedItem;
+                                theAudio.Play(key_sound);
+                                SelectedItem();
+                            }
+                            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                            {
+                                if (selectedItem + 1 > slotCount)
+                                {
+                                    if (page < (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT)
+                                        page++;
+                                    else
+                                        page = 0;
+                                    RemoveSlot();
+                                    ShowPage();
+                                    selectedItem = -1;
+                                }
+
+                                if (selectedItem < slotCount)
+                                    selectedItem++;
+                                else
+                                    selectedItem = 0;
+                                theAudio.Play(key_sound);
+                                SelectedItem();
+                            }
+                            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                            {
+                                if (selectedItem - 1 < 0)
+                                {
+                                    if (page != 0)
+                                        page--;
+                                    else
+                                        page = (inventoryTabList.Count - 1) / MAX_SLOTS_COUNT;
+                                    RemoveSlot();
+                                    ShowPage();
+                                }
+
+                                if (selectedItem > 0)
+                                    selectedItem--;
+                                else
+                                    selectedItem = slotCount;
+                                theAudio.Play(key_sound);
+                                SelectedItem();
+                            }
+                            else if (Input.GetKeyDown(KeyCode.Z) && !preventExec)
+                            {
+                                if (selectedTab == 0) // 소모품
+                                {
+                                    theAudio.Play(enter_sound);
+                                    stopKeyInput = true;
+                                    StartCoroutine(OOCCoroutine());
+                                }
+                                else if (selectedTab == 1)
+                                {
+                                    // 장비 장착
+                                }
+                                else // 퀘스트, 기타의 경우 비프음 출력
+                                {
+                                    theAudio.Play(beep_sound);
+                                }
+                            }
+                        }
+
+                        if (Input.GetKeyDown(KeyCode.X))
+                        {
+                            theAudio.Play(cancel_sound);
+                            StopAllCoroutines();
+                            itemActivated = false;
+                            tabActivated = true;
+                            ShowTab();
+                        }
+                    }// 아이템 활성화시 키입력 처리.
+
+                    if (Input.GetKeyUp(KeyCode.Z)) // 중복 실행 방지.
+                        preventExec = false;
+                }
             }
         }
     }

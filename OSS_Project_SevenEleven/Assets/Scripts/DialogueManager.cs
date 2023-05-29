@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
         for (int i = 0; i < dialogue.sentences.Length; i++)
         {
             listSentences.Add(dialogue.sentences[i]);
-            listSprites.Add(dialogue.sprites[i]);
+            //listSprites.Add(dialogue.sprites[i]);
             listDialogueWindows.Add(dialogue.dialogueWindows[i]);
         }
 
@@ -102,7 +102,7 @@ public class DialogueManager : MonoBehaviour
                 animDialogueWindow.SetBool("Appear", true);
                 //animSprite.SetBool("Change", false);
             }
-            else
+            /*else
             {
                 if (listSprites[count] != listSprites[count - 1])
                 {
@@ -115,7 +115,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.05f);
                 }
-            }
+            }*/
 
         }
         else
