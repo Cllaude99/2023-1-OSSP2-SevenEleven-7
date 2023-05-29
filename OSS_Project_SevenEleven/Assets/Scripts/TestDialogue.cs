@@ -9,10 +9,14 @@ public class TestDialogue : MonoBehaviour
 
     private DialogueManager theDM;
     private bool hasEntered = false;
+
+    public bool isFlash;
+    private FadeManager theFade; 
     
     void Start()
     {
         theDM = FindObjectOfType<DialogueManager>();
+        theFade = FindObjectOfType<FadeManager>();
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class TestDialogue : MonoBehaviour
         {
             theDM.ShowDialogue(dialogue);
             hasEntered = true;
+            if (isFlash)  theFade.Flash();
         }
     }
 

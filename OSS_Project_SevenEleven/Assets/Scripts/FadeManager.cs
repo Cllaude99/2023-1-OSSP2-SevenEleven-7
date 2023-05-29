@@ -90,19 +90,19 @@ public class FadeManager : MonoBehaviour
     }
     IEnumerator FlashCoroutine(float _speed)
     {
-        color = white.color;
+        color = black.color;
 
         while (color.a < 1f)
         {
             color.a += _speed;
-            white.color = color;
+            black.color = color;
             yield return waitTime;
         }
 
         while (color.a > 0f)
         {
             color.a -= _speed;
-            white.color = color;
+            black.color = color;
             yield return waitTime;
         }
     }
