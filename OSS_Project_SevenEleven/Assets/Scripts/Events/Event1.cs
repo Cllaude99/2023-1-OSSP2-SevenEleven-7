@@ -5,7 +5,7 @@ using UnityEngine;
 public class Event1 : MonoBehaviour
 {
     public Dialogue dialogue_1;
-    public Dialogue dialogue_2;
+    //public Dialogue dialogue_2;
 
     private DialogueManager theDM;
     private OrderManager theOrder;
@@ -24,7 +24,7 @@ public class Event1 : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!flag && Input.GetKey(KeyCode.Z) && thePlayer.animator.GetFloat("DirY") == 1f)
+        if (!flag && Input.GetKey(KeyCode.Z))
         {
             flag = true;
             StartCoroutine(EventCoroutine());
@@ -39,13 +39,12 @@ public class Event1 : MonoBehaviour
         theDM.ShowDialogue(dialogue_1);
         yield return new WaitUntil(() => !theDM.talking);
 
-        theOrder.Move("Player", "RIGHT");
-        theOrder.Move("Player", "RIGHT");
-        theOrder.Move("Player", "DOWN");
-        yield return new WaitUntil(() => thePlayer.queue.Count == 0);
 
-        theDM.ShowDialogue(dialogue_2);
-        yield return new WaitUntil(() => !theDM.talking);
+        //theOrder.Move("Player", "DOWN"); 강제이동
+        //yield return new WaitUntil(() => thePlayer.queue.Count == 0);
+
+        //theDM.ShowDialogue(dialogue_2);
+        //yield return new WaitUntil(() => !theDM.talking);
 
         theOrder.Move();
 
