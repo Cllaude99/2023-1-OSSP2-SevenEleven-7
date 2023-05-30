@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
 
     public string call_sound;
     public string cancel_sound;
-
+    public string confirm_sound;
     public OrderManager theOrder;
 
     public bool activated;               //메뉴창 활성화비활성화 변수
@@ -104,6 +104,7 @@ public class Menu : MonoBehaviour
 
     public void SaveSlotModify(int i)     //세이브버튼1,2,3 를 누르면 각 세이브 슬롯에 현재 캐릭터의 위치 , 플레이 타임을 text로 대체
     {
+        theAudio.Play(confirm_sound);
         GameObject save_slot_1 = GameObject.Find("SaveSlot"+i);
         PlayerManager thePlayer = FindObjectOfType<PlayerManager>();
 
