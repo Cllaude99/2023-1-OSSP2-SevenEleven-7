@@ -5,28 +5,37 @@ using UnityEngine;
 public class FlashLAB : MonoBehaviour
 {
     private FadeManager theFade;
-    private PlayerManager thePlayer;
 
     public int loopnum;
 
+    public bool iswhite;
 
 
     // Start is called before the first frame update
     void Start()
     {
         theFade = FindObjectOfType<FadeManager>();
-        thePlayer = FindObjectOfType<PlayerManager>();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            for (int i = 0; i < loopnum; i++)
+            if (iswhite)
             {
-                theFade.Flash();
+                for (int i = 0; i < loopnum; i++)
+                {
+                    theFade.WhiteFlash();
+                }
             }
-
+            else
+            {
+                for (int i = 0; i < loopnum; i++)
+                {
+                    theFade.BlackFlash();
+                }
+            }
+            //this.gameObject.SetActive(false);
         }
 
     }
