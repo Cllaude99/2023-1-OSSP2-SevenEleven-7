@@ -22,6 +22,7 @@ public class GhostManager : MovingObject
     public bool ghostcanMove = true;
 
 
+
     private void Start()
     {
         BGM = FindObjectOfType<BGMManager>();
@@ -41,7 +42,7 @@ public class GhostManager : MovingObject
 
     private void Update()
     {
-        if (!thePlayer.ghostNotMove&&ghostcanMove)
+        if (!thePlayer.notMove&&!thePlayer.ghostNotMove&&ghostcanMove)
         {
             ghostcanMove = false; //吝汗 内风凭 规瘤
             StartCoroutine(GhostCoroutine()); //内风凭 角青
