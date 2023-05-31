@@ -83,12 +83,36 @@ public class FadeManager : MonoBehaviour
 
     }
 
-    public void Flash(float _speed = 0.1f)
+    public void BlackFlash(float _speed = 0.1f)
     {
         StopAllCoroutines();
-        StartCoroutine(FlashCoroutine(_speed));
+        StartCoroutine(BlackFlashCoroutine(_speed));
     }
-    IEnumerator FlashCoroutine(float _speed)
+    IEnumerator BlackFlashCoroutine(float _speed)
+    {
+        color = black.color;
+
+        while (color.a < 1f)
+        {
+            color.a += _speed;
+            black.color = color;
+            yield return waitTime;
+        }
+
+        while (color.a > 0f)
+        {
+            color.a -= _speed;
+            black.color = color;
+            yield return waitTime;
+        }
+    }
+
+    public void WhiteFlash(float _speed = 0.1f)
+    {
+        StopAllCoroutines();
+        StartCoroutine(WhiteFlashCoroutine(_speed));
+    }
+    IEnumerator WhiteFlashCoroutine(float _speed)
     {
         color = white.color;
 

@@ -75,13 +75,20 @@ public class PlayerManager : MovingObject
         while ((Input.GetAxisRaw("Vertical") != 0 && !notMove) || (Input.GetAxisRaw("Horizontal") != 0 && !notMove)) // 단일 코루틴 속 이동을 계속 가능하게 함
         {
             //Runs
-            if (Input.GetKey(KeyCode.LeftShift)&& currentStemina > decreaseStemina)
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                applyRunSpeed = runSpeed;
-                applyRunFlag = true;
-
-                if (currentStemina < decreaseStemina) currentStemina = 0;
-                else currentStemina -= decreaseStemina; //현재 스테미나가 0보다 크다면 계속 감소
+                if (currentStemina >= decreaseStemina)
+                {
+                    applyRunSpeed = runSpeed;
+                    applyRunFlag = true;
+                    currentStemina -= decreaseStemina; //현재 스테미나가 0보다 크다면 계속 감소
+                }
+                else
+                {
+                    currentStemina = 0;
+                    applyRunSpeed = 0;
+                    applyRunFlag = false;
+                }
             }
             else
             {
@@ -204,9 +211,10 @@ public class PlayerManager : MovingObject
             theSaveNLoad.CallLoad(1);
         }
 
+
         if (!applyRunFlag)
         {
-            if (currentStemina + recoverStemina > maxStemina) currentStemina = maxStemina;
+            if (currentStemina > maxStemina) currentStemina = maxStemina;
             else currentStemina += recoverStemina * Time.deltaTime;
         }
 
