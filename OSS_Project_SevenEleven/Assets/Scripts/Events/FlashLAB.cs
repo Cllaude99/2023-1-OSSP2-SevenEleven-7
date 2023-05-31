@@ -35,7 +35,7 @@ public class FlashLAB : MonoBehaviour
                     theFade.BlackFlash();
                 }
             }
-            //this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
 
     }
