@@ -36,7 +36,7 @@ public class GhostManager : MovingObject
 
         BGM.Play(PlayMusicTrack);//생성시 브금 재생
         BGM.Loop();
-        Invoke("stopBGM", lifeTime); //소멸시 브금 중지
+        Invoke("stopBGM", 25); //소멸시 브금 중지
         thePlayer.istransfer = false; //맵 자동 이동 버그 수정
     }
 
