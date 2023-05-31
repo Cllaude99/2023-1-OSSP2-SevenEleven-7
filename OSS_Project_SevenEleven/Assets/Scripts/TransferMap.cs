@@ -15,6 +15,7 @@ public class TransferMap : MonoBehaviour
     public Transform target;
     public string transferMapName;
     public BoxCollider2D targetBound;
+
     //Private
     private PlayerManager thePlayer;
     private CameraManager theCamera;
@@ -57,7 +58,6 @@ public class TransferMap : MonoBehaviour
         theFade.FadeIn();
         yield return new WaitForSeconds(0.5f);
         theOrder.Move();
-        thePlayer.istransfer = false;
         thePlayer.ghostNotMove = false;
     }
 }

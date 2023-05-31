@@ -11,6 +11,25 @@ public class Menu : MonoBehaviour
 
     public static Menu instance;
 
+    public GameObject menu_obj;
+    public AudioManager theAudio;
+    private DialogueManager theDialogueManager;
+    private Inventory theInventory;
+
+    public string call_sound;
+    public string cancel_sound;
+    public string confirm_sound;
+    public OrderManager theOrder;
+
+    public bool activated;               //메뉴창 활성화비활성화 변수
+
+
+    // 다른 캔버스 UI 연결용 변수
+
+    public GameObject savecanvas_obj;
+    public GameObject inventory_canvas_obj;
+    public GameObject load_canvas_obj;
+
     private void Awake()
     {
         if (instance == null)
@@ -22,24 +41,9 @@ public class Menu : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        theInventory = FindObjectOfType<Inventory>();
+        theDialogueManager = FindObjectOfType<DialogueManager>();
     }
-
-    public GameObject menu_obj;
-    public AudioManager theAudio;
-
-    public string call_sound;
-    public string cancel_sound;
-
-    public OrderManager theOrder;
-
-    private bool activated;               //메뉴창 활성화비활성화 변수
-
-
-    // 다른 캔버스 UI 연결용 변수
-
-    public GameObject savecanvas_obj;
-    public GameObject inventory_canvas_obj;
-    public GameObject load_canvas_obj;
 
     public void Exit()          //게임(애플리케이션) 종료를 위한 함수
     {
@@ -100,6 +104,7 @@ public class Menu : MonoBehaviour
 
     public void SaveSlotModify(int i)     //세이브버튼1,2,3 를 누르면 각 세이브 슬롯에 현재 캐릭터의 위치 , 플레이 타임을 text로 대체
     {
+        theAudio.Play(confirm_sound);
         GameObject save_slot_1 = GameObject.Find("SaveSlot"+i);
         PlayerManager thePlayer = FindObjectOfType<PlayerManager>();
 
@@ -162,38 +167,40 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))  //ESC 입력을 받으면 메뉴 화면 ON/OFF
+        if((theInventory.activated == false)&&(theDialogueManager.talking == false))
         {
-            if(savecanvas_obj.activeSelf==false && load_canvas_obj.activeSelf == false)        //  메뉴 캔버스 만 띄어져있을경우
+            if (Input.GetKeyDown(KeyCode.Escape))  //ESC 입력을 받으면 메뉴 화면 ON/OFF
             {
-                activated = !activated;
+                if (savecanvas_obj.activeSelf == false && load_canvas_obj.activeSelf == false)        //  메뉴 캔버스 만 띄어져있을경우
+                {
+                    activated = !activated;
 
-                if (activated)                  // activated변수가 1이면 메뉴창열기
-                {
-                    theOrder.NotMove();       // 메뉴 화면을 누르면 캐릭터들이 멈춤
-                    menu_obj.SetActive(true);
-                    theAudio.Play(call_sound);
+                    if (activated)                  // activated변수가 1이면 메뉴창열기
+                    {
+                        theOrder.NotMove();       // 메뉴 화면을 누르면 캐릭터들이 멈춤
+                        menu_obj.SetActive(true);
+                        theAudio.Play(call_sound);
+                    }
+                    else
+                    {
+                        menu_obj.SetActive(false);
+                        theAudio.Play(cancel_sound);
+                        theOrder.Move();          // 게임을 재개하면 다시 움직임
+                    }
                 }
-                else
+                else if (savecanvas_obj.activeSelf == true)   //메뉴 캔버스위에 세이브 캔버스가 있을경우 
                 {
-                    menu_obj.SetActive(false);
+                    savecanvas_obj.SetActive(false);
                     theAudio.Play(cancel_sound);
-                    theOrder.Move();          // 게임을 재개하면 다시 움직임
                 }
-            }
-            else if(savecanvas_obj.activeSelf == true)   //메뉴 캔버스위에 세이브 캔버스가 있을경우 
-            {
-                savecanvas_obj.SetActive(false);
-                theAudio.Play(cancel_sound);
-            }
 
-            else if (load_canvas_obj.activeSelf == true)   //메뉴 캔버스위에 load 캔버스가 있을경우 
-            {
-                load_canvas_obj.SetActive(false);
-                theAudio.Play(cancel_sound);
-            }
+                else if (load_canvas_obj.activeSelf == true)   //메뉴 캔버스위에 load 캔버스가 있을경우 
+                {
+                    load_canvas_obj.SetActive(false);
+                    theAudio.Play(cancel_sound);
+                }
 
+            }
         }
-
     }
 }
