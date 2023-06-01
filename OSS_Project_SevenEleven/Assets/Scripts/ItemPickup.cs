@@ -12,7 +12,7 @@ public class ItemPickup : MonoBehaviour
     
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Z)) // Z키 누르면 아이템 획득
+        if (Input.GetKeyDown(KeyCode.X)) // Z키 누르면 아이템 획득
         {
             AudioManager.instance.Play(pickUpSound);
             Inventory.instance.GetAnItem(itemID, _count); // 인벤토리에 획득한 아이템 추가하는 과정
