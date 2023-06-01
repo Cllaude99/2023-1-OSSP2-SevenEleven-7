@@ -8,7 +8,7 @@ public class CheckKey : MonoBehaviour
 
     public int checkIndex;
 
-    public DatabaseManager theDB;
+    public Inventory theInven;
 
     public int[] itemcode;
 
@@ -21,7 +21,7 @@ public class CheckKey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        theDB.GetComponent<DatabaseManager>();
+        theInven = FindObjectOfType<Inventory>();
         theAudio = FindObjectOfType<AudioManager>();
     }
 
@@ -35,11 +35,11 @@ public class CheckKey : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            for (int i = 0; i < theDB.itemList.Count; i++)
+            for (int i = 0; i < theInven.inventoryItemList.Count; i++)
             {
-                if (theDB.itemList[i].itemID == itemcode[checkIndex])
+                if (theInven.inventoryItemList[i].itemID == itemcode[checkIndex])
                 {
-                    theDB.itemList.RemoveAt(i);
+                    theInven.inventoryItemList.RemoveAt(i);
                     for (int j = 0; j < door.Length; j++)
                     {
                         theAudio.Play(unlockdoor);
