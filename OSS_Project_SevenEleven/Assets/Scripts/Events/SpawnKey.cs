@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnKey : MonoBehaviour
 {
-    public GameObject key; //나타날 키
+    public GameObject[] onObject; //나타날 키
 
     public List<GameObject> visit; //방문한 곳 저장할 배열
 
@@ -15,7 +15,10 @@ public class SpawnKey : MonoBehaviour
     {
         if (visit.Count == visitnum)
         {
-            key.SetActive(true);
+            for (int i = 0; i < onObject.Length; i++)
+            {
+                onObject[i].SetActive(true);
+            }
             this.gameObject.SetActive(false);
         }
     }
