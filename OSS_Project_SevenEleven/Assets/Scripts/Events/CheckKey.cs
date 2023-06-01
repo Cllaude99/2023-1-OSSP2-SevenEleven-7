@@ -18,6 +18,8 @@ public class CheckKey : MonoBehaviour
 
     public string lockdoor;
     public string unlockdoor;
+
+    private bool canOpen = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +44,14 @@ public class CheckKey : MonoBehaviour
                     theInven.inventoryItemList.RemoveAt(i);
                     for (int j = 0; j < door.Length; j++)
                     {
-                        theAudio.Play(unlockdoor);
                         door[j].SetActive(false);
                     }
+                    canOpen = true;
+                    break;
                 }
-                else theAudio.Play(lockdoor);
             }
+            if (!canOpen) theAudio.Play(lockdoor);
+            else if (canOpen) theAudio.Play(unlockdoor);
         }
 
     }
