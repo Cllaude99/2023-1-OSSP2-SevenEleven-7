@@ -39,9 +39,21 @@ public class Event1 : MonoBehaviour
         theDM.ShowDialogue(dialogue_1);
         yield return new WaitUntil(() => !theDM.talking);
 
-
-        //theOrder.Move("Player", "DOWN"); 강제이동
-        //yield return new WaitUntil(() => thePlayer.queue.Count == 0);
+        theOrder.Move("FriendNPC", "DOWN"); //강제이동
+        theOrder.Move("FriendNPC", "DOWN");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "LEFT");
+        theOrder.Move("FriendNPC", "DOWN");
+        theOrder.Move("FriendNPC", "DOWN");
+        theOrder.Move("FriendNPC", "DOWN");
+        theOrder.Move("FriendNPC", "DOWN");
+        yield return new WaitUntil(() => thePlayer.queue.Count == 0);
 
         //theDM.ShowDialogue(dialogue_2);
         //yield return new WaitUntil(() => !theDM.talking);

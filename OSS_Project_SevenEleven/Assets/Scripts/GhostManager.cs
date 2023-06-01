@@ -14,13 +14,14 @@ public class GhostManager : MovingObject
 
     private AudioManager audioManager;
     private PlayerManager thePlayer;
-
+    private ParticleSystem theParticle;   //파티클 오브젝트 연결
     BGMManager BGM;
 
     public int PlayMusicTrack;
 
     public bool ghostcanMove = true;
 
+    public bool ghostdeath = false;     //귀신 상태 변수 true로 바꾸면 죽는 애니메이션 시작
 
     private void Start()
     {
@@ -35,13 +36,13 @@ public class GhostManager : MovingObject
 
         BGM.Play(PlayMusicTrack);//생성시 브금 재생
         BGM.Loop();
-        Invoke("stopBGM", lifeTime); //소멸시 브금 중지
+        Invoke("stopBGM", 25); //소멸시 브금 중지
         thePlayer.istransfer = false; //맵 자동 이동 버그 수정
     }
 
     private void Update()
     {
-        if (!thePlayer.ghostNotMove&&ghostcanMove)
+        if (!thePlayer.notMove&&!thePlayer.ghostNotMove&&ghostcanMove)     
         {
             ghostcanMove = false; //중복 코루틴 방지
             StartCoroutine(GhostCoroutine()); //코루틴 실행
@@ -50,6 +51,13 @@ public class GhostManager : MovingObject
 
     IEnumerator GhostCoroutine()
     {
+        if(ghostdeath)                                      //귀신이 죽을 시에 ghostdeath가 true로 바꾸면 실행
+        {
+            playDeath();
+            
+        }
+
+
         if (thePlayer.isDeathPoint)
         {
             BGM.FadeOutMusic();
@@ -117,7 +125,7 @@ public class GhostManager : MovingObject
             thePlayer.currentMapName = gameOver; // 만약 이동 영역과 부딪힌다면 이동할 맵의 이름을 Player오브젝트로 넘겨줌
             SceneManager.LoadScene(gameOver); // transferMapName으로 이동
         }
-
+        //ghostdeath = true;                테스팅용 충돌시 변수 업데이트 
     }
 
     void warpGhost()
@@ -129,5 +137,16 @@ public class GhostManager : MovingObject
     {
         BGM.FadeOutMusic();
         BGM.UnLoop();
+    }
+
+    void playDeath()
+    {
+           
+            theParticle =FindObjectOfType<ParticleSystem>();
+            Vector2 particle_postion = transform.position;
+            theParticle.transform.position = particle_postion;      //파티클 포지션을 귀신 포지션으로
+            theParticle.Play();
+            //animator.SetBool("Death", true);                        //죽는 애니메이션재생
+            
     }
 }
