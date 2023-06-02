@@ -7,6 +7,8 @@ public class FadeManager : MonoBehaviour
 
     public SpriteRenderer white;
     public SpriteRenderer black;
+    public SpriteRenderer green;
+    public SpriteRenderer red;
     private Color color;
 
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
@@ -44,6 +46,23 @@ public class FadeManager : MonoBehaviour
             yield return waitTime;
         }
 
+    }
+
+    public void FadeRedIn(float _speed = 0.02f)
+    {
+        StartCoroutine(FadeRedInCoroutine(_speed));
+    }
+
+    IEnumerator FadeRedInCoroutine(float _speed)
+    {
+        color = black.color;
+
+        while (color.a < 0.5f)
+        {
+            color.a += _speed;
+            black.color = color;
+            yield return waitTime;
+        }
     }
 
 
