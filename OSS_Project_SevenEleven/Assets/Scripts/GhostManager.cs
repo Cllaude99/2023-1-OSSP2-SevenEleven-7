@@ -21,7 +21,8 @@ public class GhostManager : MovingObject
 
     public bool ghostcanMove = true;
 
-    public bool ghostdeath = false;     //귀신 상태 변수 true로 바꾸면 죽는 애니메이션 시작
+    public bool ghostdeath = false;             //귀신 상태 변수 true로 바꾸면 죽는 애니메이션 시작
+    public bool ghost_stop_corutine = false;     //귀신 죽으면 코루틴 종료용 변수
 
     private void Start()
     {
@@ -47,14 +48,19 @@ public class GhostManager : MovingObject
             ghostcanMove = false; //중복 코루틴 방지
             StartCoroutine(GhostCoroutine()); //코루틴 실행
         }
+
+        if (Input.GetKeyDown(KeyCode.K))              // K키누르면 귀신죽임 테스트용!!!
+                    ghostdeath = true;                //테스팅용 충돌시 변수 업데이트 
     }
 
     IEnumerator GhostCoroutine()
     {
-        if(ghostdeath)                                      //귀신이 죽을 시에 ghostdeath가 true로 바꾸면 실행
+        if(ghostdeath)                               //귀신이 죽을 시에 ghostdeath가 true로 바뀌게 설정하면 죽는모션시작
         {
-            playDeath();
-            
+            if(!ghost_stop_corutine)
+                playDeath();                         // 한번만 실행되게
+            ghost_stop_corutine = true;
+            yield break;
         }
 
 
@@ -125,7 +131,7 @@ public class GhostManager : MovingObject
             thePlayer.currentMapName = gameOver; // 만약 이동 영역과 부딪힌다면 이동할 맵의 이름을 Player오브젝트로 넘겨줌
             SceneManager.LoadScene(gameOver); // transferMapName으로 이동
         }
-        //ghostdeath = true;                테스팅용 충돌시 변수 업데이트 
+        
     }
 
     void warpGhost()
@@ -141,12 +147,14 @@ public class GhostManager : MovingObject
 
     void playDeath()
     {
-           
+            stopBGM();
+            BoxCollider2D boxCollider =GetComponent<BoxCollider2D>();
+            boxCollider.enabled= false;                             //귀신죽으면 브금 끄고 boxcollider off (충돌방지)
             theParticle =FindObjectOfType<ParticleSystem>();
             Vector2 particle_postion = transform.position;
-            theParticle.transform.position = particle_postion;      //파티클 포지션을 귀신 포지션으로
+            theParticle.transform.position = particle_postion;      //파티클 포지션을 귀신 포지션으로 옮기고 재생
             theParticle.Play();
-            //animator.SetBool("Death", true);                        //죽는 애니메이션재생
+            animator.SetBool("Death", true);                        //죽는 애니메이션 재생
             
     }
 }
