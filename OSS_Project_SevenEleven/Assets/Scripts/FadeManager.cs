@@ -48,24 +48,6 @@ public class FadeManager : MonoBehaviour
 
     }
 
-    public void FadeRedIn(float _speed = 0.02f)
-    {
-        StartCoroutine(FadeRedInCoroutine(_speed));
-    }
-
-    IEnumerator FadeRedInCoroutine(float _speed)
-    {
-        color = black.color;
-
-        while (color.a < 0.5f)
-        {
-            color.a += _speed;
-            black.color = color;
-            yield return waitTime;
-        }
-    }
-
-
     public void FlashOut(float _speed = 0.02f)
     {
         StopAllCoroutines();

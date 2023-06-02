@@ -11,11 +11,16 @@ public class LockDoor : MonoBehaviour
     private FadeManager theFade;
 
     public string lockingsound; // 문잠기는 소리
+
+    BGMManager BGM;
+
+    public int timersound;
     // Start is called before the first frame update
     void Start()
     {
         theAudio = FindObjectOfType<AudioManager>();
         theFade = FindObjectOfType<FadeManager>();
+        BGM = FindObjectOfType<BGMManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,8 +31,8 @@ public class LockDoor : MonoBehaviour
             {
                 lockdoor[i].SetActive(true);
             }
-            theFade.FadeRedIn();
             theAudio.Play(lockingsound);
+            BGM.Play(timersound);
             this.gameObject.SetActive(false);
         }
     }
