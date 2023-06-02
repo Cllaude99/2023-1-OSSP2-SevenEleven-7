@@ -15,6 +15,7 @@ public class TransferMap : MonoBehaviour
     public Transform target;
     public string transferMapName;
     public BoxCollider2D targetBound;
+    public Transform NPCtarget;
 
     //Private
     private PlayerManager thePlayer;
@@ -33,10 +34,16 @@ public class TransferMap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.name == "FriendNPC")
+        {
+            GameObject.Find("FriendNPC").transform.position = NPCtarget.position;
+
+        }
         if (collision.gameObject.name == "Player")
         {
-            StartCoroutine(TransferCoroutine());
+           StartCoroutine(TransferCoroutine());
         }
+        
     }
 
     IEnumerator TransferCoroutine()
