@@ -18,7 +18,7 @@ public class GhostSpawner : MonoBehaviour
     void Start()
     {
         thePlayer = FindObjectOfType<PlayerManager>();
-        GhostPrefab.GetComponent<GhostManager>().lifeTime = customlifeTime;
+        //GhostPrefab.GetComponent<GhostManager>().lifeTime = customlifeTime;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
