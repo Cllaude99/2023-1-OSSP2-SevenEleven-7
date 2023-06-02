@@ -127,8 +127,7 @@ public class GhostManager : MovingObject
     {
         if (collision.gameObject.name == "Player")
         {
-            stopBGM();
-            thePlayer.currentMapName = gameOver; // 만약 이동 영역과 부딪힌다면 이동할 맵의 이름을 Player오브젝트로 넘겨줌
+            BGM.Stop();
             SceneManager.LoadScene(gameOver); // transferMapName으로 이동
         }
         
