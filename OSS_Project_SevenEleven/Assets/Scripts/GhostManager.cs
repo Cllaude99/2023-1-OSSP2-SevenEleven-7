@@ -58,7 +58,7 @@ public class GhostManager : MovingObject
         if(ghostdeath)                               //귀신이 죽을 시에 ghostdeath가 true로 바뀌게 설정하면 죽는모션시작
         {
             if(!ghost_stop_corutine)
-                playDeath();                         // 한번만 실행되게
+                Invoke("playDeath",3f);                         // Invoke함수로 부적 사용애니메이션끝나고 귀신죽는애니메이션
             ghost_stop_corutine = true;
             yield break;
         }
