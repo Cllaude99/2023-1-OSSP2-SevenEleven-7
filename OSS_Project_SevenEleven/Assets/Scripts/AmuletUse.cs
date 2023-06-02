@@ -29,10 +29,16 @@ public class AmuletUse : MonoBehaviour
 
 
     private bool isPlayerOn = false;                        // 박스 콜라이더와 플레이어가 겹쳐있는지 확인하는 변수
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))                 //플레이어가 박스 콜라이더 위에 있으면
             isPlayerOn = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))                 //플레이어가 박스 콜라이더 위에 있으면
+            isPlayerOn = false;
     }
 
 
@@ -43,7 +49,7 @@ public class AmuletUse : MonoBehaviour
         {
             if (isPlayerOn)                                     //X키 누르고 playeron이면
             {
-                setGhostDeath();
+                
 
                 for (int i = 0; i < theInven.inventoryItemList.Count; i++)
                 {

@@ -9,7 +9,6 @@ public class ItemPickup : MonoBehaviour
     public string pickUpSound; // 아이템 획득시 사운드
 
     public bool isPick = false;
-    public GameObject displayImage; 
 
     /*private void OnTriggerStay2D(Collider2D collision)
     {   
@@ -22,26 +21,17 @@ public class ItemPickup : MonoBehaviour
             isPick = true;
         }
     }*/
-
-    private void ShowItemImage()
-    {
-        displayImage.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            displayImage.SetActive(false);
-        }
-    }
-
     private bool isPlayerOn = false;                        // 박스 콜라이더와 플레이어가 겹쳐있는지 확인하는 변수
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))                 //플레이어가 박스 콜라이더 위에 있으면
             isPlayerOn = true;
     }
 
-    private void Start()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        displayImage.SetActive(false);
+        if (collision.CompareTag("Player"))                 //플레이어가 박스 콜라이더 위에 있으면
+            isPlayerOn = false;
     }
 
     private void Update()
@@ -55,11 +45,6 @@ public class ItemPickup : MonoBehaviour
                                                               //Destroy(this.gameObject);
                 this.gameObject.SetActive(false);
                 isPick = true;
-
-                if (itemID == 10006)
-                {
-                    ShowItemImage();
-                }
             }
 
 
