@@ -184,16 +184,19 @@ public class PlayerManager : MovingObject
 
     public void LoadSave1()
     {
+        theAudio.Play("select2");
         theSaveNLoad.CallLoad(1);
     }
 
     public void LoadSave2()
     {
+        theAudio.Play("select2");
         theSaveNLoad.CallLoad(2);
     }
 
     public void LoadSave3()
     {
+        theAudio.Play("select2");
         theSaveNLoad.CallLoad(3);
     }
 
