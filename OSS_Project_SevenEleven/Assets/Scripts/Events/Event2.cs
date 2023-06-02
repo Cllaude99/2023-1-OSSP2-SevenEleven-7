@@ -45,6 +45,7 @@ public class Event2 : MonoBehaviour
         theOrder.Move("Player", "RIGHT");
         theOrder.Move("Player", "UP");
         theOrder.Move("Player", "UP");
+        theOrder.Move("Player", "UP");
         yield return new WaitUntil(() => thePlayer.queue.Count == 0);
 
         //theDM.ShowDialogue(dialogue_2);
