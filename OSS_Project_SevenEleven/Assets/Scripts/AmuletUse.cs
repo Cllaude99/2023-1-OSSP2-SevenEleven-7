@@ -14,7 +14,7 @@ public class AmuletUse : MonoBehaviour
     private AudioManager theAudio;
     private GhostManager theGhostManager;
     private Animator theAnimator;
-    public string amulte_use_sound;
+    public string amulet_use_sound;
 
 
 
@@ -56,7 +56,7 @@ public class AmuletUse : MonoBehaviour
                     if (theInven.inventoryItemList[i].itemID == itemcode[checkIndex])
                     {
                         theInven.inventoryItemList.RemoveAt(i);
-                        theAudio.Play("amulte_use_sound");
+                        theAudio.Play("amulet_use_sound");
                         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
                         boxCollider.enabled = false;                             //±Í½ÅÁ×À¸¸é ºê±Ý ²ô°í boxcollider off (Ãæµ¹¹æÁö);
                         theAnimator.SetBool("Use", true);
