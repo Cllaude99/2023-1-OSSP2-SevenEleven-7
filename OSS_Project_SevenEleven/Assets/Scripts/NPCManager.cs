@@ -52,6 +52,11 @@ public class NPCManager : MovingObject
             StartCoroutine(Chase());
 
         }
+        if (npc.NPCmove)
+        {
+            npc.NPCmove = false;
+            SetMove();
+        }
     }
     IEnumerator Chase()
     {
