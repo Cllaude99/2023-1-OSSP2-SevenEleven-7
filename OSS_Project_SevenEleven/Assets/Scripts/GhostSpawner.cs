@@ -10,6 +10,7 @@ public class GhostSpawner : MonoBehaviour
     public GameObject ghostSpawner;
     public Transform SpawnPoint;
     public GameObject instance;
+    public float customlifeTime;
 
     private PlayerManager thePlayer;
 
@@ -17,6 +18,7 @@ public class GhostSpawner : MonoBehaviour
     void Start()
     {
         thePlayer = FindObjectOfType<PlayerManager>();
+        GhostPrefab.GetComponent<GhostManager>().lifeTime = customlifeTime;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
