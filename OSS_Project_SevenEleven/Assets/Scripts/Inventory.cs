@@ -53,6 +53,8 @@ public class Inventory : MonoBehaviour
     private bool stopKeyInput; // 키입력 제한 (소비할 때 질의가 나올 텐데, 그 때 키입력 방지)
     private bool preventExec; // 중복실행 제한.
 
+    private GameObject diaryNote; //일기장 사진
+
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
 
 
@@ -436,20 +438,35 @@ public class Inventory : MonoBehaviour
                 {
                     //theDatabase.UseItem(inventoryItemList[i].itemID); -> 소모품이 있을 경우에만 넣어줌 (지금은 물약같은게 없으므로 패스)
 
-                    if (inventoryItemList[i].itemCount > 1)
-                        inventoryItemList[i].itemCount--;
-                    else
+                    if (inventoryItemList[i].itemID == 10029) // 지갑을 사용하면 키를 획득하고, 지갑은 사라짐
                     {
-                        if(inventoryItemList[i].itemID == 10029)
-                        {
-                            GetAnItem(10027, 1);
-                            inventoryItemList.RemoveAt(i);
-                        }
-                        else
-                        {
-                            theAudio.Play(cancel_sound);
-                        }
+                        GetAnItem(10027, 1);
+                        inventoryItemList.RemoveAt(i);
                     }
+                    else if (10016 <= inventoryItemList[i].itemID && inventoryItemList[i].itemID <= 10025)
+                    {
+                        string diaryname = (inventoryItemList[i].itemID-10).ToString();
+                        diaryNote = GameObject.Find(diaryname);
+                        diaryNote.SetActive(true);
+                        theOrder.NotMove();
+
+
+                        if (Input.GetKey(KeyCode.Z))
+                        {
+                            diaryNote.SetActive(false);
+                            theOrder.Move();
+                        }
+
+                    }
+
+                    else // 그외의 경우는 사용해도 아무런 변화 x
+                    {
+                        theAudio.Play(cancel_sound);
+                    }
+
+                    //여러개의 같은 소모품인 경우 use하면 카운트만 감소시키도록 설정 (지금은 없음)
+                    /*else if (inventoryItemList[i].itemCount > 1) 
+                        inventoryItemList[i].itemCount--;   */ 
 
                     ShowItem();
                     break;
