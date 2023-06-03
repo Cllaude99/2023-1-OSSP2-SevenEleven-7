@@ -439,7 +439,17 @@ public class Inventory : MonoBehaviour
                     if (inventoryItemList[i].itemCount > 1)
                         inventoryItemList[i].itemCount--;
                     else
-                        inventoryItemList.RemoveAt(i);
+                    {
+                        if(inventoryItemList[i].itemID == 10029)
+                        {
+                            GetAnItem(10027, 1);
+                            inventoryItemList.RemoveAt(i);
+                        }
+                        else
+                        {
+                            theAudio.Play(cancel_sound);
+                        }
+                    }
 
                     ShowItem();
                     break;
@@ -475,4 +485,5 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
+
 }
