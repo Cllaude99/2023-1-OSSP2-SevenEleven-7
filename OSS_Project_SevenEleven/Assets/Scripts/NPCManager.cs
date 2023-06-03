@@ -20,8 +20,14 @@ public class NPCManager : MovingObject
     public NPCMove npc;
     public bool ischase = false;
     public Transform target;
+    public GameObject current_transfer;
+    public bool istransfer = false;
+    public string currentMapName;
+
     private Rigidbody2D rb;
     private bool NPCCanMove=true;
+
+
     // Start is called before the first frame update
     void Start()
     {
