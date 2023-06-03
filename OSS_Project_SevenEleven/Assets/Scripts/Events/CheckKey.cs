@@ -92,7 +92,7 @@ public class CheckKey : MonoBehaviour
                 { 
                     theAudio.Play(lockdoor); 
                 }
-                else if (canOpen && !open_sound_called)
+                else if (canOpen && !open_sound_called)     //오픈 사운드 한번만 나게 조건추가
                 {
                     theAudio.Play(unlockdoor);
                     open_sound_called = true;
