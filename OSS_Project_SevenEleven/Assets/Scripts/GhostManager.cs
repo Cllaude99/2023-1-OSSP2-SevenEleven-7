@@ -141,7 +141,6 @@ public class GhostManager : MovingObject
     void stopBGM()
     {
         BGM.FadeOutMusic();
-        BGM.UnLoop();
     }
 
     void playDeath()
