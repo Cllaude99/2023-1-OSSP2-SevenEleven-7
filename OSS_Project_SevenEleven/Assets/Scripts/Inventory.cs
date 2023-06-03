@@ -403,6 +403,11 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+        if (CheckItemsInRange()) //부적1~4 전부 사라지고, 최종부적을 획득
+        {
+            inventoryItemList.RemoveAll(item => item.itemID >= 10001 && item.itemID <= 10004);
+            GetAnItem(10005, 1);
+        }
     }
 
 
@@ -444,5 +449,30 @@ public class Inventory : MonoBehaviour
 
         stopKeyInput = false;
         go_OOC.SetActive(false);
+    }
+
+    public bool CheckItemsInRange() //필요한 아이템을 다 모았는지 체크하는 함수 (여기선 부적을 위해)
+    {
+        int[] itemCodes = new int[] { 10001, 10002, 10003, 10004 };
+        bool[] foundItems = new bool[4];
+
+        for (int i = 0; i < inventoryItemList.Count; i++)
+        {
+            for (int j = 0; j < itemCodes.Length; j++)
+            {
+                if (inventoryItemList[i].itemID == itemCodes[j])
+                {
+                    foundItems[j] = true;
+                    break;
+                }
+            }
+        }
+
+        foreach (bool found in foundItems)
+        {
+            if (!found) return false;
+        }
+
+        return true;
     }
 }

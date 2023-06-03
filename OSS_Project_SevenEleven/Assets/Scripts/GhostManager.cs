@@ -153,6 +153,7 @@ public class GhostManager : MovingObject
             Vector2 particle_postion = transform.position;
             theParticle.transform.position = particle_postion;      //파티클 포지션을 귀신 포지션으로 옮기고 재생
             theParticle.Play();
+            audioManager.Play("ghost_death");
             animator.SetBool("Death", true);                        //죽는 애니메이션 재생
             
     }

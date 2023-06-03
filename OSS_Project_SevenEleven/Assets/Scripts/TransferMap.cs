@@ -15,13 +15,14 @@ public class TransferMap : MonoBehaviour
     public Transform target;
     public string transferMapName;
     public BoxCollider2D targetBound;
+    public Transform NPCtarget;
 
     //Private
     private PlayerManager thePlayer;
     private CameraManager theCamera;
     private FadeManager theFade;
     private OrderManager theOrder;
-
+    private AudioManager theAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,14 +30,22 @@ public class TransferMap : MonoBehaviour
         theCamera = FindObjectOfType<CameraManager>();
         theFade = FindObjectOfType<FadeManager>();
         theOrder = FindObjectOfType<OrderManager>();
+        theAudio = FindObjectOfType<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.name == "FriendNPC")
+        {
+            GameObject.Find("FriendNPC").transform.position = NPCtarget.position;
+
+        }
         if (collision.gameObject.name == "Player")
         {
-            StartCoroutine(TransferCoroutine());
+            theAudio.Play("transfer_sound");
+           StartCoroutine(TransferCoroutine());
         }
+        
     }
 
     IEnumerator TransferCoroutine()

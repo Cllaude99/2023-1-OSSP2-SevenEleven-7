@@ -53,6 +53,7 @@ public class Event1 : MonoBehaviour
         theOrder.Move("FriendNPC", "DOWN");
         theOrder.Move("FriendNPC", "DOWN");
         theOrder.Move("FriendNPC", "DOWN");
+        theOrder.Move("FriendNPC", "DOWN");
         yield return new WaitUntil(() => thePlayer.queue.Count == 0);
 
         //theDM.ShowDialogue(dialogue_2);
