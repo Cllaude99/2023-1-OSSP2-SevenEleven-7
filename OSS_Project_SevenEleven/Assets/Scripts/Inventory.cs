@@ -36,11 +36,15 @@ public class Inventory : MonoBehaviour
     public GameObject prefab_Floating_Text; // 플로팅 텍스트
 
     public GameObject menu_obj; // 메뉴연결용 오브젝트
+    public bool showDiary = false;  //다이어리 오픈되어야 하는지
+    public bool hideDiary = false;  //다이어리가 닫혀야하는지 여부 
+    public GameObject[] diary;  //일기장 사진
+
+    private int diaryNum;
 
     private int selectedItem; // 선택된 아이템.
     private int selectedTab; // 선택된 탭
 
-    private int page; 
     private int slotCount; // 활성화된 슬롯개수
     private const int MAX_SLOTS_COUNT = 10; // 최대슬롯개수
 
@@ -52,8 +56,6 @@ public class Inventory : MonoBehaviour
     private bool itemActivated; // 아이템 활성화시 true.
     private bool stopKeyInput; // 키입력 제한 (소비할 때 질의가 나올 텐데, 그 때 키입력 방지)
     private bool preventExec; // 중복실행 제한.
-
-    private GameObject diaryNote; //일기장 사진
 
     private WaitForSeconds waitTime = new WaitForSeconds(0.01f);
 
@@ -410,6 +412,19 @@ public class Inventory : MonoBehaviour
             inventoryItemList.RemoveAll(item => item.itemID >= 10001 && item.itemID <= 10004);
             GetAnItem(10005, 1);
         }
+
+        if (showDiary && !hideDiary)        // 다이어리 사진 직접 오픈
+        {
+            diary[diaryNum].SetActive(true);
+            hideDiary = true;
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Z) && hideDiary)   // 다이어리 사진 직접 닫음
+        {
+            diary[diaryNum].SetActive(false);
+            hideDiary = false;
+            showDiary= false;
+        }
     }
 
 
@@ -443,19 +458,10 @@ public class Inventory : MonoBehaviour
                         GetAnItem(10027, 1);
                         inventoryItemList.RemoveAt(i);
                     }
-                    else if (10016 <= inventoryItemList[i].itemID && inventoryItemList[i].itemID <= 10025)
+                    else if (10006 <= inventoryItemList[i].itemID && inventoryItemList[i].itemID <= 10025)  //다이어리는 직접 다시 볼 수 있도록
                     {
-                        string diaryname = (inventoryItemList[i].itemID-10).ToString();
-                        diaryNote = GameObject.Find(diaryname);
-                        diaryNote.SetActive(true);
-                        theOrder.NotMove();
-
-
-                        if (Input.GetKey(KeyCode.Z))
-                        {
-                            diaryNote.SetActive(false);
-                            theOrder.Move();
-                        }
+                        showDiary = true;
+                        diaryNum = inventoryItemList[i].itemID - 10006;
 
                     }
 

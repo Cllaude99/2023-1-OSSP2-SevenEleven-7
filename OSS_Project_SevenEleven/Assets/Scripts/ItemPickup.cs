@@ -64,7 +64,7 @@ public class ItemPickup : MonoBehaviour
                 if (10006 <= itemID && itemID <= 10015 && displayImage != null)   //일기장 획득하면 자동으로 화면에 나오도록
                 {
                     ShowItemImage();
-                    Invoke("HideItemImage", 8);
+                    Invoke("HideItemImage", 3);
                 }
 
                 AudioManager.instance.Play(pickUpSound);
