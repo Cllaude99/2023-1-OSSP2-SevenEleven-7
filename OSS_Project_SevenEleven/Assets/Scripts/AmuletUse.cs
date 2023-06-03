@@ -24,7 +24,7 @@ public class AmuletUse : MonoBehaviour
         theInven = FindObjectOfType<Inventory>();
         theAudio = FindObjectOfType<AudioManager>();
         theAnimator = GetComponent<Animator>();
-
+        
     }
 
 
@@ -49,8 +49,8 @@ public class AmuletUse : MonoBehaviour
         {
             if (isPlayerOn)                                     //X키 누르고 playeron이면
             {
-                
 
+                theGhostManager = FindObjectOfType<GhostManager>();
                 for (int i = 0; i < theInven.inventoryItemList.Count; i++)
                 {
                     if (theInven.inventoryItemList[i].itemID == itemcode[checkIndex])
