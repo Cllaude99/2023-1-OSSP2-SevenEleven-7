@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
 
     private InventorySlot[] slots; // 인벤토리 슬롯들
 
+    private int page;
     public List<Item> inventoryItemList; // 플레이어가 소지한 아이템 리스트.
     private List<Item> inventoryTabList; // 선택한 탭에 따라 다르게 보여질 아이템 리스트.
 
@@ -458,7 +459,7 @@ public class Inventory : MonoBehaviour
                         GetAnItem(10027, 1);
                         inventoryItemList.RemoveAt(i);
                     }
-                    else if (10006 <= inventoryItemList[i].itemID && inventoryItemList[i].itemID <= 10025)  //다이어리는 직접 다시 볼 수 있도록
+                    else if (10006 <= inventoryItemList[i].itemID && inventoryItemList[i].itemID <= 10025) // 인벤토리에서 use통해 다이어리 열람 가능하도록 설정
                     {
                         showDiary = true;
                         diaryNum = inventoryItemList[i].itemID - 10006;
