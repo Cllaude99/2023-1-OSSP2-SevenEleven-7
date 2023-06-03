@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlashLAB : MonoBehaviour
@@ -12,36 +13,39 @@ public class FlashLAB : MonoBehaviour
 
     public float delay;
 
+    private bool isStart = false;
+
     // Start is called before the first frame update
     void Start()
     {
         theFade = FindObjectOfType<FadeManager>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
+    {
+        if (isStart)
+        {
+            isStart = false;
+            StartCoroutine(FlashCoroutine());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            Invoke("Flash", delay);
+            isStart = true;
         }
 
     }
 
-    private void Flash()
+    IEnumerator FlashCoroutine()
     {
-        if (iswhite)
+        for (int i = 0; i < loopnum; i++)
         {
-            for (int i = 0; i < loopnum; i++)
-            {
-                theFade.WhiteFlash();
-            }
+            theFade.BlackFlash();
         }
-        else
-        {
-            for (int i = 0; i < loopnum; i++)
-            {
-                theFade.BlackFlash();
-            }
-        }
+        yield return new WaitForSeconds(delay);
     }
+
 }
