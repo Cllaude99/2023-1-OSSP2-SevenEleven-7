@@ -21,7 +21,6 @@ public class SaveNLoad : MonoBehaviour
         public float CameraY;
         public float CameraZ;
 
-        public BoxCollider2D Bound;
 
         public string mapName;
         public string sceneName;
@@ -60,7 +59,6 @@ public class SaveNLoad : MonoBehaviour
         data.CameraY = theCamera.transform.position.y;
         data.CameraZ = theCamera.transform.position.z;
 
-        data.Bound = theCamera.bound;
 
         data.mapName = thePlayer.currentMapName;
         data.sceneName = thePlayer.currentSceneName;
@@ -120,9 +118,8 @@ public class SaveNLoad : MonoBehaviour
             thePlayer.transform.position = vector;
 
             cameraVector.Set(data.CameraX, data.CameraY, data.CameraZ);
-            theCamera.transform.position = vector;
+            theCamera.transform.position = cameraVector;
 
-            theCamera.bound = data.Bound;
 
             theDatabase.var = data.varNumberList.ToArray();
             theDatabase.var_name = data.varNameList.ToArray();
