@@ -10,6 +10,7 @@ public class FlashLAB : MonoBehaviour
 
     public bool iswhite;
 
+    public float delay;
 
     // Start is called before the first frame update
     void Start()
@@ -17,26 +18,30 @@ public class FlashLAB : MonoBehaviour
         theFade = FindObjectOfType<FadeManager>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            if (iswhite)
-            {
-                for (int i = 0; i < loopnum; i++)
-                {
-                    theFade.WhiteFlash();
-                }
-            }
-            else
-            {
-                for (int i = 0; i < loopnum; i++)
-                {
-                    theFade.BlackFlash();
-                }
-            }
-            this.gameObject.SetActive(false);
+            Invoke("Flash", delay);
         }
 
+    }
+
+    private void Flash()
+    {
+        if (iswhite)
+        {
+            for (int i = 0; i < loopnum; i++)
+            {
+                theFade.WhiteFlash();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < loopnum; i++)
+            {
+                theFade.BlackFlash();
+            }
+        }
     }
 }
