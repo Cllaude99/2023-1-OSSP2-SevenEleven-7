@@ -6,6 +6,7 @@ public class FindMinji : MonoBehaviour
 {
     public Dialogue dialogue_1;
     public Dialogue dialogue_2;
+    public Dialogue dialogue_3;
 
     private DialogueManager theDM;
     private OrderManager theOrder;
@@ -40,12 +41,17 @@ public class FindMinji : MonoBehaviour
         yield return new WaitUntil(() => !theDM.talking);
 
         theOrder.Move("FriendNPC", "UP"); //강제이동
- 
         yield return new WaitUntil(() => thePlayer.queue.Count == 0);
 
         theDM.ShowDialogue(dialogue_2);
         yield return new WaitUntil(() => !theDM.talking);
 
+        theOrder.Move("Player", "UP");
+        theOrder.Move("FriendNPC", "UP"); //강제이동
+        yield return new WaitUntil(() => thePlayer.queue.Count == 0);
+
+        theDM.ShowDialogue(dialogue_3);
+        yield return new WaitUntil(() => !theDM.talking);
         theOrder.Move();
 
     }
