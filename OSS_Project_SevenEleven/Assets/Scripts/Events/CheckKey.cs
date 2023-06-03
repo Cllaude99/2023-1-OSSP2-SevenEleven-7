@@ -20,6 +20,7 @@ public class CheckKey : MonoBehaviour
     public string unlockdoor;
 
     private bool canOpen = false;
+    private bool open_sound_called =false;             //여는 소리 1번만 나게
     // Start is called before the first frame update
     void Start()
     {
@@ -86,8 +87,16 @@ public class CheckKey : MonoBehaviour
                         break;
                     }
                 }
-                if (!canOpen) theAudio.Play(lockdoor);
-                else if (canOpen) theAudio.Play(unlockdoor);
+
+                if (!canOpen)
+                { 
+                    theAudio.Play(lockdoor); 
+                }
+                else if (canOpen && !open_sound_called)
+                {
+                    theAudio.Play(unlockdoor);
+                    open_sound_called = true;
+                }
             }
 
         }
