@@ -38,13 +38,13 @@ public class Event2 : MonoBehaviour
         theDM.ShowDialogue(dialogue_1);
         yield return new WaitUntil(() => !theDM.talking);
 
-        theOrder.Move("Player", "UP"); //강제이동
+        /*theOrder.Move("Player", "UP"); //강제이동
         theOrder.Move("Player", "UP"); 
         theOrder.Move("Player", "RIGHT");
         theOrder.Move("Player", "RIGHT");
         theOrder.Move("Player", "UP");
         theOrder.Move("Player", "UP");
-        theOrder.Move("Player", "UP");
+        theOrder.Move("Player", "UP");*/
         yield return new WaitUntil(() => thePlayer.queue.Count == 0);
 
         //theDM.ShowDialogue(dialogue_2);
