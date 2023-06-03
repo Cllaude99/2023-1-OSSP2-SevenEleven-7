@@ -17,6 +17,12 @@ public class SaveNLoad : MonoBehaviour
         public List<int> playerItemInventory;
         public List<int> playerItemInventoryCount;
 
+        public float CameraX;
+        public float CameraY;
+        public float CameraZ;
+
+        public BoxCollider2D Bound;
+
         public string mapName;
         public string sceneName;
 
@@ -31,8 +37,10 @@ public class SaveNLoad : MonoBehaviour
     private Inventory theInven;
     public GameObject load_canvas_obj;
     public Data data;
+    private CameraManager theCamera;
 
     private Vector3 vector;
+    private Vector3 cameraVector;
 
     public List<string> item_id__should_destroy;
     public int item_count;
@@ -42,10 +50,17 @@ public class SaveNLoad : MonoBehaviour
         theDatabase = FindObjectOfType<DatabaseManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
         theInven = FindObjectOfType<Inventory>();
+        theCamera = FindObjectOfType<CameraManager>();
 
         data.playerX = thePlayer.transform.position.x;
         data.playerY = thePlayer.transform.position.y;
         data.playerZ = thePlayer.transform.position.z;
+
+        data.CameraX = theCamera.transform.position.x;
+        data.CameraY = theCamera.transform.position.y;
+        data.CameraZ = theCamera.transform.position.z;
+
+        data.Bound = theCamera.bound;
 
         data.mapName = thePlayer.currentMapName;
         data.sceneName = thePlayer.currentSceneName;
@@ -96,12 +111,18 @@ public class SaveNLoad : MonoBehaviour
             theDatabase = FindObjectOfType<DatabaseManager>();
             thePlayer = FindObjectOfType<PlayerManager>();
             theInven = FindObjectOfType<Inventory>();
+            theCamera = FindObjectOfType<CameraManager>();
 
             thePlayer.currentMapName = data.mapName;
             thePlayer.currentSceneName = data.sceneName;
 
             vector.Set(data.playerX, data.playerY, data.playerZ);
             thePlayer.transform.position = vector;
+
+            cameraVector.Set(data.CameraX, data.CameraY, data.CameraZ);
+            theCamera.transform.position = vector;
+
+            theCamera.bound = data.Bound;
 
             theDatabase.var = data.varNumberList.ToArray();
             theDatabase.var_name = data.varNameList.ToArray();
