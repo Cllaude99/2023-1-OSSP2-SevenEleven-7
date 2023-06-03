@@ -38,7 +38,6 @@ public class TransferMap : MonoBehaviour
         if (collision.gameObject.name == "FriendNPC")
         {
             GameObject.Find("FriendNPC").transform.position = NPCtarget.position;
-
         }
         if (collision.gameObject.name == "Player")
         {
