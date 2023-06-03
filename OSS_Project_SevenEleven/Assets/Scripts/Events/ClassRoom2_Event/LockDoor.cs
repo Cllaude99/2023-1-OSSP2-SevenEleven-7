@@ -15,12 +15,15 @@ public class LockDoor : MonoBehaviour
     BGMManager BGM;
 
     public int timersound;
+
+    private DeathCount theCount;
     // Start is called before the first frame update
     void Start()
     {
         theAudio = FindObjectOfType<AudioManager>();
         theFade = FindObjectOfType<FadeManager>();
         BGM = FindObjectOfType<BGMManager>();
+        theCount = FindObjectOfType<DeathCount>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +36,7 @@ public class LockDoor : MonoBehaviour
             }
             theAudio.Play(lockingsound);
             BGM.Play(timersound);
+            theCount.isCount = true;
             this.gameObject.SetActive(false);
         }
     }
