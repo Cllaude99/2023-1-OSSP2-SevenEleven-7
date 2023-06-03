@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
 
     private InventorySlot[] slots; // 인벤토리 슬롯들
 
+    private int page;
     public List<Item> inventoryItemList; // 플레이어가 소지한 아이템 리스트.
     private List<Item> inventoryTabList; // 선택한 탭에 따라 다르게 보여질 아이템 리스트.
 
@@ -36,11 +37,15 @@ public class Inventory : MonoBehaviour
     public GameObject prefab_Floating_Text; // 플로팅 텍스트
 
     public GameObject menu_obj; // 메뉴연결용 오브젝트
+    public bool showDiary = false;  //다이어리 오픈되어야 하는지
+    public bool hideDiary = false;  //다이어리가 닫혀야하는지 여부 
+    public GameObject[] diary;  //일기장 사진
+
+    private int diaryNum;
 
     private int selectedItem; // 선택된 아이템.
     private int selectedTab; // 선택된 탭
 
-    private int page; 
     private int slotCount; // 활성화된 슬롯개수
     private const int MAX_SLOTS_COUNT = 10; // 최대슬롯개수
 
@@ -408,6 +413,19 @@ public class Inventory : MonoBehaviour
             inventoryItemList.RemoveAll(item => item.itemID >= 10001 && item.itemID <= 10004);
             GetAnItem(10005, 1);
         }
+
+        if (showDiary && !hideDiary)        // 다이어리 사진 직접 오픈
+        {
+            diary[diaryNum].SetActive(true);
+            hideDiary = true;
+        }
+
+        else if(Input.GetKeyDown(KeyCode.Z) && hideDiary)   // 다이어리 사진 직접 닫음
+        {
+            diary[diaryNum].SetActive(false);
+            hideDiary = false;
+            showDiary= false;
+        }
     }
 
 
@@ -436,20 +454,26 @@ public class Inventory : MonoBehaviour
                 {
                     //theDatabase.UseItem(inventoryItemList[i].itemID); -> 소모품이 있을 경우에만 넣어줌 (지금은 물약같은게 없으므로 패스)
 
-                    if (inventoryItemList[i].itemCount > 1)
-                        inventoryItemList[i].itemCount--;
-                    else
+                    if (inventoryItemList[i].itemID == 10029) // 지갑을 사용하면 키를 획득하고, 지갑은 사라짐
                     {
-                        if(inventoryItemList[i].itemID == 10029)
-                        {
-                            GetAnItem(10027, 1);
-                            inventoryItemList.RemoveAt(i);
-                        }
-                        else
-                        {
-                            theAudio.Play(cancel_sound);
-                        }
+                        GetAnItem(10027, 1);
+                        inventoryItemList.RemoveAt(i);
                     }
+                    else if (10006 <= inventoryItemList[i].itemID && inventoryItemList[i].itemID <= 10025) // 인벤토리에서 use통해 다이어리 열람 가능하도록 설정
+                    {
+                        showDiary = true;
+                        diaryNum = inventoryItemList[i].itemID - 10006;
+
+                    }
+
+                    else // 그외의 경우는 사용해도 아무런 변화 x
+                    {
+                        theAudio.Play(cancel_sound);
+                    }
+
+                    //여러개의 같은 소모품인 경우 use하면 카운트만 감소시키도록 설정 (지금은 없음)
+                    /*else if (inventoryItemList[i].itemCount > 1) 
+                        inventoryItemList[i].itemCount--;   */ 
 
                     ShowItem();
                     break;
