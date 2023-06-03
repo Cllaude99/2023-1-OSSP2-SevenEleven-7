@@ -61,17 +61,17 @@ public class ItemPickup : MonoBehaviour
         {
             if (isPlayerOn)                                     //X키 누르고 playeron이면
             {
+                if (10006 <= itemID && itemID <= 10015 && displayImage != null)   //일기장 획득하면 자동으로 화면에 나오도록
+                {
+                    ShowItemImage();
+                    Invoke("HideItemImage", 8);
+                }
+
                 AudioManager.instance.Play(pickUpSound);
                 Inventory.instance.GetAnItem(itemID, _count); // 인벤토리에 획득한 아이템 추가하는 과정
                                                               //Destroy(this.gameObject);
                 this.gameObject.SetActive(false);
                 isPick = true;
-            }
-
-            if (10006 <= itemID && itemID <= 10015 && displayImage != null)   //일기장 획득하면 자동으로 화면에 나오도록
-            {
-                ShowItemImage();
-                Invoke("HideItemImage", 8);
             }
         }
     }
