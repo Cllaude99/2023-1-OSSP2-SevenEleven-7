@@ -22,7 +22,7 @@ public class TransferMap : MonoBehaviour
     private CameraManager theCamera;
     private FadeManager theFade;
     private OrderManager theOrder;
-
+    private AudioManager theAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,7 @@ public class TransferMap : MonoBehaviour
         theCamera = FindObjectOfType<CameraManager>();
         theFade = FindObjectOfType<FadeManager>();
         theOrder = FindObjectOfType<OrderManager>();
+        theAudio = FindObjectOfType<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,6 +42,7 @@ public class TransferMap : MonoBehaviour
         }
         if (collision.gameObject.name == "Player")
         {
+            theAudio.Play("transfer_sound");
            StartCoroutine(TransferCoroutine());
         }
         
