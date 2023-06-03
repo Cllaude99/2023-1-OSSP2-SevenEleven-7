@@ -10,8 +10,7 @@ public class Event2 : MonoBehaviour
     private DialogueManager theDM;
     private OrderManager theOrder;
     private PlayerManager thePlayer;
-
-    private bool flag;
+    private bool hasEntered = false;
 
     //Use this for initialization
     void Start()
@@ -24,10 +23,10 @@ public class Event2 : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!flag)
+        if (!hasEntered && collision.gameObject.name == "Player")
         {
-            flag = true;
             StartCoroutine(EventCoroutine());
+            hasEntered = true;
         }
     }
 
@@ -39,13 +38,13 @@ public class Event2 : MonoBehaviour
         theDM.ShowDialogue(dialogue_1);
         yield return new WaitUntil(() => !theDM.talking);
 
-        theOrder.Move("Player", "UP"); //강제이동
+        /*theOrder.Move("Player", "UP"); //강제이동
         theOrder.Move("Player", "UP"); 
         theOrder.Move("Player", "RIGHT");
         theOrder.Move("Player", "RIGHT");
         theOrder.Move("Player", "UP");
         theOrder.Move("Player", "UP");
-        theOrder.Move("Player", "UP");
+        theOrder.Move("Player", "UP");*/
         yield return new WaitUntil(() => thePlayer.queue.Count == 0);
 
         //theDM.ShowDialogue(dialogue_2);

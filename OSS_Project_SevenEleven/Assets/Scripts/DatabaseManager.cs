@@ -36,7 +36,7 @@ public class DatabaseManager : MonoBehaviour
         itemList.Add(new Item(10002, "2번째 부적", "오른쪽 위 부적", Item.ItemType.Quest));
         itemList.Add(new Item(10003, "3번째 부적", "왼쪽 아래 부적", Item.ItemType.Quest));
         itemList.Add(new Item(10004, "4번째 부적", "오른쪽 아래 부적", Item.ItemType.Quest));
-        itemList.Add(new Item(10005, "신비한 부적", "전체 부적", Item.ItemType.Quest));
+        itemList.Add(new Item(10005, "A Buddhist exorcism amulet", "An amulet containing the power of exorcism.\nIt seems to be usable at the altar in front of a Buddha statue.", Item.ItemType.Quest));
 
         itemList.Add(new Item(10006, "1번째 일기장", "1번째 일기장", Item.ItemType.Quest));
         itemList.Add(new Item(10007, "1번째 일기장", "2번째 일기장", Item.ItemType.Quest));
