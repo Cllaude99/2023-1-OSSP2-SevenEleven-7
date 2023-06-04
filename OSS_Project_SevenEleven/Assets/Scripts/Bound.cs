@@ -21,7 +21,7 @@ public class Bound : MonoBehaviour
         theCamera.SetBound(bound);
 
         GameManager theGM = FindObjectOfType<GameManager>();
-        theGM.LoadStart();
+        theGM.BoundStart();
     }
 
     public void SetBound() // 불러오기에서 사용되는 함수
