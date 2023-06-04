@@ -17,19 +17,18 @@ public class SaveNLoad : MonoBehaviour
         public List<int> playerItemInventory;
         public List<int> playerItemInventoryCount;
 
-        public float CameraX;
-        public float CameraY;
-        public float CameraZ;
+        //public float CameraX;
+        //public float CameraY;
+        //public float CameraZ;
 
-        public BoxCollider2D Bound;
 
         public string mapName;
         public string sceneName;
 
-        public List<bool> swList;
-        public List<string> swNameList;
-        public List<string> varNameList;
-        public List<float> varNumberList;
+        //public List<bool> swList;
+        //public List<string> swNameList;
+        //public List<string> varNameList;
+        //public List<float> varNumberList;
     }
 
     private DatabaseManager theDatabase;
@@ -37,10 +36,10 @@ public class SaveNLoad : MonoBehaviour
     private Inventory theInven;
     public GameObject load_canvas_obj;
     public Data data;
-    private CameraManager theCamera;
+    //private CameraManager theCamera;
 
     private Vector3 vector;
-    private Vector3 cameraVector;
+    //private Vector3 cameraVector;
 
     public List<string> item_id__should_destroy;
     public int item_count;
@@ -50,17 +49,16 @@ public class SaveNLoad : MonoBehaviour
         theDatabase = FindObjectOfType<DatabaseManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
         theInven = FindObjectOfType<Inventory>();
-        theCamera = FindObjectOfType<CameraManager>();
+        //theCamera = FindObjectOfType<CameraManager>();
 
         data.playerX = thePlayer.transform.position.x;
         data.playerY = thePlayer.transform.position.y;
         data.playerZ = thePlayer.transform.position.z;
 
-        data.CameraX = theCamera.transform.position.x;
-        data.CameraY = theCamera.transform.position.y;
-        data.CameraZ = theCamera.transform.position.z;
+        //data.CameraX = theCamera.transform.position.x;
+        //data.CameraY = theCamera.transform.position.y;
+        //data.CameraZ = theCamera.transform.position.z;
 
-        data.Bound = theCamera.bound;
 
         data.mapName = thePlayer.currentMapName;
         data.sceneName = thePlayer.currentSceneName;
@@ -70,6 +68,7 @@ public class SaveNLoad : MonoBehaviour
         data.playerItemInventory.Clear();
         data.playerItemInventoryCount.Clear();
 
+        /*
         for (int i = 0; i < theDatabase.var_name.Length; i++)
         {
             data.varNameList.Add(theDatabase.var_name[i]);
@@ -80,7 +79,7 @@ public class SaveNLoad : MonoBehaviour
             data.swNameList.Add(theDatabase.switch_name[i]);
             data.swList.Add(theDatabase.switches[i]);
         }
-
+        */
         List<Item> itemList = theInven.SaveItem();
 
         for (int i = 0; i < itemList.Count; i++)
@@ -111,7 +110,7 @@ public class SaveNLoad : MonoBehaviour
             theDatabase = FindObjectOfType<DatabaseManager>();
             thePlayer = FindObjectOfType<PlayerManager>();
             theInven = FindObjectOfType<Inventory>();
-            theCamera = FindObjectOfType<CameraManager>();
+            //theCamera = FindObjectOfType<CameraManager>();
 
             thePlayer.currentMapName = data.mapName;
             thePlayer.currentSceneName = data.sceneName;
@@ -119,15 +118,14 @@ public class SaveNLoad : MonoBehaviour
             vector.Set(data.playerX, data.playerY, data.playerZ);
             thePlayer.transform.position = vector;
 
-            cameraVector.Set(data.CameraX, data.CameraY, data.CameraZ);
-            theCamera.transform.position = vector;
+            //cameraVector.Set(data.CameraX, data.CameraY, data.CameraZ);
+            //theCamera.transform.position = cameraVector;
 
-            theCamera.bound = data.Bound;
 
-            theDatabase.var = data.varNumberList.ToArray();
-            theDatabase.var_name = data.varNameList.ToArray();
-            theDatabase.switches = data.swList.ToArray();
-            theDatabase.switch_name = data.swNameList.ToArray();
+            //theDatabase.var = data.varNumberList.ToArray();
+            //theDatabase.var_name = data.varNameList.ToArray();
+            //theDatabase.switches = data.swList.ToArray();
+            //theDatabase.switch_name = data.swNameList.ToArray();
 
             List<Item> itemList = new List<Item>();
 
