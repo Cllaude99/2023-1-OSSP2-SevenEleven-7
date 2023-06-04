@@ -91,11 +91,11 @@ public class StartStory : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         theOrder.Turn("Player", "UP");
         yield return new WaitForSeconds(0.8f);
-        theOrder.Turn("Player", "DOWN");
-        yield return new WaitForSeconds(0.8f);
         theOrder.Turn("Player", "RIGHT");
         yield return new WaitForSeconds(0.8f);
         theOrder.Turn("Player", "LEFT");
+        yield return new WaitForSeconds(0.8f);
+        theOrder.Turn("Player", "DOWN");
         yield return new WaitForSeconds(0.8f);
         theDM.ShowDialogue(dialogue_3);
         yield return new WaitUntil(() => !theDM.talking);
