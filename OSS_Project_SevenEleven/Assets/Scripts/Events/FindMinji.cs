@@ -25,10 +25,13 @@ public class FindMinji : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!flag && Input.GetKey(KeyCode.Z))
+        if (collision.CompareTag("Player"))
         {
-            flag = true;
-            StartCoroutine(EventCoroutine());
+            if (!flag && Input.GetKey(KeyCode.Z))
+            {
+                flag = true;
+                StartCoroutine(EventCoroutine());
+            }
         }
     }
 
