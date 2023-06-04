@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < theSave.item_count; i++)
         {
             item_object_should_destroyed = GameObject.Find(theSave.item_id__should_destroy[i]);
-            item_object_should_destroyed.SetActive(false);
+            //item_object_should_destroyed.SetActive(false);
         }
 
         /*
