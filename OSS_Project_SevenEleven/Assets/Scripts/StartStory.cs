@@ -13,7 +13,7 @@ public class StartStory : MonoBehaviour
     private PlayerManager thePlayer;
     private FadeManager theFade; // FadeManager 참조를 위한 추가 변수
 
-    private bool flag;
+    private bool flag = false;
 
     //Use this for initialization
     void Start()
@@ -84,9 +84,12 @@ public class StartStory : MonoBehaviour
 
         theFade.Fadeout();
         yield return new WaitForSeconds(3f);
+        theOrder.Turn("Player", "DOWN");
         theFade.FadeIn();
         yield return new WaitForSeconds(1f);
 
+        yield return new WaitForSeconds(0.8f);
+        theOrder.Turn("Player", "UP");
         yield return new WaitForSeconds(0.8f);
         theOrder.Turn("Player", "DOWN");
         yield return new WaitForSeconds(0.8f);
