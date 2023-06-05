@@ -31,7 +31,7 @@ public class StartStory : MonoBehaviour
   
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!flag)
+        if (!flag && collision.CompareTag("Player"))
         {
             flag = true;
             StartCoroutine(EventCoroutine());
