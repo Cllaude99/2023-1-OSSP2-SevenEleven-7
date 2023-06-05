@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class SaveNLoad : MonoBehaviour
 {
@@ -17,18 +18,20 @@ public class SaveNLoad : MonoBehaviour
         public List<int> playerItemInventory;
         public List<int> playerItemInventoryCount;
 
-        //public float CameraX;
-        //public float CameraY;
-        //public float CameraZ;
-
-
         public string mapName;
         public string sceneName;
+
+        //public GameObject[] checkVisits;
 
         //public List<bool> swList;
         //public List<string> swNameList;
         //public List<string> varNameList;
         //public List<float> varNumberList;
+
+
+        //check visit
+        public List<bool> isCheckVisit;
+        public List<int> confirmCheckVisit;
     }
 
     private DatabaseManager theDatabase;
@@ -36,28 +39,46 @@ public class SaveNLoad : MonoBehaviour
     private Inventory theInven;
     public GameObject load_canvas_obj;
     public Data data;
-    //private CameraManager theCamera;
+
+    //check visit
+    public GameObject[] theCheckVisit;
+
 
     private Vector3 vector;
-    //private Vector3 cameraVector;
 
     public List<string> item_id__should_destroy;
     public int item_count;
-
+  
     public void CallSave(int k)
     {
         theDatabase = FindObjectOfType<DatabaseManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
         theInven = FindObjectOfType<Inventory>();
-        //theCamera = FindObjectOfType<CameraManager>();
 
         data.playerX = thePlayer.transform.position.x;
         data.playerY = thePlayer.transform.position.y;
         data.playerZ = thePlayer.transform.position.z;
 
-        //data.CameraX = theCamera.transform.position.x;
-        //data.CameraY = theCamera.transform.position.y;
-        //data.CameraZ = theCamera.transform.position.z;
+        //check visit
+        theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
+
+        for (int i = 0; i < data.confirmCheckVisit.Count; i++)
+        {
+            data.confirmCheckVisit[i] = theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum;
+        }
+
+        foreach (GameObject cv in theCheckVisit)
+        {
+            if (cv.activeSelf)
+            {
+                data.isCheckVisit.Add(true);
+            }
+            else
+            {
+                data.isCheckVisit.Add(false); 
+            }
+        }
+
 
 
         data.mapName = thePlayer.currentMapName;
@@ -72,6 +93,7 @@ public class SaveNLoad : MonoBehaviour
         for (int i = 0; i < theDatabase.var_name.Length; i++)
         {
             data.varNameList.Add(theDatabase.var_name[i]);
+
             data.varNumberList.Add(theDatabase.var[i]);
         }
         for (int i = 0; i < theDatabase.switch_name.Length; i++)
@@ -110,7 +132,6 @@ public class SaveNLoad : MonoBehaviour
             theDatabase = FindObjectOfType<DatabaseManager>();
             thePlayer = FindObjectOfType<PlayerManager>();
             theInven = FindObjectOfType<Inventory>();
-            //theCamera = FindObjectOfType<CameraManager>();
 
             thePlayer.currentMapName = data.mapName;
             thePlayer.currentSceneName = data.sceneName;
@@ -118,8 +139,15 @@ public class SaveNLoad : MonoBehaviour
             vector.Set(data.playerX, data.playerY, data.playerZ);
             thePlayer.transform.position = vector;
 
-            //cameraVector.Set(data.CameraX, data.CameraY, data.CameraZ);
-            //theCamera.transform.position = cameraVector;
+            //check visit
+            theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
+
+            for (int i = 0; i < theCheckVisit.Length; i++)
+            {
+                theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum = data.confirmCheckVisit[i];
+                theCheckVisit[i].SetActive(data.isCheckVisit[i]);
+            }
+
 
 
             //theDatabase.var = data.varNumberList.ToArray();
@@ -155,8 +183,6 @@ public class SaveNLoad : MonoBehaviour
                 item_id__should_destroy.Add((data.playerItemInventory[i]).ToString());
                 item_count++;
             }
-
-
 
             // 카메라 바운드로 설정해야할 BoxCollider가 다른씬에 있다면, 불러올 수 가 없다.
             // 그래서 씬이동이 이루어지고, 그 씬에 붙어있는 맵의 바운드를 참조해야한다!.
