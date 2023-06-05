@@ -27,7 +27,7 @@ public class FindMinji : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (!flag && Input.GetKey(KeyCode.Z))
+            if (!flag)
             {
                 flag = true;
                 StartCoroutine(EventCoroutine());
