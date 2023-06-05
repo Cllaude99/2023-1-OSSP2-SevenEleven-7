@@ -40,7 +40,7 @@ public class TitleButton : MonoBehaviour
     public void NewGame()                                   //첫번째 게임 실행시 바로 신이동 ,죽고 다시 start누르면 디폴트세이브파일로드
     {
         theAudio.Play("select2");
-        if (first_new)
+        if (theGameManager.isFirstGameStart)
         {
             SceneManager.LoadScene("StartScene");
             first_new = false;

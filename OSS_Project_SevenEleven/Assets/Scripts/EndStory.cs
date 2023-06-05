@@ -12,7 +12,7 @@ public class EndStory : MonoBehaviour
     private OrderManager theOrder;
     private PlayerManager thePlayer;
     private FadeManager theFade; // FadeManager 참조를 위한 추가 변수
-
+    private Animator theAnimator; 
     private bool flag = false;
 
     //Use this for initialization
@@ -22,6 +22,7 @@ public class EndStory : MonoBehaviour
         theDM = FindObjectOfType<DialogueManager>();
         theOrder = FindObjectOfType<OrderManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
+        theAnimator=FindObjectOfType<Animator>();
         theOrder.PreLoadCharacter();
     }
   
@@ -41,6 +42,7 @@ public class EndStory : MonoBehaviour
         yield return new WaitUntil(() => !theDM.talking);
         theFade.FadeIn();
         yield return new WaitForSeconds(1f);
+        theAnimator.SetBool("Activate", true);
         theFade.Fadeout();
         yield return new WaitForSeconds(2f);
       

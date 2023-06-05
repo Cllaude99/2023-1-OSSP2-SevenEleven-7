@@ -165,7 +165,8 @@ public class SaveNLoad : MonoBehaviour
 
             SceneManager.LoadScene(data.sceneName);
             load_canvas_obj = GameObject.Find("Load_UI");
-            load_canvas_obj.SetActive(false);
+            if(load_canvas_obj != null )
+                load_canvas_obj.SetActive(false);           //death씬에서 넘어올때 객체못찾는거 방지용
         }
         else
         {
