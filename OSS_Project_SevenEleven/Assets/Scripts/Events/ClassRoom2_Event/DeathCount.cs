@@ -20,13 +20,16 @@ public class DeathCount : MonoBehaviour
         if (isCount)
         {
             isCount = false;
-            Invoke("countforDeath", 180f);
+            CountCoroutine();
         }
     }
 
-    private void countforDeath()
+    IEnumerator CountCoroutine()
     {
+        yield return new WaitForSeconds(180f);
         BGM.Stop();
         SceneManager.LoadScene(gameOver); // transferMapName으로 이동
     }
+
+
 }
