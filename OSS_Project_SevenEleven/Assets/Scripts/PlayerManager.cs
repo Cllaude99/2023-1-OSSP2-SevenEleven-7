@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MovingObject
 {
@@ -68,6 +69,7 @@ public class PlayerManager : MovingObject
         boxCollider = GetComponent<BoxCollider2D>();
         theAudio = FindObjectOfType<AudioManager>();
         theSaveNLoad = FindObjectOfType<SaveNLoad>();
+        theSaveNLoad.CallSave(0);
     }
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
@@ -200,6 +202,11 @@ public class PlayerManager : MovingObject
         theSaveNLoad.CallLoad(3);
     }
 
+    public void LoadSaveDefault()
+    {
+        theAudio.Play("select2");
+        theSaveNLoad.CallLoad(0);
+    }
 
     // Update is called once per frame
     void Update()
