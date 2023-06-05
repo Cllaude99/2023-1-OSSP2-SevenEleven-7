@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     private SaveNLoad theSave;
     public GameObject item_object_should_destroyed;
+    public bool isFirstGameStart = true;
     public void LoadStart()
     {
         StartCoroutine(LoadWaitCoroutine());
@@ -29,18 +30,20 @@ public class GameManager : MonoBehaviour
 
         theCamera.target = GameObject.Find("Player");
 
-
-        theSave = FindObjectOfType<SaveNLoad>();
-        for (int i = 0; i < GameObject.Find("Items").transform.childCount; i++)                 //Load 전 모든아이템 오브젝트 킴
+        
+        if (!isFirstGameStart)                 //첫번쨰 실행이면 밑의 과정 진행안함,스타트함수 오류 방지용
         {
-            GameObject.Find("Items").transform.GetChild(i).gameObject.SetActive(true);
+            theSave = FindObjectOfType<SaveNLoad>();
+            for (int i = 0; i < GameObject.Find("Items").transform.childCount; i++)                 //Load 전 모든아이템 오브젝트 킴
+            {
+                GameObject.Find("Items").transform.GetChild(i).gameObject.SetActive(true);
+            }
+            for (int i = 0; i < theSave.item_count; i++)
+            {
+                item_object_should_destroyed = GameObject.Find(theSave.item_id__should_destroy[i]);
+                item_object_should_destroyed.SetActive(false);
+            }
         }
-        for (int i = 0; i < theSave.item_count; i++)
-        {
-            item_object_should_destroyed = GameObject.Find(theSave.item_id__should_destroy[i]);
-            item_object_should_destroyed.SetActive(false);
-        }
-
         /*
          캐릭터가 있던 맵의 BoxCollider를 카메라 바운드로 지정하기 위해서, currentMapName과 BoundName을 조건 비교한뒤
          카메라 바운드로 설정해줌.

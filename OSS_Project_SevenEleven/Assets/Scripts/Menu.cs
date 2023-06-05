@@ -5,6 +5,7 @@ using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -43,11 +44,13 @@ public class Menu : MonoBehaviour
         }
         theInventory = FindObjectOfType<Inventory>();
         theDialogueManager = FindObjectOfType<DialogueManager>();
+        theOrder=FindObjectOfType<OrderManager>();
+        theAudio= FindObjectOfType<AudioManager>();
     }
 
-    public void Exit()          //게임(애플리케이션) 종료를 위한 함수
+    public void ExitToTitle()          //타이틀화면으로 돌아가기
     {
-        Application.Quit();
+        SceneManager.LoadScene("TitleScene");
     }
 
 
