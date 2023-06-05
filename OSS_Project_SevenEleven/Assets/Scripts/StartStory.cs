@@ -31,7 +31,7 @@ public class StartStory : MonoBehaviour
   
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!flag)
+        if (!flag && collision.CompareTag("Player"))
         {
             flag = true;
             StartCoroutine(EventCoroutine());
@@ -61,7 +61,7 @@ public class StartStory : MonoBehaviour
         theOrder.NotMove();
         theOrder.Turn("Player", "DOWN");
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             theOrder.Move("FriendNPC", "DOWN");
         }
