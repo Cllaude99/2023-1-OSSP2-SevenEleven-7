@@ -30,7 +30,7 @@ public class FlashLAB : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
@@ -41,11 +41,12 @@ public class FlashLAB : MonoBehaviour
 
     IEnumerator FlashCoroutine()
     {
+        yield return new WaitForSeconds(delay);
         for (int i = 0; i < loopnum; i++)
         {
             theFade.BlackFlash();
         }
-        yield return new WaitForSeconds(delay);
+
     }
 
 }

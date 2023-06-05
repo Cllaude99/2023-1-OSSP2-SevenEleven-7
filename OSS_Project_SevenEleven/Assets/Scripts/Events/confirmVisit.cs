@@ -9,8 +9,12 @@ public class confirmVisit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        spawnKey.visit.Add(this.gameObject);
-        theVisit.visit.Add(this.gameObject);
-        this.gameObject.SetActive(false);
+        if (collision.gameObject.name == "Player")
+        {
+            spawnKey.visit.Add(this.gameObject);
+            theVisit.visit.Add(this.gameObject);
+            this.gameObject.SetActive(false);
+        }
+
     }
 }
