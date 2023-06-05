@@ -36,7 +36,7 @@ public class PlayerManager : MovingObject
 
     private float applyRunSpeed; // 실제 적용 RunSpeed
     public bool canMove = true; //코루틴 다중 실행 방지
-    private bool applyRunFlag = false;
+    public bool applyRunFlag = false;
 
     private AudioManager theAudio;
     private SaveNLoad theSaveNLoad;

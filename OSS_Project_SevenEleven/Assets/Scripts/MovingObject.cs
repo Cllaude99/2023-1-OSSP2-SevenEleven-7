@@ -22,7 +22,7 @@ public class MovingObject : MonoBehaviour
     public void Move(string _dir, int _frequency = 5)  //실행할때마다 큐에 방향이 enqueue
     {
         queue.Enqueue(_dir);
-        if(!notCoroutine)
+        if (!notCoroutine)
         {
             notCoroutine = true;
             StartCoroutine(MoveCoroutine(_dir, _frequency));
@@ -32,7 +32,7 @@ public class MovingObject : MonoBehaviour
 
     IEnumerator MoveCoroutine(string _dir, int _frequency) //이동 코루틴
     {
-        while(queue.Count != 0) //큐가 빌때까지 반복
+        while (queue.Count != 0) //큐가 빌때까지 반복
         {
             switch (_frequency) //무한 대기 방지를 위한 스위치문
             {
@@ -52,7 +52,7 @@ public class MovingObject : MonoBehaviour
                     break;
             }
 
-            string direction = queue.Dequeue();     
+            string direction = queue.Dequeue();
             vector.Set(0, 0, vector.z);
 
             switch (direction)
@@ -114,21 +114,22 @@ public class MovingObject : MonoBehaviour
         //애니메이션 지속 오류 디버그
         notCoroutine = false;
     }
-    
+
     //충돌 감지 함수 
     protected bool CheckCollision()
     {
         //RayCast : A -> B로 레이저를 쏴 아무것도 맞지 않는다면 hit == Null; else hit = 방해물
         RaycastHit2D hit;
 
-        Vector2 start = transform.position; // 현재 캐릭터 위치 값
-        Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //이동하려고 하는 위치 값
+        Vector2 start = new Vector2(transform.position.x + vector.x * speed * walkCount, transform.position.y + vector.y * speed * walkCount); // 현재 캐릭터 위치 값
+        Vector2 end = start + new Vector2(vector.x * speed, vector.y * speed); //이동하려고 하는 위치 값
 
         boxCollider.enabled = false; //hit 값에 해당 오브젝트가 들어가지 않도록 함
         hit = Physics2D.Linecast(start, end, layerMask);
         boxCollider.enabled = true;
 
-        if (hit.transform != null) return true; //충돌되는 물체가 있다면 break
+        if (hit.transform != null)
+            return true; //충돌되는 물체가 있다면 break
         return false;
     }
 }

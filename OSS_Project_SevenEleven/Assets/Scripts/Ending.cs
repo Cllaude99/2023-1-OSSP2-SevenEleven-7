@@ -8,9 +8,8 @@ public class Ending : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
+
             go.SetActive(true);
-        }
+ 
     }
 }
