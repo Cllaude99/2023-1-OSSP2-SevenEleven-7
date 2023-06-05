@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndStory : MonoBehaviour
+public class PlajundoStory : MonoBehaviour
 {
     public Dialogue dialogue_1;
     public Dialogue dialogue_2;
@@ -23,6 +23,8 @@ public class EndStory : MonoBehaviour
         theOrder = FindObjectOfType<OrderManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
         theOrder.PreLoadCharacter();
+
+
     }
   
     private void OnTriggerStay2D(Collider2D collision)
@@ -39,18 +41,8 @@ public class EndStory : MonoBehaviour
         theOrder.NotMove();
         theDM.ShowDialogue(dialogue_1);
         yield return new WaitUntil(() => !theDM.talking);
-        theFade.FadeIn();
-        yield return new WaitForSeconds(1f);
-        theFade.Fadeout();
-        yield return new WaitForSeconds(2f);
       
-        theDM.ShowDialogue(dialogue_2);
-        yield return new WaitUntil(() => !theDM.talking);
-        theFade.FadeIn();
-        yield return new WaitForSeconds(1f);
-      
-        theDM.ShowDialogue(dialogue_3);
-        yield return new WaitUntil(() => !theDM.talking);
+        theOrder.Move();
 
     }
 }
