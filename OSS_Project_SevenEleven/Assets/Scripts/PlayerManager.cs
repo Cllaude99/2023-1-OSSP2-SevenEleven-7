@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerManager : MovingObject
 {
@@ -37,7 +36,7 @@ public class PlayerManager : MovingObject
 
     private float applyRunSpeed; // 실제 적용 RunSpeed
     public bool canMove = true; //코루틴 다중 실행 방지
-    private bool applyRunFlag = false;
+    public bool applyRunFlag = false;
 
     private AudioManager theAudio;
     private SaveNLoad theSaveNLoad;
@@ -69,8 +68,6 @@ public class PlayerManager : MovingObject
         boxCollider = GetComponent<BoxCollider2D>();
         theAudio = FindObjectOfType<AudioManager>();
         theSaveNLoad = FindObjectOfType<SaveNLoad>();
-        //SceneManager.LoadScene("TitleScene");                       //startscene에서 게임시작하면 바로 title씬으로 넘어가게(싱글턴 오류 해결용)
-        theSaveNLoad.CallSave(0);                                     //디폴트세이브파일( 새게임용 로드 데이터)       
     }
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
@@ -203,11 +200,7 @@ public class PlayerManager : MovingObject
         theSaveNLoad.CallLoad(3);
     }
 
-    public void LoadSaveDefault()       //게임시작시 캐릭터위치,빈 아이템창을 데이터로가진  
-    {                                   //디폴트 세이브파일 생성(수동으로 파일명 교체) 후 로드용
-        theAudio.Play("select2");
-        theSaveNLoad.CallLoad(0);
-    }
+
     // Update is called once per frame
     void Update()
     {
