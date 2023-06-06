@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class checkVisit : MonoBehaviour
 {
+    static public checkVisit instance; //static으로 선언된 변수의 값을 공유
     public GameObject[] barricade; // 열 곳
 
     public List<GameObject> visit; //방문한 곳 저장할 배열
@@ -20,7 +21,18 @@ public class checkVisit : MonoBehaviour
 
     BGMManager bgm;
 
-
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     private void Start()
     {
         theAudio = FindObjectOfType<AudioManager>();

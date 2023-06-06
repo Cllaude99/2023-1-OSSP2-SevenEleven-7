@@ -32,7 +32,7 @@ public class ConfirmOn : MonoBehaviour
                 theAudio.Play(beep);
                 if (correct)
                 {
-                    checkV.visit.Add(this.gameObject);
+                    checkV.confirmvisitnum++;
                     this.gameObject.SetActive(false);
                 }
                 else
