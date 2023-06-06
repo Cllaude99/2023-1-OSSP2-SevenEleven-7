@@ -3,9 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Singleton : MonoBehaviour
-{    
-    //Static
-    static public Singleton instance; //static으로 선언된 변수의 값을 공유
+{
+    public static Singleton instance;
+
+    public static Singleton Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<Singleton>();
+                DontDestroyOnLoad(instance.gameObject);
+            }
+            return instance;
+        }
+    }
 
     private void Awake()
     {

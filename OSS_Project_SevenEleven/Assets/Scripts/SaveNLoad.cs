@@ -27,11 +27,6 @@ public class SaveNLoad : MonoBehaviour
         //public List<float> varNumberList;
 
 
-        //check visit
-        public List<bool> isCheckVisit;
-        public List<int> confirmCheckVisit;
-
-
 
     }
 
@@ -40,13 +35,6 @@ public class SaveNLoad : MonoBehaviour
     private Inventory theInven;
     public GameObject load_canvas_obj;
     public Data data;
-
-    //check visit
-    public GameObject[] theCheckVisit;
-    public GameObject visitManager;
-    private int cvLength;
- 
-
 
     private Vector3 vector;
 
@@ -65,34 +53,6 @@ public class SaveNLoad : MonoBehaviour
 
 
 
-        /*
-        allObject = Resources.FindObjectsOfTypeAll<GameObject>();
-
-        foreach (GameObject obj in allObject)
-        {
-            if (!obj.activeSelf)
-            {
-                data.isActive.Add(false);
-            }
-            else if (obj.activeSelf)
-            {
-                data.isActive.Add(true);
-            }
-        }
-        */
-
-
-        //check visit
-
-        
-        visitManager = GameObject.Find("VisitManager");
-        cvLength = visitManager.transform.childCount;
-        theCheckVisit = new GameObject[cvLength];
-
-
-        
-        //theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
-
 
         data.mapName = thePlayer.currentMapName;
         data.sceneName = thePlayer.currentSceneName;
@@ -102,20 +62,6 @@ public class SaveNLoad : MonoBehaviour
         data.playerItemInventory.Clear();
         data.playerItemInventoryCount.Clear();
 
-        data.isCheckVisit.Clear();
-        data.confirmCheckVisit.Clear();
-
-        for (int i = 0; i < cvLength; i++)
-        {
-            theCheckVisit[i] = visitManager.transform.GetChild(i).gameObject;
-            //data.confirmCheckVisit[i] = theCheckVisit[i].GetComponent<checkVisit>().visitnum;
-        }
-
-        foreach (GameObject obj in theCheckVisit)
-        {
-            if (!obj.activeSelf) data.isCheckVisit.Add(false);
-            else data.isCheckVisit.Add(true);
-        }
 
 
         /*
@@ -207,35 +153,12 @@ public class SaveNLoad : MonoBehaviour
             GameManager theGM = FindObjectOfType<GameManager>();
             theGM.LoadStart();
 
-            visitManager = GameObject.Find("VisitManager");
-            cvLength = visitManager.transform.childCount;
-            theCheckVisit = new GameObject[cvLength];
-
-            for (int i = 0; i < cvLength; i++)
-            {
-                theCheckVisit[i] = visitManager.transform.GetChild(i).gameObject;
-                //data.confirmCheckVisit[i] = theCheckVisit[i].GetComponent<checkVisit>().visitnum;
-            }
+    
 
             SceneManager.LoadScene(data.sceneName);
             load_canvas_obj = GameObject.Find("Load_UI");
             if(load_canvas_obj != null )
                 load_canvas_obj.SetActive(false);           //death씬에서 넘어올때 객체못찾는거 방지용
-
-
-
-            /*
-            //check visit
-            
-            theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
-
-            for (int i = 0; i < theCheckVisit.Length; i++)
-            {
-                //theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum = data.confirmCheckVisit[i];
-                theCheckVisit[i].SetActive(data.isCheckVisit[i]);
-            }
-            */
-
 
 
         }
