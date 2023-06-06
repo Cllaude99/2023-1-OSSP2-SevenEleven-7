@@ -21,8 +21,6 @@ public class SaveNLoad : MonoBehaviour
         public string mapName;
         public string sceneName;
 
-        //public GameObject[] checkVisits;
-
         //public List<bool> swList;
         //public List<string> swNameList;
         //public List<string> varNameList;
@@ -32,6 +30,9 @@ public class SaveNLoad : MonoBehaviour
         //check visit
         public List<bool> isCheckVisit;
         public List<int> confirmCheckVisit;
+
+        //public List<bool> isActive;
+
     }
 
     private DatabaseManager theDatabase;
@@ -40,8 +41,11 @@ public class SaveNLoad : MonoBehaviour
     public GameObject load_canvas_obj;
     public Data data;
 
+    //public GameObject[] allObject;
     //check visit
     public GameObject[] theCheckVisit;
+    public GameObject visitManager;
+ 
 
 
     private Vector3 vector;
@@ -59,26 +63,34 @@ public class SaveNLoad : MonoBehaviour
         data.playerY = thePlayer.transform.position.y;
         data.playerZ = thePlayer.transform.position.z;
 
+
+
+        /*
+        allObject = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        foreach (GameObject obj in allObject)
+        {
+            if (!obj.activeSelf)
+            {
+                data.isActive.Add(false);
+            }
+            else if (obj.activeSelf)
+            {
+                data.isActive.Add(true);
+            }
+        }
+        */
+
+
         //check visit
-        theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
 
-        for (int i = 0; i < data.confirmCheckVisit.Count; i++)
+        visitManager = GameObject.Find("VisitManager");
+        for (int i = 0; i < theCheckVisit.Length; i++)
         {
-            data.confirmCheckVisit[i] = theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum;
+            theCheckVisit[i] = visitManager.transform.GetChild(i).gameObject;
         }
-
-        foreach (GameObject cv in theCheckVisit)
-        {
-            if (cv.activeSelf)
-            {
-                data.isCheckVisit.Add(true);
-            }
-            else
-            {
-                data.isCheckVisit.Add(false); 
-            }
-        }
-
+        //theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
+ 
 
 
         data.mapName = thePlayer.currentMapName;
@@ -88,6 +100,20 @@ public class SaveNLoad : MonoBehaviour
 
         data.playerItemInventory.Clear();
         data.playerItemInventoryCount.Clear();
+
+        data.isCheckVisit.Clear();
+        data.confirmCheckVisit.Clear();
+
+        for (int i = 0; i < data.confirmCheckVisit.Count; i++)
+        {
+            data.confirmCheckVisit[i] = theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum;
+        }
+
+        for (int i = 0; i < theCheckVisit.Length; i++)
+        {
+            if (theCheckVisit[i].activeSelf) data.isCheckVisit.Add(true);
+            else if (!theCheckVisit[i].activeSelf) data.isCheckVisit.Add(false);
+        }
 
         /*
         for (int i = 0; i < theDatabase.var_name.Length; i++)
@@ -139,15 +165,27 @@ public class SaveNLoad : MonoBehaviour
             vector.Set(data.playerX, data.playerY, data.playerZ);
             thePlayer.transform.position = vector;
 
+            /*
+            allObject = Resources.FindObjectsOfTypeAll<GameObject>();
+
+            for (int i = 0; i < allObject.Length; i++)
+            {
+                allObject[i].SetActive(data.isActive[i]);
+            }
+            */
+
+            
             //check visit
             theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
 
+
+
             for (int i = 0; i < theCheckVisit.Length; i++)
             {
-                theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum = data.confirmCheckVisit[i];
+                //theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum = data.confirmCheckVisit[i];
                 theCheckVisit[i].SetActive(data.isCheckVisit[i]);
             }
-
+            
 
 
             //theDatabase.var = data.varNumberList.ToArray();
