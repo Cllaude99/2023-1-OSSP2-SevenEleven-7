@@ -10,6 +10,8 @@ public class checkVisit : MonoBehaviour
 
     public int visitnum; //방문해야할 방의 수
 
+    public int confirmvisitnum = 0;
+
     public bool isSound = false;
 
     public string openSound;
@@ -17,6 +19,7 @@ public class checkVisit : MonoBehaviour
     private AudioManager theAudio;
 
     BGMManager bgm;
+
 
     private void Start()
     {
@@ -27,7 +30,7 @@ public class checkVisit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(visit.Count == visitnum)
+        if(confirmvisitnum == visitnum)
         {
             if (isSound)
             {
