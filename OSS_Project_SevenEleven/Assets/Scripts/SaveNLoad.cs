@@ -21,17 +21,13 @@ public class SaveNLoad : MonoBehaviour
         public string mapName;
         public string sceneName;
 
-        //public GameObject[] checkVisits;
-
         //public List<bool> swList;
         //public List<string> swNameList;
         //public List<string> varNameList;
         //public List<float> varNumberList;
 
 
-        //check visit
-        public List<bool> isCheckVisit;
-        public List<int> confirmCheckVisit;
+
     }
 
     private DatabaseManager theDatabase;
@@ -39,10 +35,6 @@ public class SaveNLoad : MonoBehaviour
     private Inventory theInven;
     public GameObject load_canvas_obj;
     public Data data;
-
-    //check visit
-    public GameObject[] theCheckVisit;
-
 
     private Vector3 vector;
 
@@ -59,25 +51,6 @@ public class SaveNLoad : MonoBehaviour
         data.playerY = thePlayer.transform.position.y;
         data.playerZ = thePlayer.transform.position.z;
 
-        //check visit
-        theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
-
-        for (int i = 0; i < data.confirmCheckVisit.Count; i++)
-        {
-            data.confirmCheckVisit[i] = theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum;
-        }
-
-        foreach (GameObject cv in theCheckVisit)
-        {
-            if (cv.activeSelf)
-            {
-                data.isCheckVisit.Add(true);
-            }
-            else
-            {
-                data.isCheckVisit.Add(false); 
-            }
-        }
 
 
 
@@ -88,6 +61,8 @@ public class SaveNLoad : MonoBehaviour
 
         data.playerItemInventory.Clear();
         data.playerItemInventoryCount.Clear();
+
+
 
         /*
         for (int i = 0; i < theDatabase.var_name.Length; i++)
@@ -139,17 +114,6 @@ public class SaveNLoad : MonoBehaviour
             vector.Set(data.playerX, data.playerY, data.playerZ);
             thePlayer.transform.position = vector;
 
-            //check visit
-            theCheckVisit = GameObject.FindGameObjectsWithTag("checkVisit");
-
-            for (int i = 0; i < theCheckVisit.Length; i++)
-            {
-                theCheckVisit[i].GetComponent<checkVisit>().confirmvisitnum = data.confirmCheckVisit[i];
-                theCheckVisit[i].SetActive(data.isCheckVisit[i]);
-            }
-
-
-
             //theDatabase.var = data.varNumberList.ToArray();
             //theDatabase.var_name = data.varNameList.ToArray();
             //theDatabase.switches = data.swList.ToArray();
@@ -189,10 +153,14 @@ public class SaveNLoad : MonoBehaviour
             GameManager theGM = FindObjectOfType<GameManager>();
             theGM.LoadStart();
 
+    
+
             SceneManager.LoadScene(data.sceneName);
             load_canvas_obj = GameObject.Find("Load_UI");
             if(load_canvas_obj != null )
                 load_canvas_obj.SetActive(false);           //death씬에서 넘어올때 객체못찾는거 방지용
+
+
         }
         else
         {

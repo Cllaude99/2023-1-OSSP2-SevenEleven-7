@@ -49,8 +49,6 @@ public class GhostManager : MovingObject
             StartCoroutine(GhostCoroutine()); //코루틴 실행
         }
 
-        if (Input.GetKeyDown(KeyCode.K))              // K키누르면 귀신죽임 테스트용!!!
-                    ghostdeath = true;                //테스팅용 충돌시 변수 업데이트 
     }
 
     IEnumerator GhostCoroutine()
