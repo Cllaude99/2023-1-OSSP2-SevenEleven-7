@@ -12,4 +12,7 @@ public class TestSaveFile : MonoBehaviour
 
     public List<bool> isVisitCheck;
 
+
+    public List<int> playerItemInventory;//
+    public List<int> playerItemInventoryCount;//
 }
