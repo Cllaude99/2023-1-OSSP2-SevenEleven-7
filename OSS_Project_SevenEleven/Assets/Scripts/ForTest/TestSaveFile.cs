@@ -7,7 +7,7 @@ public class TestSaveFile : MonoBehaviour
 
 
     //For Save N Load...
-    public Vector2 PlayerPos;
+    public Vector3 PlayerPos;
     public BoxCollider2D currentBound;
 
     public List<bool> isVisitCheck;

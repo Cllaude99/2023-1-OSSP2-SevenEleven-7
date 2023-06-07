@@ -7,21 +7,21 @@ public class TestSaveNLoad : MonoBehaviour
     // 현재 상태 저장 및 로드를 위한 스크립트
 
     //For Initialization
-    private PlayerManager thePlayer;
-    private CameraManager theCamera;
+    public PlayerManager thePlayer;
+    public CameraManager theCamera;
 
-    private DatabaseManager theDatabase; //
-    private Inventory theInven; //
+    public DatabaseManager theDatabase; //
+    public Inventory theInven; //
     public List<string> item_id__should_destroy;//
 
-    private GameObject VisitManager;
-    private GameObject[] ChildVisitManager;
-    private int CheckVisitLength;
+    public GameObject VisitManager;
+    public GameObject[] ChildVisitManager;
+    public int CheckVisitLength;
 
     //Save N Load File
     public TestSaveFile[] testSaveFile;
     public int item_count;
-    private int FileIndex;
+    public int FileIndex;
 
     public void Start()
     {

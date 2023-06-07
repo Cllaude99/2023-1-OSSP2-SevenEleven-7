@@ -15,38 +15,41 @@ public class FlashLAB : MonoBehaviour
 
     private bool isStart = false;
 
+    private bool isCollision = false;
+
     // Start is called before the first frame update
     void Start()
     {
         theFade = FindObjectOfType<FadeManager>();
     }
 
-    private void Update()
+    /*private void Update()
     {
-        if (isStart)
+        if (isCollision)
         {
             isStart = false;
             StartCoroutine(FlashCoroutine());
         }
-    }
+    }*/
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            isStart = true;
+            StartCoroutine(FlashCoroutine());
         }
 
     }
 
     IEnumerator FlashCoroutine()
     {
-        yield return new WaitForSeconds(delay);
+
         for (int i = 0; i < loopnum; i++)
         {
             theFade.BlackFlash();
         }
-
+        yield return new WaitForSeconds(delay);
+        //isStart = true;
     }
 
 }
