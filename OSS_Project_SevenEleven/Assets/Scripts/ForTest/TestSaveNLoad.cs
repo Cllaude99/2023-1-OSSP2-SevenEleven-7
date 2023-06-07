@@ -14,11 +14,12 @@ public class TestSaveNLoad : MonoBehaviour
     public Inventory theInven; //
     public List<string> item_id__should_destroy;//
 
-    public GameObject VisitManager;
-    public GameObject[] ChildVisitManager;
-    public int CheckVisitLength;
-
     public checkVisit[] checkVisits;
+
+    public SpawnKey[] checkKeys;
+
+    public GameObject spawnManager;
+    public GameObject[] checkPickforSpawn;
 
     //Save N Load File
     public TestSaveFile[] testSaveFile;
@@ -41,18 +42,41 @@ public class TestSaveNLoad : MonoBehaviour
         theInven = FindObjectOfType<Inventory>();//
 
         checkVisits = FindObjectsOfType<checkVisit>();
+        checkKeys = FindObjectsOfType<SpawnKey>();
     }
 
     private void callSave()
     {
         testSaveFile[FileIndex].PlayerPos = thePlayer.transform.position;
+        testSaveFile[FileIndex].CameraPos = theCamera.transform.position;
         testSaveFile[FileIndex].currentBound = theCamera.bound;
 
+        //VisitManager
         for (int i = 0; i < checkVisits.Length; i++)
         {
             testSaveFile[FileIndex].confirmVisit.Add(checkVisits[i].confirmvisitnum);
         }
 
+        //KeyManager
+        for (int i = 0; i < checkKeys.Length; i++)
+        {
+            testSaveFile[FileIndex].confirmKeySpawn.Add(checkKeys[i].visit);
+        }
+
+        //SpawnManager
+        spawnManager = GameObject.Find("SpawnManager");
+        checkPickforSpawn = new GameObject[spawnManager.transform.childCount];
+
+        for (int i = 0; i < checkPickforSpawn.Length; i++)
+        {
+            checkPickforSpawn[i] = spawnManager.transform.GetChild(i).gameObject;
+        }
+
+        foreach (GameObject obj in checkPickforSpawn)
+        {
+            if (!obj.activeSelf) testSaveFile[FileIndex].confirmPickforSpawn.Add(false);
+            else testSaveFile[FileIndex].confirmPickforSpawn.Add(true);
+        }
 
         testSaveFile[FileIndex].playerItemInventory.Clear();//
         testSaveFile[FileIndex].playerItemInventoryCount.Clear();//
@@ -76,6 +100,17 @@ public class TestSaveNLoad : MonoBehaviour
             //파일에 인덱스에 맞는 confirmvisit들을 불러옴
             checkVisits[i].confirmvisitnum = testSaveFile[FileIndex].confirmVisit[i];
         }
+
+        for (int i = 0; i < checkKeys.Length; i++)
+        {
+            checkKeys[i].visit = testSaveFile[FileIndex].confirmKeySpawn[i];
+        }
+
+        for (int i = 0; i < checkPickforSpawn.Length; i++)
+        {
+            checkPickforSpawn[i].SetActive(testSaveFile[FileIndex].confirmPickforSpawn[i]);
+        }
+
 
         List<Item> itemList = new List<Item>();
 

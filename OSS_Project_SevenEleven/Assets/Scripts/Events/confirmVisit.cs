@@ -11,7 +11,7 @@ public class confirmVisit : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            spawnKey.visit.Add(this.gameObject);
+            spawnKey.visit++;
             //theVisit.visit.Add(this.gameObject);
             theVisit.confirmvisitnum++;
             this.gameObject.SetActive(false);
