@@ -7,7 +7,6 @@ public class checkVisit : MonoBehaviour
     
     public GameObject[] barricade; // 열 곳
 
-    public List<GameObject> visit; //방문한 곳 저장할 배열
 
     public int visitnum; //방문해야할 방의 수
 

@@ -18,6 +18,8 @@ public class TestSaveNLoad : MonoBehaviour
     public GameObject[] ChildVisitManager;
     public int CheckVisitLength;
 
+    public checkVisit[] checkVisits;
+
     //Save N Load File
     public TestSaveFile[] testSaveFile;
     public int item_count;
@@ -26,11 +28,19 @@ public class TestSaveNLoad : MonoBehaviour
     public void Start()
     {
         testSaveFile = new TestSaveFile[3]; //총 3개의 세이브 파일
+
+        for (int i = 0; i <testSaveFile.Length; i++)
+        {
+            testSaveFile[i] = GetComponent<TestSaveFile>();
+        }
+
         thePlayer = FindObjectOfType<PlayerManager>();
         theCamera = FindObjectOfType<CameraManager>();
 
         theDatabase = FindObjectOfType<DatabaseManager>();//
         theInven = FindObjectOfType<Inventory>();//
+
+        checkVisits = FindObjectsOfType<checkVisit>();
     }
 
     private void callSave()
@@ -38,19 +48,9 @@ public class TestSaveNLoad : MonoBehaviour
         testSaveFile[FileIndex].PlayerPos = thePlayer.transform.position;
         testSaveFile[FileIndex].currentBound = theCamera.bound;
 
-        VisitManager = GameObject.Find("VisitManager");
-        CheckVisitLength = VisitManager.transform.childCount;
-        ChildVisitManager = new GameObject[CheckVisitLength];
-
-        for (int i = 0; i < CheckVisitLength; i++)
+        for (int i = 0; i < checkVisits.Length; i++)
         {
-            ChildVisitManager[i] = VisitManager.transform.GetChild(i).gameObject;
-        }
-
-        foreach (GameObject obj in ChildVisitManager)
-        {
-            if (!obj.activeSelf) testSaveFile[FileIndex].isVisitCheck.Add(false);
-            else testSaveFile[FileIndex].isVisitCheck.Add(true);
+            testSaveFile[FileIndex].confirmVisit.Add(checkVisits[i].confirmvisitnum);
         }
 
 
@@ -71,7 +71,12 @@ public class TestSaveNLoad : MonoBehaviour
         thePlayer.transform.position = testSaveFile[FileIndex].PlayerPos;
         theCamera.bound = testSaveFile[FileIndex].currentBound;
 
-        /////////////////////////// 이 이후코드
+        for (int i = 0; i < checkVisits.Length; i++)
+        {
+            //파일에 인덱스에 맞는 confirmvisit들을 불러옴
+            checkVisits[i].confirmvisitnum = testSaveFile[FileIndex].confirmVisit[i];
+        }
+
         List<Item> itemList = new List<Item>();
 
         for (int i = 0; i < testSaveFile[FileIndex].playerItemInventory.Count; i++)

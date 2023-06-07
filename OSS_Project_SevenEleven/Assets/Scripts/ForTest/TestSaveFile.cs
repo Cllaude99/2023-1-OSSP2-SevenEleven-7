@@ -10,8 +10,8 @@ public class TestSaveFile : MonoBehaviour
     public Vector3 PlayerPos;
     public BoxCollider2D currentBound;
 
-    public List<bool> isVisitCheck;
-
+    public List<int> confirmVisit;
+    
 
     public List<int> playerItemInventory;//
     public List<int> playerItemInventoryCount;//
