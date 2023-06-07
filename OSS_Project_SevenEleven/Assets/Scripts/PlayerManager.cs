@@ -69,7 +69,8 @@ public class PlayerManager : MovingObject
         boxCollider = GetComponent<BoxCollider2D>();
         theAudio = FindObjectOfType<AudioManager>();
         theSaveNLoad = FindObjectOfType<SaveNLoad>();
-        theSaveNLoad.CallSave(0);
+        //SceneManager.LoadScene("TitleScene");
+        //theSaveNLoad.CallSave(0);
     }
 
     IEnumerator MoveCoroutine() // 대기시간을 만들어줄 Coroutine
@@ -202,8 +203,14 @@ public class PlayerManager : MovingObject
         theSaveNLoad.CallLoad(3);
     }
 
+    public GameObject[] object_need_destroy;
     public void LoadSaveDefault()
     {
+        object_need_destroy = GameObject.FindGameObjectsWithTag("NeedDestroy");
+        foreach(GameObject obj in object_need_destroy)
+        {
+            Destroy(obj);
+        }
         theAudio.Play("select2");
         theSaveNLoad.CallLoad(0);
     }
