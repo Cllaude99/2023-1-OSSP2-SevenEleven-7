@@ -7,11 +7,13 @@ public class DeathCount : MonoBehaviour
 {
     public bool isCount = false;
     public string gameOver;
+    public GameOverButton theDeathUI;
     BGMManager BGM;
     // Start is called before the first frame update
     void Start()
     {
         BGM = FindObjectOfType<BGMManager>();
+        theDeathUI = FindObjectOfType<GameOverButton>();
     }
 
     // Update is called once per frame
@@ -28,7 +30,8 @@ public class DeathCount : MonoBehaviour
     {
         yield return new WaitForSeconds(180f);
         BGM.Stop();
-        SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+        //SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+        theDeathUI.OpenDeathUI();
     }
 
 
