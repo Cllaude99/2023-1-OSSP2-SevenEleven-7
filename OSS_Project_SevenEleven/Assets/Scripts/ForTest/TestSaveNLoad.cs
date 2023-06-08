@@ -44,7 +44,7 @@ public class TestSaveNLoad : MonoBehaviour
 
         checkVisits = FindObjectsOfType<checkVisit>();
         checkKeys = FindObjectsOfType<SpawnKey>();
-        //MakeDeafultSaveFile();
+        
     }
 
     private void callSave()
@@ -208,13 +208,14 @@ public class TestSaveNLoad : MonoBehaviour
     {
         FileIndex = 3;
         callSave();
+        Debug.Log("디폴트 파일 생성 하고 인덱스는 " + FileIndex);
     }
 
     public void CallNewGame()               //씬로드후 세이브파일로드
     {
-        SceneManager.LoadScene("StartScene");
         FileIndex = 3;
         callLoad();
+        Debug.Log("디폴트 파일 로드 하고 인덱스는 " + FileIndex);
     }
 
 }

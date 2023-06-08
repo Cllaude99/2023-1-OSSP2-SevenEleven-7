@@ -18,10 +18,10 @@ public class Bound : MonoBehaviour
     {
         bound = GetComponent<BoxCollider2D>();
         theCamera = FindObjectOfType<CameraManager>();
-        theCamera.SetBound(bound);
+        //theCamera.SetBound(bound);
 
-        GameManager theGM = FindObjectOfType<GameManager>();
-        theGM.BoundStart();
+        //GameManager theGM = FindObjectOfType<GameManager>();
+        //BoundStart();
     }
 
     public void SetBound() // 불러오기에서 사용되는 함수
