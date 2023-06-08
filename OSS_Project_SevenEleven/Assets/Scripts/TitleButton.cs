@@ -14,6 +14,8 @@ public class TitleButton : MonoBehaviour
     private AudioManager theAudio;
     private PlayerManager thePlayerManager;
     private GameManager theGameManager;
+    private TestSaveNLoad theTestSaveNLoad;
+
     public GameObject theLoadUI;
     private GameObject theLogo;
     private GameObject theRun;
@@ -30,6 +32,8 @@ public class TitleButton : MonoBehaviour
         thePlayerManager = FindObjectOfType<PlayerManager>();
         theGameManager= FindObjectOfType<GameManager>();
         theAudio.Play("TitleBGM");
+        theTestSaveNLoad = FindObjectOfType<TestSaveNLoad>();
+
     }
 
     // Update is called once per frame
@@ -48,7 +52,8 @@ public class TitleButton : MonoBehaviour
         }
         else
         {
-            thePlayerManager.LoadSaveDefault();
+            //thePlayerManager.LoadSaveDefault();
+            theTestSaveNLoad.CallNewGame();
         }
     }
     public void OpenLoadUI()
@@ -69,9 +74,9 @@ public class TitleButton : MonoBehaviour
         LoadBtn2 = GameObject.Find("Load_Button2");
         LoadBtn3 = GameObject.Find("Load_Button3");         
 
-        LoadBtn1.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave1);
-        LoadBtn2.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave2);
-        LoadBtn3.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave3);            //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
+        LoadBtn1.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoadFromAnotherScene1);
+        LoadBtn2.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoadFromAnotherScene2);
+        LoadBtn3.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoadFromAnotherScene3);            //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
 
         Slot_Refresh_BeforeOpenUI(1, "Load");
         Slot_Refresh_BeforeOpenUI(2, "Load");
