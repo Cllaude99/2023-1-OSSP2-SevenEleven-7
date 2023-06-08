@@ -18,8 +18,8 @@ public class CameraManager : MonoBehaviour
     //Private
     private Vector3 targetPosition; // 대상의 현재 위치 값
 
-    private Vector3 minBound;
-    private Vector3 maxBound; // BoxColider 영역의 최소 최대 좌푯값을 가질 변수
+    public Vector3 minBound;
+    public Vector3 maxBound; // BoxColider 영역의 최소 최대 좌푯값을 가질 변수
 
     private float halfWidth;
     private float halfHeight; // 카메라의 반너비, 반높이 값을 가질 변수

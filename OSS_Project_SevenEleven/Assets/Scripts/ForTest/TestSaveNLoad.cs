@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestSaveNLoad : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class TestSaveNLoad : MonoBehaviour
 
     public void Start()
     {
-        testSaveFile = new TestSaveFile[3]; //총 3개의 세이브 파일
+        testSaveFile = new TestSaveFile[4]; //총 3개의 세이브 파일  //4번째 세이브파일은 새로하기용세이브파일
 
         for (int i = 0; i <testSaveFile.Length; i++)
         {
@@ -43,6 +44,7 @@ public class TestSaveNLoad : MonoBehaviour
 
         checkVisits = FindObjectsOfType<checkVisit>();
         checkKeys = FindObjectsOfType<SpawnKey>();
+        //MakeDeafultSaveFile();
     }
 
     private void callSave()
@@ -50,7 +52,7 @@ public class TestSaveNLoad : MonoBehaviour
         testSaveFile[FileIndex].PlayerPos = thePlayer.transform.position;
         testSaveFile[FileIndex].CameraPos = theCamera.transform.position;
         testSaveFile[FileIndex].currentBound = theCamera.bound;
-
+        
         //VisitManager
         for (int i = 0; i < checkVisits.Length; i++)
         {
@@ -94,7 +96,9 @@ public class TestSaveNLoad : MonoBehaviour
     {
         thePlayer.transform.position = testSaveFile[FileIndex].PlayerPos;
         theCamera.bound = testSaveFile[FileIndex].currentBound;
-
+        theCamera.minBound = testSaveFile[FileIndex].currentBound.bounds.min;
+        theCamera.maxBound = testSaveFile[FileIndex].currentBound.bounds.max;
+        theCamera.transform.position = testSaveFile[FileIndex].CameraPos;
         for (int i = 0; i < checkVisits.Length; i++)
         {
             //파일에 인덱스에 맞는 confirmvisit들을 불러옴
@@ -178,4 +182,39 @@ public class TestSaveNLoad : MonoBehaviour
         FileIndex = 2;
         callLoad();
     }
+
+
+    public void callTestLoadFromAnotherScene1()
+    {
+        SceneManager.LoadScene("StartScene");
+        FileIndex = 0;
+        callLoad();
+    }
+
+    public void callTestLoadFromAnotherScene2()
+    {
+        SceneManager.LoadScene("StartScene");
+        FileIndex = 1;
+        callLoad();
+    }
+    public void callTestLoadFromAnotherScene3()
+    {
+        SceneManager.LoadScene("StartScene");
+        FileIndex = 2;
+        callLoad();
+    }
+
+    public void MakeDeafultSaveFile()       //디폴트세이브파일생성
+    {
+        FileIndex = 3;
+        callSave();
+    }
+
+    public void CallNewGame()               //씬로드후 세이브파일로드
+    {
+        SceneManager.LoadScene("StartScene");
+        FileIndex = 3;
+        callLoad();
+    }
+
 }

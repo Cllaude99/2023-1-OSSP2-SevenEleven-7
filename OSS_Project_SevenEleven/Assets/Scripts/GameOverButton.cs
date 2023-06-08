@@ -12,7 +12,7 @@ public class GameOverButton : MonoBehaviour
     public GameObject theLoadUI;
     private AudioManager theAudio;
     private PlayerManager thePlayerManager;
- 
+    private TestSaveNLoad theTestSaveNLoad;
 
     private GameObject NewGameBtn;
     private GameObject LoadBtn1;
@@ -25,8 +25,9 @@ public class GameOverButton : MonoBehaviour
     void Start()
     {
         theAudio = FindObjectOfType<AudioManager>();
-        thePlayerManager = FindObjectOfType<PlayerManager>();     
-        NewGameBtn= GameObject.Find("NewGameButton");
+        thePlayerManager = FindObjectOfType<PlayerManager>();
+        theTestSaveNLoad= FindObjectOfType<TestSaveNLoad>();
+        NewGameBtn = GameObject.Find("NewGameButton");
         NewGameBtn.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSaveDefault);
 
     }
@@ -38,7 +39,6 @@ public class GameOverButton : MonoBehaviour
     }
 
 
-
     public void OpenLoadUI()
     {
         theAudio.Play("select1");
@@ -46,14 +46,15 @@ public class GameOverButton : MonoBehaviour
         LoadBtn1 = GameObject.Find("Load_Button1");
         LoadBtn2 = GameObject.Find("Load_Button2");
         LoadBtn3 = GameObject.Find("Load_Button3");
-        LoadBtn1.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave1);
-        LoadBtn2.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave2);
-        LoadBtn3.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave3);           //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
+          
+        LoadBtn1.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoadFromAnotherScene1);           //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
+        LoadBtn2.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoadFromAnotherScene2);           //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
+        LoadBtn3.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoadFromAnotherScene3);           //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
+
         Slot_Refresh_BeforeOpenUI(1, "Load");
         Slot_Refresh_BeforeOpenUI(2, "Load");
         Slot_Refresh_BeforeOpenUI(3, "Load");    //로드데이터 UI 동기화용 ( 플레이타임,저장위치)
     }
-
 
 
     public void CloseLoadUI()
