@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,7 +15,11 @@ public class TitleButton : MonoBehaviour
     private AudioManager theAudio;
     private PlayerManager thePlayerManager;
     private GameManager theGameManager;
+    private TestSaveNLoad theTestSaveNLoad;
+    public OrderManager theOrder;
+
     public GameObject theLoadUI;
+    public GameObject theTitleUI;
     private GameObject theLogo;
     private GameObject theRun;
     private GameObject theRun2;
@@ -23,6 +28,7 @@ public class TitleButton : MonoBehaviour
     private GameObject LoadBtn1;
     private GameObject LoadBtn2;
     private GameObject LoadBtn3;
+    private bool isitFirstNew=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,37 +36,54 @@ public class TitleButton : MonoBehaviour
         thePlayerManager = FindObjectOfType<PlayerManager>();
         theGameManager= FindObjectOfType<GameManager>();
         theAudio.Play("TitleBGM");
+        theTestSaveNLoad = FindObjectOfType<TestSaveNLoad>();
+        theOrder = FindObjectOfType<OrderManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+            
     }
-    public void NewGame()                                   //첫번째 게임 실행시 바로 신이동 ,죽고 다시 start누르면 디폴트세이브파일로드
+    public void NewGame()                                  
     {
+        if (isitFirstNew)
+        {
+            theTestSaveNLoad.MakeDeafultSaveFile();
+            isitFirstNew= false;                      //첫번쨰 실행이면 실행전 디폴트데이터생성
+        }
         theAudio.Play("select2");
-        if (theGameManager.isFirstGameStart)
-        {
-            SceneManager.LoadScene("StartScene");
-            first_new = false;
-            theGameManager.isFirstGameStart = false;
-        }
-        else
-        {
-            thePlayerManager.LoadSaveDefault();
-        }
+        theTestSaveNLoad.CallNewGame();
+        theTitleUI.SetActive(false);
+        theOrder.Move();
+
     }
+    public void OpenTitleUI()
+    {
+        theOrder.NotMove();
+        theTitleUI.SetActive(true); 
+    }
+
+    public void CloseTitleUI()
+    {
+        theLoadUI.SetActive(false);
+        theTitleUI.SetActive(false);
+        theOrder.Move();
+
+    }
+
     public void OpenLoadUI()
     {
         theLogo = GameObject.Find("DDAYLogo");
-        theLogo.SetActive(false);
+        theLogo.GetComponent<Renderer>().enabled = false;
 
         theRun = GameObject.Find("CharacterRun");
-        theRun.SetActive(false);
+        theRun.GetComponent<Renderer>().enabled = false;
 
         theRun2 = GameObject.Find("CharacterRun2");
-        theRun2.SetActive(false);                           //이미지 오버레이 겹침때문에 load창열기전에 off
+        theRun2.GetComponent<Renderer>().enabled = false;//이미지 오버레이 겹침때문에 load창열기전에 off
 
         theAudio.Play("select1");
         theLoadUI.SetActive(true);
@@ -69,9 +92,9 @@ public class TitleButton : MonoBehaviour
         LoadBtn2 = GameObject.Find("Load_Button2");
         LoadBtn3 = GameObject.Find("Load_Button3");         
 
-        LoadBtn1.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave1);
-        LoadBtn2.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave2);
-        LoadBtn3.GetComponent<Button>().onClick.AddListener(thePlayerManager.LoadSave3);            //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
+        LoadBtn1.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoad1);
+        LoadBtn2.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoad2);
+        LoadBtn3.GetComponent<Button>().onClick.AddListener(theTestSaveNLoad.callTestLoad3);            //다른씬에 있는 스크립트 함수 적용하기위해 addlister로 온클릭함수추가
 
         Slot_Refresh_BeforeOpenUI(1, "Load");
         Slot_Refresh_BeforeOpenUI(2, "Load");
@@ -95,9 +118,9 @@ public class TitleButton : MonoBehaviour
     {
         theAudio.Play("cancel1");
         theLoadUI.SetActive(false);
-        theLogo.SetActive(true);
-        theRun.SetActive(true);
-        theRun2.SetActive(true);
+        theLogo.GetComponent<Renderer>().enabled = true;
+        theRun.GetComponent<Renderer>().enabled = true;
+        theRun2.GetComponent<Renderer>().enabled = true;
     }
 
 

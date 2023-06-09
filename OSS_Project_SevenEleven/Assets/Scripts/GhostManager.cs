@@ -9,7 +9,7 @@ public class GhostManager : MovingObject
     public string gameOver;  //게임오버씬
     public float lifeTime;
     public GameObject GhostPrefab;
-
+    public GameOverButton theDeathUI;
     private Rigidbody2D rb;
 
     private AudioManager audioManager;
@@ -32,12 +32,12 @@ public class GhostManager : MovingObject
         audioManager = FindObjectOfType<AudioManager>();
         boxCollider = GetComponent<BoxCollider2D>();
         thePlayer = FindObjectOfType<PlayerManager>();
-
+        theDeathUI=FindObjectOfType<GameOverButton>();
         Destroy(GameObject.Find(GhostPrefab.name), lifeTime);
 
         BGM.Play(PlayMusicTrack);//생성시 브금 재생
         BGM.Loop();
-        Invoke("stopBGM", 25); //소멸시 브금 중지
+        Invoke("stopBGM", 29); //소멸시 브금 중지
         thePlayer.istransfer = false; //맵 자동 이동 버그 수정
     }
 
@@ -126,7 +126,9 @@ public class GhostManager : MovingObject
         if (collision.gameObject.name == "Player")
         {
             BGM.Stop();
-            SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+            //SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+            theDeathUI.OpenDeathUI();
+            Destroy(GameObject.Find(GhostPrefab.name));
         }
         
     }

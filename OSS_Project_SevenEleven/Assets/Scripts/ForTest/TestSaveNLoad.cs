@@ -1,58 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestSaveNLoad : MonoBehaviour
 {
     // 현재 상태 저장 및 로드를 위한 스크립트
 
     //For Initialization
-    private PlayerManager thePlayer;
-    private CameraManager theCamera;
+    public PlayerManager thePlayer;
+    public CameraManager theCamera;
 
-    private DatabaseManager theDatabase; //
-    private Inventory theInven; //
+    public DatabaseManager theDatabase; //
+    public Inventory theInven; //
     public List<string> item_id__should_destroy;//
 
-    private GameObject VisitManager;
-    private GameObject[] ChildVisitManager;
-    private int CheckVisitLength;
+    public checkVisit[] checkVisits;
+
+    public SpawnKey[] checkKeys;
+
+    public GameObject spawnManager;
+    public GameObject[] checkPickforSpawn;
 
     //Save N Load File
     public TestSaveFile[] testSaveFile;
     public int item_count;
-    private int FileIndex;
+    public int FileIndex;
 
     public void Start()
     {
-        testSaveFile = new TestSaveFile[3]; //총 3개의 세이브 파일
+        testSaveFile = new TestSaveFile[4]; //총 3개의 세이브 파일  //4번째 세이브파일은 새로하기용세이브파일
+
+        for (int i = 0; i <testSaveFile.Length; i++)
+        {
+            testSaveFile[i] = GetComponent<TestSaveFile>();
+        }
+
         thePlayer = FindObjectOfType<PlayerManager>();
         theCamera = FindObjectOfType<CameraManager>();
 
         theDatabase = FindObjectOfType<DatabaseManager>();//
         theInven = FindObjectOfType<Inventory>();//
+
+        checkVisits = FindObjectsOfType<checkVisit>();
+        checkKeys = FindObjectsOfType<SpawnKey>();
+        
     }
 
     private void callSave()
     {
         testSaveFile[FileIndex].PlayerPos = thePlayer.transform.position;
+        testSaveFile[FileIndex].CameraPos = theCamera.transform.position;
         testSaveFile[FileIndex].currentBound = theCamera.bound;
-
-        VisitManager = GameObject.Find("VisitManager");
-        CheckVisitLength = VisitManager.transform.childCount;
-        ChildVisitManager = new GameObject[CheckVisitLength];
-
-        for (int i = 0; i < CheckVisitLength; i++)
+        
+        //VisitManager
+        for (int i = 0; i < checkVisits.Length; i++)
         {
-            ChildVisitManager[i] = VisitManager.transform.GetChild(i).gameObject;
+            testSaveFile[FileIndex].confirmVisit.Add(checkVisits[i].confirmvisitnum);
         }
 
-        foreach (GameObject obj in ChildVisitManager)
+        //KeyManager
+        for (int i = 0; i < checkKeys.Length; i++)
         {
-            if (!obj.activeSelf) testSaveFile[FileIndex].isVisitCheck.Add(false);
-            else testSaveFile[FileIndex].isVisitCheck.Add(true);
+            testSaveFile[FileIndex].confirmKeySpawn.Add(checkKeys[i].visit);
         }
 
+        //SpawnManager
+        spawnManager = GameObject.Find("SpawnManager");
+        checkPickforSpawn = new GameObject[spawnManager.transform.childCount];
+
+        for (int i = 0; i < checkPickforSpawn.Length; i++)
+        {
+            checkPickforSpawn[i] = spawnManager.transform.GetChild(i).gameObject;
+        }
+
+        foreach (GameObject obj in checkPickforSpawn)
+        {
+            if (!obj.activeSelf) testSaveFile[FileIndex].confirmPickforSpawn.Add(false);
+            else testSaveFile[FileIndex].confirmPickforSpawn.Add(true);
+        }
 
         testSaveFile[FileIndex].playerItemInventory.Clear();//
         testSaveFile[FileIndex].playerItemInventoryCount.Clear();//
@@ -70,8 +96,26 @@ public class TestSaveNLoad : MonoBehaviour
     {
         thePlayer.transform.position = testSaveFile[FileIndex].PlayerPos;
         theCamera.bound = testSaveFile[FileIndex].currentBound;
+        theCamera.minBound = testSaveFile[FileIndex].currentBound.bounds.min;
+        theCamera.maxBound = testSaveFile[FileIndex].currentBound.bounds.max;
+        theCamera.transform.position = testSaveFile[FileIndex].CameraPos;
+        for (int i = 0; i < checkVisits.Length; i++)
+        {
+            //파일에 인덱스에 맞는 confirmvisit들을 불러옴
+            checkVisits[i].confirmvisitnum = testSaveFile[FileIndex].confirmVisit[i];
+        }
 
-        /////////////////////////// 이 이후코드
+        for (int i = 0; i < checkKeys.Length; i++)
+        {
+            checkKeys[i].visit = testSaveFile[FileIndex].confirmKeySpawn[i];
+        }
+
+        for (int i = 0; i < checkPickforSpawn.Length; i++)
+        {
+            checkPickforSpawn[i].SetActive(testSaveFile[FileIndex].confirmPickforSpawn[i]);
+        }
+
+
         List<Item> itemList = new List<Item>();
 
         for (int i = 0; i < testSaveFile[FileIndex].playerItemInventory.Count; i++)
@@ -138,4 +182,40 @@ public class TestSaveNLoad : MonoBehaviour
         FileIndex = 2;
         callLoad();
     }
+
+
+    public void callTestLoadFromAnotherScene1()
+    {
+        SceneManager.LoadScene("StartScene");
+        FileIndex = 0;
+        callLoad();
+    }
+
+    public void callTestLoadFromAnotherScene2()
+    {
+        SceneManager.LoadScene("StartScene");
+        FileIndex = 1;
+        callLoad();
+    }
+    public void callTestLoadFromAnotherScene3()
+    {
+        SceneManager.LoadScene("StartScene");
+        FileIndex = 2;
+        callLoad();
+    }
+
+    public void MakeDeafultSaveFile()       //디폴트세이브파일생성
+    {
+        FileIndex = 3;
+        callSave();
+        Debug.Log("디폴트 파일 생성 하고 인덱스는 " + FileIndex);
+    }
+
+    public void CallNewGame()               //씬로드후 세이브파일로드
+    {
+        FileIndex = 3;
+        callLoad();
+        Debug.Log("디폴트 파일 로드 하고 인덱스는 " + FileIndex);
+    }
+
 }
