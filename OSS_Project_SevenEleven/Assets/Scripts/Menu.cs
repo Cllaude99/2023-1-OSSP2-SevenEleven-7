@@ -16,6 +16,7 @@ public class Menu : MonoBehaviour
     public AudioManager theAudio;
     private DialogueManager theDialogueManager;
     private Inventory theInventory;
+    public TitleButton thetitle;
 
     public string call_sound;
     public string cancel_sound;
@@ -46,11 +47,16 @@ public class Menu : MonoBehaviour
         theDialogueManager = FindObjectOfType<DialogueManager>();
         theOrder=FindObjectOfType<OrderManager>();
         theAudio= FindObjectOfType<AudioManager>();
+        thetitle = FindObjectOfType<TitleButton>();
+
     }
 
     public void ExitToTitle()          //타이틀화면으로 돌아가기
     {
-        SceneManager.LoadScene("TitleScene");
+        //SceneManager.LoadScene("TitleScene");
+        theAudio.Play("select1");
+        menu_obj.SetActive(false);
+        thetitle.OpenTitleUI();
     }
 
 

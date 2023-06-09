@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public GameOverButton theDeathUI;
 
     BGMManager BGM;
     public string gameOver;
@@ -12,6 +13,8 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         BGM = FindObjectOfType<BGMManager>();
+        theDeathUI = FindObjectOfType<GameOverButton>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +22,9 @@ public class GameOver : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             BGM.Stop();
-            SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+            //SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+            theDeathUI.OpenDeathUI();
+
         }
 
     }

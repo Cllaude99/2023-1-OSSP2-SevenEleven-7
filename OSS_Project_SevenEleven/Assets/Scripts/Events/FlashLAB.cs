@@ -13,7 +13,9 @@ public class FlashLAB : MonoBehaviour
 
     public float delay;
 
-    private bool isStart = false;
+    public bool isCoroutineStart = false;
+
+    public bool canFlash = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +25,9 @@ public class FlashLAB : MonoBehaviour
 
     private void Update()
     {
-        if (isStart)
+        if (isCoroutineStart)
         {
-            isStart = false;
+            isCoroutineStart = false;
             StartCoroutine(FlashCoroutine());
         }
     }
@@ -34,17 +36,25 @@ public class FlashLAB : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            isStart = true;
+            if (!canFlash)
+            {
+                canFlash = true;
+                isCoroutineStart = true;
+            }
+
         }
 
     }
 
     IEnumerator FlashCoroutine()
     {
-        yield return new WaitForSeconds(delay);
-        for (int i = 0; i < loopnum; i++)
+        while (true)
         {
-            theFade.BlackFlash();
+            for (int i = 0; i < loopnum; i++)
+            {
+                theFade.BlackFlash();
+            }
+            yield return new WaitForSeconds(delay);
         }
 
     }

@@ -9,6 +9,8 @@ public class ConfirmOn : MonoBehaviour
     public checkVisit checkV;
     public string gameOver;
     private AudioManager theAudio;
+    public GameOverButton theDeathUI;
+
     BGMManager BGM;
     public string beep;
     public bool correct = false;
@@ -21,6 +23,7 @@ public class ConfirmOn : MonoBehaviour
     {
         theAudio = FindObjectOfType<AudioManager>();
         BGM = FindObjectOfType<BGMManager>();
+        theDeathUI = FindObjectOfType<GameOverButton>();
     }
 
     private void Update()
@@ -38,7 +41,9 @@ public class ConfirmOn : MonoBehaviour
                 else
                 {
                     BGM.Stop();
-                    SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+                    // SceneManager.LoadScene(gameOver); // transferMapName으로 이동
+                    theDeathUI.OpenDeathUI();
+
                 }
             }
 
