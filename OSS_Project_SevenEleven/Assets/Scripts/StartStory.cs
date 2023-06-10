@@ -24,12 +24,16 @@ public class StartStory : MonoBehaviour
         thePlayer = FindObjectOfType<PlayerManager>();
         theOrder.PreLoadCharacter();
 
+        theOrder.NotMove();
         theOrder.Turn("Player", "UP");
         theOrder.Turn("FriendNPC", "UP");
-
+        theOrder.Move("Player", "UP");
+        theOrder.Move("FriendNPC", "UP");
+        theOrder.Turn("Player", "Right");
+        theOrder.Turn("FriendNPC", "Left");
     }
-  
-    private void OnTriggerStay2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!flag && collision.CompareTag("Player"))
         {
@@ -38,13 +42,11 @@ public class StartStory : MonoBehaviour
         }
     }
 
+
     IEnumerator EventCoroutine()
     {
-        theFade.FadeIn();
-        yield return new WaitForSeconds(1f);
-
         theOrder.NotMove();
-        for (int i=0; i<3; i++)
+        for (int i=0; i<2; i++)
         {
             theOrder.Move("Player", "UP");
             theOrder.Move("FriendNPC", "UP");
