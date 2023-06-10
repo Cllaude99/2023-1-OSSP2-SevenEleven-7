@@ -58,6 +58,8 @@ public class TitleButton : MonoBehaviour
         theTestSaveNLoad.CallNewGame();
         theTitleUI.SetActive(false);
         theOrder.Move();
+        theAudio.Stop("TitleBGM");
+
 
     }
     public void OpenTitleUI()
