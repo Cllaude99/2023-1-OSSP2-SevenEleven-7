@@ -15,6 +15,8 @@ public class GhostManager : MovingObject
     private AudioManager audioManager;
     private PlayerManager thePlayer;
     private ParticleSystem theParticle;   //파티클 오브젝트 연결
+    public GameObject instance;             //파티클 복제용
+
     BGMManager BGM;
 
     public int PlayMusicTrack;
@@ -149,11 +151,14 @@ public class GhostManager : MovingObject
             BoxCollider2D boxCollider =GetComponent<BoxCollider2D>();
             boxCollider.enabled= false;                             //귀신죽으면 브금 끄고 boxcollider off (충돌방지)
             theParticle =FindObjectOfType<ParticleSystem>();
-            Vector2 particle_postion = transform.position;
-            theParticle.transform.position = particle_postion;      //파티클 포지션을 귀신 포지션으로 옮기고 재생
-            theParticle.Play();
+            Vector3 particle_postion = transform.position;
+            instance = Instantiate(theParticle.gameObject, particle_postion, Quaternion.identity);  //파티클 복제
+            //theParticle.transform.position = particle_postion;      //파티클 포지션을 귀신 포지션으로 옮기고 재생
+            //theParticle.Play();
+            instance.GetComponent<ParticleSystem>().Play();
             audioManager.Play("ghost_death");
             animator.SetBool("Death", true);                        //죽는 애니메이션 재생
+            Destroy(instance, 3f);
             
     }
 }

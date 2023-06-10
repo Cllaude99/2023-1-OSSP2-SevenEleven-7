@@ -23,7 +23,7 @@ public class EndStory : MonoBehaviour
         theDM = FindObjectOfType<DialogueManager>();
         theOrder = FindObjectOfType<OrderManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
-        theAnimator=FindObjectOfType<Animator>();
+        theAnimator=GetComponent<Animator>();
         theAudioManager = FindObjectOfType<AudioManager>();
         theOrder.PreLoadCharacter();
     }
@@ -50,7 +50,7 @@ public class EndStory : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         theDM.ShowDialogue(dialogue_2);
-        theAnimator.SetBool("Activate", true);
+        theAnimator.SetBool("Enter", true);
         yield return new WaitForSeconds(0.5f);
         theAudioManager.Play("ghostscream");
         yield return new WaitUntil(() => !theDM.talking);
