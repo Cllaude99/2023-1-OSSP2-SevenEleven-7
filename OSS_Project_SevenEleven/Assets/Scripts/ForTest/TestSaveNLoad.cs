@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class TestSaveNLoad : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class TestSaveNLoad : MonoBehaviour
     public GameObject spawnManager;
     public GameObject[] checkPickforSpawn;
 
+    private ActiveManager theActive;
+
     //Save N Load File
     public TestSaveFile[] testSaveFile;
     public int item_count;
@@ -30,11 +33,7 @@ public class TestSaveNLoad : MonoBehaviour
     public void Start()
     {
         testSaveFile = new TestSaveFile[4]; //총 3개의 세이브 파일  //4번째 세이브파일은 새로하기용세이브파일
-
-        for (int i = 0; i <testSaveFile.Length; i++)
-        {
-            testSaveFile[i] = GetComponent<TestSaveFile>();
-        }
+        testSaveFile = FindObjectsOfType<TestSaveFile>();
 
         thePlayer = FindObjectOfType<PlayerManager>();
         theCamera = FindObjectOfType<CameraManager>();
@@ -44,6 +43,8 @@ public class TestSaveNLoad : MonoBehaviour
 
         checkVisits = FindObjectsOfType<checkVisit>();
         checkKeys = FindObjectsOfType<SpawnKey>();
+
+        theActive = FindObjectOfType<ActiveManager>();
         
     }
 
@@ -53,6 +54,15 @@ public class TestSaveNLoad : MonoBehaviour
         testSaveFile[FileIndex].CameraPos = theCamera.transform.position;
         testSaveFile[FileIndex].currentBound = theCamera.bound;
         
+        testSaveFile[FileIndex].confirmVisit.Clear();
+        testSaveFile[FileIndex].confirmKeySpawn.Clear();
+        testSaveFile[FileIndex].confirmPickforSpawn.Clear();
+
+        Array.Sort(testSaveFile, (a, b) =>
+        {
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
+
         //VisitManager
         for (int i = 0; i < checkVisits.Length; i++)
         {
@@ -68,6 +78,9 @@ public class TestSaveNLoad : MonoBehaviour
         //SpawnManager
         spawnManager = GameObject.Find("SpawnManager");
         checkPickforSpawn = new GameObject[spawnManager.transform.childCount];
+
+
+
 
         for (int i = 0; i < checkPickforSpawn.Length; i++)
         {
