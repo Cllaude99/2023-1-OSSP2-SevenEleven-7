@@ -94,7 +94,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (listDialogueWindows[count] != listDialogueWindows[count - 1])
             {
-                //animSprite.SetBool("Change", true);
+                //animSprite.SetBool("Change", true);   // 주석부분은 추후 스프라이트를 넣어서 대화창을 더 다채롭게 꾸밀수 있도록 확장 가능
                 animDialogueWindow.SetBool("Appear", false);
                 yield return new WaitForSeconds(0.2f);
                 rendererDialogueWindow.GetComponent<SpriteRenderer>().sprite = listDialogueWindows[count];
