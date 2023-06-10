@@ -13,7 +13,7 @@ public class TestSaveFile : MonoBehaviour
     
     public List<int> confirmVisit;
     public List<int> confirmKeySpawn;
-    public List<bool> confirmPickforSpawn;
+    public List<bool> GhostSpawn;
     
 
     public List<int> playerItemInventory;//

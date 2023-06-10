@@ -16,14 +16,15 @@ public class TestSaveNLoad : MonoBehaviour
     public Inventory theInven; //
     public List<string> item_id__should_destroy;//
 
-    public checkVisit[] checkVisits;
+    public GameObject VisitManager;
+    public GameObject[] VisitManagerChild;
 
-    public SpawnKey[] checkKeys;
+    public GameObject KeyManager;
+    public GameObject[] KeyManagerChild;
 
-    public GameObject spawnManager;
-    public GameObject[] checkPickforSpawn;
+    public GameObject SpawnManager;
+    public GameObject[] SpawnManagerChild;
 
-    private ActiveManager theActive;
 
     //Save N Load File
     public TestSaveFile[] testSaveFile;
@@ -32,8 +33,14 @@ public class TestSaveNLoad : MonoBehaviour
 
     public void Start()
     {
+        //Test Save File
         testSaveFile = new TestSaveFile[4]; //총 3개의 세이브 파일  //4번째 세이브파일은 새로하기용세이브파일
         testSaveFile = FindObjectsOfType<TestSaveFile>();
+        //세이브 파일 정렬
+        Array.Sort(testSaveFile, (a, b) =>
+        {
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
 
         thePlayer = FindObjectOfType<PlayerManager>();
         theCamera = FindObjectOfType<CameraManager>();
@@ -41,57 +48,51 @@ public class TestSaveNLoad : MonoBehaviour
         theDatabase = FindObjectOfType<DatabaseManager>();//
         theInven = FindObjectOfType<Inventory>();//
 
-        checkVisits = FindObjectsOfType<checkVisit>();
-        checkKeys = FindObjectsOfType<SpawnKey>();
-
-        theActive = FindObjectOfType<ActiveManager>();
         
     }
 
     private void callSave()
     {
+        //초기 설정
         testSaveFile[FileIndex].PlayerPos = thePlayer.transform.position;
         testSaveFile[FileIndex].CameraPos = theCamera.transform.position;
         testSaveFile[FileIndex].currentBound = theCamera.bound;
         
+        //리스트 초기화
         testSaveFile[FileIndex].confirmVisit.Clear();
         testSaveFile[FileIndex].confirmKeySpawn.Clear();
-        testSaveFile[FileIndex].confirmPickforSpawn.Clear();
+        testSaveFile[FileIndex].GhostSpawn.Clear();
 
-        Array.Sort(testSaveFile, (a, b) =>
-        {
-            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
-        });
+
 
         //VisitManager
-        for (int i = 0; i < checkVisits.Length; i++)
+        VisitManager = GameObject.Find("VisitManager");
+        VisitManagerChild = new GameObject[VisitManager.transform.childCount]; 
+        for (int i = 0; i < VisitManager.transform.childCount; i++)
         {
-            testSaveFile[FileIndex].confirmVisit.Add(checkVisits[i].confirmvisitnum);
+            VisitManagerChild[i] = VisitManager.transform.GetChild(i).gameObject;
+            testSaveFile[FileIndex].confirmVisit.Add(VisitManagerChild[i].GetComponent<checkVisit>().confirmvisitnum);
         }
 
         //KeyManager
-        for (int i = 0; i < checkKeys.Length; i++)
+        KeyManager = GameObject.Find("KeyManager");
+        KeyManagerChild = new GameObject[KeyManager.transform.childCount];
+        for (int i = 0; i < KeyManager.transform.childCount; i++)
         {
-            testSaveFile[FileIndex].confirmKeySpawn.Add(checkKeys[i].visit);
+            KeyManagerChild[i] = KeyManager.transform.GetChild(i).gameObject;
+            testSaveFile[FileIndex].confirmKeySpawn.Add(KeyManagerChild[i].GetComponent<SpawnKey>().visit);
         }
 
         //SpawnManager
-        spawnManager = GameObject.Find("SpawnManager");
-        checkPickforSpawn = new GameObject[spawnManager.transform.childCount];
-
-
-
-
-        for (int i = 0; i < checkPickforSpawn.Length; i++)
+        SpawnManager = GameObject.Find("SpawnManager");
+        SpawnManagerChild = new GameObject[SpawnManager.transform.childCount];
+        for (int i = 0; i < SpawnManager.transform.childCount; i++)
         {
-            checkPickforSpawn[i] = spawnManager.transform.GetChild(i).gameObject;
+            SpawnManagerChild[i] = SpawnManager.transform.GetChild(i).gameObject;
+            testSaveFile[FileIndex].GhostSpawn.Add(SpawnManagerChild[i].activeSelf);
         }
 
-        foreach (GameObject obj in checkPickforSpawn)
-        {
-            if (!obj.activeSelf) testSaveFile[FileIndex].confirmPickforSpawn.Add(false);
-            else testSaveFile[FileIndex].confirmPickforSpawn.Add(true);
-        }
+
 
         testSaveFile[FileIndex].playerItemInventory.Clear();//
         testSaveFile[FileIndex].playerItemInventoryCount.Clear();//
@@ -112,20 +113,33 @@ public class TestSaveNLoad : MonoBehaviour
         theCamera.minBound = testSaveFile[FileIndex].currentBound.bounds.min;
         theCamera.maxBound = testSaveFile[FileIndex].currentBound.bounds.max;
         theCamera.transform.position = testSaveFile[FileIndex].CameraPos;
-        for (int i = 0; i < checkVisits.Length; i++)
+
+        //VisitManager
+        VisitManager = GameObject.Find("VisitManager");
+        VisitManagerChild = new GameObject[VisitManager.transform.childCount];
+        for (int i = 0; i < VisitManager.transform.childCount; i++)
         {
-            //파일에 인덱스에 맞는 confirmvisit들을 불러옴
-            checkVisits[i].confirmvisitnum = testSaveFile[FileIndex].confirmVisit[i];
+            VisitManagerChild[i] = VisitManager.transform.GetChild(i).gameObject;
+            VisitManagerChild[i].GetComponent<checkVisit>().confirmvisitnum =
+                testSaveFile[FileIndex].confirmVisit[i];
         }
 
-        for (int i = 0; i < checkKeys.Length; i++)
+        //KeyManager
+        KeyManager = GameObject.Find("KeyManager");
+        KeyManagerChild = new GameObject[KeyManager.transform.childCount];
+        for (int i = 0; i < KeyManager.transform.childCount; i++)
         {
-            checkKeys[i].visit = testSaveFile[FileIndex].confirmKeySpawn[i];
+            KeyManagerChild[i] = KeyManager.transform.GetChild(i).gameObject;
+            KeyManagerChild[i].GetComponent<SpawnKey>().visit = testSaveFile[FileIndex].confirmKeySpawn[i];
         }
 
-        for (int i = 0; i < checkPickforSpawn.Length; i++)
+        //SpawnManager
+        SpawnManager = GameObject.Find("SpawnManager");
+        SpawnManagerChild = new GameObject[SpawnManager.transform.childCount];
+        for (int i = 0; i < SpawnManager.transform.childCount; i++)
         {
-            checkPickforSpawn[i].SetActive(testSaveFile[FileIndex].confirmPickforSpawn[i]);
+            SpawnManagerChild[i] = SpawnManager.transform.GetChild(i).gameObject;
+            SpawnManagerChild[i].SetActive(testSaveFile[FileIndex].GhostSpawn[i]);
         }
 
 
