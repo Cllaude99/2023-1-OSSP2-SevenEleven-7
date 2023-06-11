@@ -68,11 +68,28 @@ public class TitleButton : MonoBehaviour
         theTitleUI.SetActive(true); 
     }
 
-    public void CloseTitleUI()
+    public void CloseTitleUI_loadbtn_1()
     {
-        theLoadUI.SetActive(false);
-        theTitleUI.SetActive(false);
-        theOrder.Move();
+        CloseTitleUI(0);
+    }
+    public void CloseTitleUI_loadbtn_2()
+    {
+        CloseTitleUI(1);
+    }
+    public void CloseTitleUI_loadbtn_3()
+    {
+        CloseTitleUI(2);
+    }
+
+    public void CloseTitleUI(int i)                              //로드가 성공되면 실행되는함수
+    {
+        if (!theTestSaveNLoad.check_save_File_before_load(i))
+        {
+            theLoadUI.SetActive(false);
+            theTitleUI.SetActive(false);
+            theOrder.Move();
+            theAudio.Stop("TitleBGM");
+        }
 
     }
 

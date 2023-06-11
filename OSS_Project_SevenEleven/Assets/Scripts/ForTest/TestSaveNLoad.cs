@@ -194,23 +194,38 @@ public class TestSaveNLoad : MonoBehaviour
 
     public void callTestLoad1()
     {
-        FileIndex = 0;
-        callLoad();
+        if (!check_save_File_before_load(0))
+        {
+            FileIndex = 0;
+            callLoad();
+        }
     }
 
     public void callTestLoad2()
     {
-        FileIndex = 1;
-        callLoad();
+        if (!check_save_File_before_load(1))
+        {
+            FileIndex = 1;
+            callLoad();
+        }
     }
 
     public void callTestLoad3()
     {
-        FileIndex = 2;
-        callLoad();
+        if (!check_save_File_before_load(2))
+        {
+            FileIndex = 2;
+            callLoad();
+        }
     }
 
-
+    public bool check_save_File_before_load(int i)       //빈 파일이면 true
+    {
+        if (testSaveFile[i].CameraPos.x==0) //빈 세이브파일의 카메라pos -> 0
+            return true;
+        else
+            return false;
+    }
     public void callTestLoadFromAnotherScene1()
     {
         SceneManager.LoadScene("StartScene");
