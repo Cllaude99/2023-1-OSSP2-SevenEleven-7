@@ -25,6 +25,12 @@ public class TestSaveNLoad : MonoBehaviour
     public GameObject SpawnManager;
     public GameObject[] SpawnManagerChild;
 
+    public GameObject ActiveManager;
+    public GameObject[] ActiveManagerChild;
+
+    public GameObject TextManager;
+    public GameObject[] TextManagerChild;
+
 
     //Save N Load File
     public TestSaveFile[] testSaveFile;
@@ -62,6 +68,8 @@ public class TestSaveNLoad : MonoBehaviour
         testSaveFile[FileIndex].confirmVisit.Clear();
         testSaveFile[FileIndex].confirmKeySpawn.Clear();
         testSaveFile[FileIndex].GhostSpawn.Clear();
+        testSaveFile[FileIndex].ObjectActive.Clear();
+        testSaveFile[FileIndex].isTextEnter.Clear();
 
 
 
@@ -92,6 +100,23 @@ public class TestSaveNLoad : MonoBehaviour
             testSaveFile[FileIndex].GhostSpawn.Add(SpawnManagerChild[i].activeSelf);
         }
 
+        //ActiveManager
+        ActiveManager = GameObject.Find("ActiveManager");
+        ActiveManagerChild = new GameObject[ActiveManager.transform.childCount];
+        for(int i = 0; i < ActiveManager.transform.childCount; i++)
+        {
+            ActiveManagerChild[i] = ActiveManager.transform.GetChild(i).gameObject;
+            testSaveFile[FileIndex].ObjectActive.Add(ActiveManagerChild[i].activeSelf);
+        }
+
+        //TextManager
+        TextManager = GameObject.Find("TextManager");
+        TextManagerChild = new GameObject[TextManager.transform.childCount];
+        for (int i = 0; i < TextManager.transform.childCount; i++)
+        {
+            TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
+            testSaveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
+        }
 
 
         testSaveFile[FileIndex].playerItemInventory.Clear();//
@@ -120,6 +145,7 @@ public class TestSaveNLoad : MonoBehaviour
         for (int i = 0; i < VisitManager.transform.childCount; i++)
         {
             VisitManagerChild[i] = VisitManager.transform.GetChild(i).gameObject;
+            VisitManagerChild[i].gameObject.SetActive(true);
             VisitManagerChild[i].GetComponent<checkVisit>().confirmvisitnum =
                 testSaveFile[FileIndex].confirmVisit[i];
         }
@@ -130,6 +156,7 @@ public class TestSaveNLoad : MonoBehaviour
         for (int i = 0; i < KeyManager.transform.childCount; i++)
         {
             KeyManagerChild[i] = KeyManager.transform.GetChild(i).gameObject;
+            KeyManagerChild[i].gameObject.SetActive(true);
             KeyManagerChild[i].GetComponent<SpawnKey>().visit = testSaveFile[FileIndex].confirmKeySpawn[i];
         }
 
@@ -140,6 +167,24 @@ public class TestSaveNLoad : MonoBehaviour
         {
             SpawnManagerChild[i] = SpawnManager.transform.GetChild(i).gameObject;
             SpawnManagerChild[i].SetActive(testSaveFile[FileIndex].GhostSpawn[i]);
+        }
+
+        //ActiveManager
+        ActiveManager = GameObject.Find("ActiveManager");
+        ActiveManagerChild = new GameObject[ActiveManager.transform.childCount];
+        for (int i = 0; i < ActiveManager.transform.childCount; i++)
+        {
+            ActiveManagerChild[i] = ActiveManager.transform.GetChild(i).gameObject;
+            ActiveManagerChild[i].SetActive(testSaveFile[FileIndex].ObjectActive[i]);
+        }
+
+        //TextManager
+        TextManager = GameObject.Find("TextManager");
+        TextManagerChild = new GameObject[TextManager.transform.childCount];
+        for (int i = 0; i < TextManager.transform.childCount; i++)
+        {
+            TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
+            TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = testSaveFile[FileIndex].isTextEnter[i];
         }
 
 
