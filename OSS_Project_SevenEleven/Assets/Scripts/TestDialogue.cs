@@ -9,7 +9,7 @@ public class TestDialogue : MonoBehaviour
 
     private OrderManager theOrder;
     private DialogueManager theDM;
-    private bool hasEntered = false;
+    public bool hasEntered = false;
 
     
     void Start()

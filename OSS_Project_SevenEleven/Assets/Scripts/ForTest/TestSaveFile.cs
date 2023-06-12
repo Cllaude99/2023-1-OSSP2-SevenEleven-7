@@ -13,9 +13,12 @@ public class TestSaveFile : MonoBehaviour
     
     public List<int> confirmVisit;
     public List<int> confirmKeySpawn;
-    public List<bool> confirmPickforSpawn;
+    public List<bool> GhostSpawn;
+    public List<bool> ObjectActive;
+    public List<bool> isTextEnter;
     
 
     public List<int> playerItemInventory;//
     public List<int> playerItemInventoryCount;//
+
 }
