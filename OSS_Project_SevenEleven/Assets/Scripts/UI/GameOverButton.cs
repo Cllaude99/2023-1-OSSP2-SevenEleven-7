@@ -14,7 +14,7 @@ public class GameOverButton : MonoBehaviour
     public TitleButton thetitle; 
     private AudioManager theAudio;
     private PlayerManager thePlayerManager;
-    private TestSaveNLoad theTestSaveNLoad;
+    private SaveNLoad theTestSaveNLoad;
     public OrderManager theOrder;
 
     private GameObject NewGameBtn;
@@ -29,7 +29,7 @@ public class GameOverButton : MonoBehaviour
     {
         theAudio = FindObjectOfType<AudioManager>();
         thePlayerManager = FindObjectOfType<PlayerManager>();
-        theTestSaveNLoad= FindObjectOfType<TestSaveNLoad>();
+        theTestSaveNLoad= FindObjectOfType<SaveNLoad>();
         thetitle=FindObjectOfType<TitleButton>();
         theOrder=FindObjectOfType<OrderManager>();  
     }

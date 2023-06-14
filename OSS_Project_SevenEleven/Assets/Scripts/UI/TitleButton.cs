@@ -15,7 +15,7 @@ public class TitleButton : MonoBehaviour
     private AudioManager theAudio;
     private PlayerManager thePlayerManager;
     private GameManager theGameManager;
-    private TestSaveNLoad theTestSaveNLoad;
+    private SaveNLoad theTestSaveNLoad;
     public OrderManager theOrder;
 
     public GameObject theLoadUI;
@@ -36,7 +36,7 @@ public class TitleButton : MonoBehaviour
         thePlayerManager = FindObjectOfType<PlayerManager>();
         theGameManager= FindObjectOfType<GameManager>();
         theAudio.Play("TitleBGM");
-        theTestSaveNLoad = FindObjectOfType<TestSaveNLoad>();
+        theTestSaveNLoad = FindObjectOfType<SaveNLoad>();
         theOrder = FindObjectOfType<OrderManager>();
         theOrder.PreLoadCharacter();
         theOrder.NotMove();

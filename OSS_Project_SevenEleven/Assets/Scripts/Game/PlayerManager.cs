@@ -40,7 +40,6 @@ public class PlayerManager : MovingObject
     public bool applyRunFlag = false;
 
     private AudioManager theAudio;
-    private SaveNLoad theSaveNLoad;
 
     public GameObject current_transfer;
     public bool istransfer = false;
@@ -68,7 +67,6 @@ public class PlayerManager : MovingObject
         animator = GetComponent<Animator>(); // 컴포넌트를 animator 변수에 불러옴
         boxCollider = GetComponent<BoxCollider2D>();
         theAudio = FindObjectOfType<AudioManager>();
-        theSaveNLoad = FindObjectOfType<SaveNLoad>();
         //SceneManager.LoadScene("TitleScene");
         //theSaveNLoad.CallSave(0);
     }
@@ -170,65 +168,9 @@ public class PlayerManager : MovingObject
         canMove = true; //방향키 입력이 가능하도록 함
     } // 다중 처리 기능 함수
 
-    public void CallSave1()
-    {
-        theSaveNLoad.CallSave(1);
-    }
-
-    public void CallSave2()
-    {
-        theSaveNLoad.CallSave(2);
-    }
-
-    public void CallSave3()
-    {
-        theSaveNLoad.CallSave(3);
-    }
-
-    public void LoadSave1()
-    {
-        theAudio.Play("select2");
-        theSaveNLoad.CallLoad(1);
-    }
-
-    public void LoadSave2()
-    {
-        theAudio.Play("select2");
-        theSaveNLoad.CallLoad(2);
-    }
-
-    public void LoadSave3()
-    {
-        theAudio.Play("select2");
-        theSaveNLoad.CallLoad(3);
-    }
-
-    public GameObject[] object_need_destroy;
-    public void LoadSaveDefault()
-    {
-        object_need_destroy = GameObject.FindGameObjectsWithTag("NeedDestroy");
-        foreach(GameObject obj in object_need_destroy)
-        {
-            Destroy(obj);
-        }
-        theAudio.Play("select2");
-        theSaveNLoad.CallLoad(0);
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F5)) // F5 키를 통해 저장
-        {
-            theSaveNLoad.CallSave(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F9)) // F9 키를 통해 불러오기
-        {
-            theSaveNLoad.CallLoad(1);
-        }
-
-
         if (!applyRunFlag)
         {
             if (currentStemina > maxStemina) currentStemina = maxStemina;
