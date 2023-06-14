@@ -57,6 +57,7 @@ public class Menu : MonoBehaviour
         theAudio.Play("select1");
         menu_obj.SetActive(false);
         thetitle.OpenTitleUI();
+        thetitle.RunTitleAnimation();
     }
 
 

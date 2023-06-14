@@ -143,6 +143,17 @@ public class TitleButton : MonoBehaviour
         theRun2.GetComponent<Renderer>().enabled = true;
     }
 
+    public void RunTitleAnimation()
+    {
+        theLogo = GameObject.Find("DDAYLogo");
+        theRun = GameObject.Find("CharacterRun");
+        theRun2 = GameObject.Find("CharacterRun2");
+
+        theLogo.GetComponent<Renderer>().enabled = true;
+        theRun.GetComponent<Renderer>().enabled = true;
+        theRun2.GetComponent<Renderer>().enabled = true;
+    }
+
 
     public void ExitGame()
     {
