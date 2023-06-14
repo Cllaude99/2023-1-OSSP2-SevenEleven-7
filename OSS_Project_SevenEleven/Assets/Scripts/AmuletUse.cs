@@ -12,7 +12,7 @@ public class AmuletUse : MonoBehaviour
 
 
     private AudioManager theAudio;
-    private GhostManager theGhostManager;
+    private GhostManager[] theGhostManagers; //귀신여러개
     private Animator theAnimator;
     public string amulet_use_sound;
 
@@ -50,7 +50,7 @@ public class AmuletUse : MonoBehaviour
             if (isPlayerOn)                                     //X키 누르고 playeron이면
             {
 
-                theGhostManager = FindObjectOfType<GhostManager>();
+                theGhostManagers = FindObjectsOfType<GhostManager>();
                 for (int i = 0; i < theInven.inventoryItemList.Count; i++)
                 {
                     if (theInven.inventoryItemList[i].itemID == itemcode[checkIndex])
@@ -72,6 +72,9 @@ public class AmuletUse : MonoBehaviour
 
     void setGhostDeath()
     {
-        theGhostManager.ghostdeath= true;
+        foreach (GhostManager g in theGhostManagers)
+        {
+            g.ghostdeath = true;
+        }
     }
 }

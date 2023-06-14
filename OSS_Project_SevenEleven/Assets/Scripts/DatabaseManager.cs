@@ -36,7 +36,7 @@ public class DatabaseManager : MonoBehaviour
         itemList.Add(new Item(10002, "Top right amulet piece", "Top right amulet piece", Item.ItemType.Quest));
         itemList.Add(new Item(10003, "Bottom left amulet piece", "Bottom left amulet piece", Item.ItemType.Quest));
         itemList.Add(new Item(10004, "Bottom right amulet piece", "Bottom right amulet piece", Item.ItemType.Quest));
-        itemList.Add(new Item(10005, "A buddhist exorcism amulet", "An amulet containing the power of exorcism.\nseems to be usable at the altar in front of a Buddha statue", Item.ItemType.Quest));
+        itemList.Add(new Item(10005, "A buddhist exorcism amulet", "It seems to be usable at the altar near a Buddha statue", Item.ItemType.Quest));
 
         itemList.Add(new Item(10006, "1st Diary", "1st Diary", Item.ItemType.Quest));
         itemList.Add(new Item(10007, "2nd Diary", "2nd Diary", Item.ItemType.Quest));
