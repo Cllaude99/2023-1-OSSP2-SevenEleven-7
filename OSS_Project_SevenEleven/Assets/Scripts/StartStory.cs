@@ -37,11 +37,9 @@ public class StartStory : MonoBehaviour
             theOrder.Move("FriendNPC", "UP");
             theOrder.Turn("Player", "Right");
             theOrder.Turn("FriendNPC", "Left");
-            WaitforSec();
+            StartCoroutine(Waiting());   //콜라이더 인식후 hasEntered를 바꿔주는동안은 loop가 안돌도록 무한대기
         }
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -52,9 +50,9 @@ public class StartStory : MonoBehaviour
         }
     }
 
-    IEnumerator WaitforSec()
+    IEnumerator Waiting()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(9999f);
     }
 
 
