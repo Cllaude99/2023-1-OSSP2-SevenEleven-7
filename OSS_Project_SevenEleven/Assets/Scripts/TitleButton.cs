@@ -38,7 +38,8 @@ public class TitleButton : MonoBehaviour
         theAudio.Play("TitleBGM");
         theTestSaveNLoad = FindObjectOfType<TestSaveNLoad>();
         theOrder = FindObjectOfType<OrderManager>();
-
+        theOrder.PreLoadCharacter();
+        theOrder.NotMove();
     }
 
     // Update is called once per frame

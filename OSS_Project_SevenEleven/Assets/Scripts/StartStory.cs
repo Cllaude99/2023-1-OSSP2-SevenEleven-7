@@ -13,7 +13,7 @@ public class StartStory : MonoBehaviour
     private PlayerManager thePlayer;
     private FadeManager theFade; // FadeManager 참조를 위한 추가 변수
 
-    private bool flag = false;
+    public bool hasEntered = false;
 
     //Use this for initialization
     void Start()
@@ -23,29 +23,43 @@ public class StartStory : MonoBehaviour
         theOrder = FindObjectOfType<OrderManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
         theOrder.PreLoadCharacter();
-
         theOrder.NotMove();
-        theOrder.Turn("Player", "UP");
-        theOrder.Turn("FriendNPC", "UP");
-        theOrder.Move("Player", "UP");
-        theOrder.Move("FriendNPC", "UP");
-        theOrder.Turn("Player", "Right");
-        theOrder.Turn("FriendNPC", "Left");
     }
+
+    void Update()
+    {
+        if (!hasEntered)
+        {
+            theOrder.NotMove();
+            theOrder.Turn("Player", "UP");
+            theOrder.Turn("FriendNPC", "UP");
+            theOrder.Move("Player", "UP");
+            theOrder.Move("FriendNPC", "UP");
+            theOrder.Turn("Player", "Right");
+            theOrder.Turn("FriendNPC", "Left");
+            WaitforSec();
+        }
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!flag && collision.CompareTag("Player"))
+        if (!hasEntered && collision.CompareTag("Player"))
         {
-            flag = true;
+            hasEntered = true;
             StartCoroutine(EventCoroutine());
         }
+    }
+
+    IEnumerator WaitforSec()
+    {
+        yield return new WaitForSeconds(1f);
     }
 
 
     IEnumerator EventCoroutine()
     {
-        theOrder.NotMove();
         for (int i=0; i<2; i++)
         {
             theOrder.Move("Player", "UP");
@@ -93,9 +107,9 @@ public class StartStory : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         theOrder.Turn("Player", "UP");
         yield return new WaitForSeconds(0.8f);
-        theOrder.Turn("Player", "RIGHT");
-        yield return new WaitForSeconds(0.8f);
         theOrder.Turn("Player", "LEFT");
+        yield return new WaitForSeconds(0.8f);
+        theOrder.Turn("Player", "RIGHT");
         yield return new WaitForSeconds(0.8f);
         theOrder.Turn("Player", "DOWN");
         yield return new WaitForSeconds(0.8f);

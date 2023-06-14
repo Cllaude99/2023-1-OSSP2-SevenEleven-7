@@ -9,6 +9,7 @@ public class TestSaveFile : MonoBehaviour
     //For Save N Load...
     public Vector3 PlayerPos;
     public Vector3 CameraPos;
+    public Vector3 NPCPos;
     public BoxCollider2D currentBound;
     
     public List<int> confirmVisit;
