@@ -11,6 +11,7 @@ public class TestSaveNLoad : MonoBehaviour
     //For Initialization
     public PlayerManager thePlayer;
     public CameraManager theCamera;
+    public NPCManager theNPC;
 
     public DatabaseManager theDatabase; //
     public Inventory theInven; //
@@ -50,6 +51,7 @@ public class TestSaveNLoad : MonoBehaviour
 
         thePlayer = FindObjectOfType<PlayerManager>();
         theCamera = FindObjectOfType<CameraManager>();
+        theNPC = FindObjectOfType<NPCManager>();
 
         theDatabase = FindObjectOfType<DatabaseManager>();//
         theInven = FindObjectOfType<Inventory>();//
@@ -62,6 +64,7 @@ public class TestSaveNLoad : MonoBehaviour
         //초기 설정
         testSaveFile[FileIndex].PlayerPos = thePlayer.transform.position;
         testSaveFile[FileIndex].CameraPos = theCamera.transform.position;
+        testSaveFile[FileIndex].NPCPos = theNPC.transform.position;
         testSaveFile[FileIndex].currentBound = theCamera.bound;
         
         //리스트 초기화
@@ -115,9 +118,11 @@ public class TestSaveNLoad : MonoBehaviour
         for (int i = 0; i < TextManager.transform.childCount; i++)
         {
             TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
-            testSaveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
+            if(TextManagerChild[i].GetComponent<TestDialogue>()!=null)
+                testSaveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
+            else
+                testSaveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<StartStory>().hasEntered);
         }
-
 
         testSaveFile[FileIndex].playerItemInventory.Clear();//
         testSaveFile[FileIndex].playerItemInventoryCount.Clear();//
@@ -134,6 +139,7 @@ public class TestSaveNLoad : MonoBehaviour
     private void callLoad()
     {
         thePlayer.transform.position = testSaveFile[FileIndex].PlayerPos;
+        theNPC.transform.position = testSaveFile[FileIndex].NPCPos;
         theCamera.bound = testSaveFile[FileIndex].currentBound;
         theCamera.minBound = testSaveFile[FileIndex].currentBound.bounds.min;
         theCamera.maxBound = testSaveFile[FileIndex].currentBound.bounds.max;
@@ -184,7 +190,10 @@ public class TestSaveNLoad : MonoBehaviour
         for (int i = 0; i < TextManager.transform.childCount; i++)
         {
             TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
-            TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = testSaveFile[FileIndex].isTextEnter[i];
+            if(TextManagerChild[i].GetComponent<TestDialogue>()!=null)
+                TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = testSaveFile[FileIndex].isTextEnter[i];
+            else
+                TextManagerChild[i].GetComponent<StartStory>().hasEntered = testSaveFile[FileIndex].isTextEnter[i];
         }
 
 

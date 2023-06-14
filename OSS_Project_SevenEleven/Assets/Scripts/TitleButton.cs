@@ -38,7 +38,8 @@ public class TitleButton : MonoBehaviour
         theAudio.Play("TitleBGM");
         theTestSaveNLoad = FindObjectOfType<TestSaveNLoad>();
         theOrder = FindObjectOfType<OrderManager>();
-
+        theOrder.PreLoadCharacter();
+        theOrder.NotMove();
     }
 
     // Update is called once per frame
@@ -137,6 +138,17 @@ public class TitleButton : MonoBehaviour
     {
         theAudio.Play("cancel1");
         theLoadUI.SetActive(false);
+        theLogo.GetComponent<Renderer>().enabled = true;
+        theRun.GetComponent<Renderer>().enabled = true;
+        theRun2.GetComponent<Renderer>().enabled = true;
+    }
+
+    public void RunTitleAnimation()
+    {
+        theLogo = GameObject.Find("DDAYLogo");
+        theRun = GameObject.Find("CharacterRun");
+        theRun2 = GameObject.Find("CharacterRun2");
+
         theLogo.GetComponent<Renderer>().enabled = true;
         theRun.GetComponent<Renderer>().enabled = true;
         theRun2.GetComponent<Renderer>().enabled = true;
