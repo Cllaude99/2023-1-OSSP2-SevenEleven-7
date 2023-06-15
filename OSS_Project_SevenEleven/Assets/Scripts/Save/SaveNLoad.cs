@@ -46,6 +46,8 @@ public class SaveNLoad : MonoBehaviour
     public int item_count;
     public int FileIndex;
 
+    public GameObject items;
+
     public void Start()
     {
         //Test Save File
@@ -65,6 +67,7 @@ public class SaveNLoad : MonoBehaviour
         theInven = FindObjectOfType<Inventory>();//
 
         etc_Events=GameObject.FindObjectsOfType<EventManager>();
+        items = GameObject.Find("Items");
     }
 
     private void callSave()
@@ -245,6 +248,18 @@ public class SaveNLoad : MonoBehaviour
                 if (saveFile[FileIndex].playerItemInventory[i] == theDatabase.itemList[x].itemID)
                 {
                     itemList.Add(theDatabase.itemList[x]);
+                }
+                else
+                {
+                    foreach (Transform child in items.transform)
+                    {
+                        // 자식 오브젝트의 이름이 아이템 번호와 같은지 확인
+                        if (child.name == theDatabase.itemList[x].itemID.ToString())
+                        {
+                            // 이름이 일치하면 자식 오브젝트를 활성화
+                            child.gameObject.SetActive(true);
+                        }
+                    }
                 }
             }
         }
