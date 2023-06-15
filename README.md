@@ -25,7 +25,13 @@
 <img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white">
 <br/></br>
 # 🕹 게임 실행 방법
-
+<br/></br>
+# 🕹 게임 조작 방법
+:left_arrow: :up_arrow: :right_arrow: :down_arrow: or wasd : 캐릭터 방향키
+Z : 대화창 넘기기
+X : 아이템 줍기
+I : 인벤토리 열기
+ESC: 메뉴창열기
 <br/></br>
 # 🕹 개발을 위한 유니티 세팅
 1. Unity Hub 설치 후, 2021.3.12f1 (LTS) 버전을 이어서 다운로드
