@@ -41,6 +41,7 @@ public class ShowerBoothEvent : MonoBehaviour
             theOrder.Move("ShowerGhost", "LEFT");
             theOrder.Move("ShowerGhost", "LEFT");
             theOrder.Move("ShowerGhost", "LEFT");
+            StartCoroutine(RemoveObj());
             this.gameObject.SetActive(false);
         }
     }
