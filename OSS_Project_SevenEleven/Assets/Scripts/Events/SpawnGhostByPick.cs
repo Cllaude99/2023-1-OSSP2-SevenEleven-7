@@ -13,7 +13,7 @@ public class SpawnGhostByPick : MonoBehaviour
     {
         if (isTrue)
         {
-            if (pick.GetComponent<ItemPickup>().isPick&& pick.activeSelf == false)
+            if (pick.GetComponent<ItemPickup>().isPick && pick.activeSelf == false)
             {
                 spawner.SetActive(true);
                 this.gameObject.SetActive(false);
@@ -22,7 +22,7 @@ public class SpawnGhostByPick : MonoBehaviour
         }
         else
         {
-            if (pick.GetComponent<ItemPickup>().isPick&& pick.activeSelf == false)
+            if (pick.GetComponent<ItemPickup>().isPick && pick.activeSelf == false)
             {
                 spawner.SetActive(false);
                 this.gameObject.SetActive(false);

@@ -4,6 +4,7 @@ using System.IO;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Menu;
@@ -40,6 +41,7 @@ public class TitleButton : MonoBehaviour
         theOrder = FindObjectOfType<OrderManager>();
         theOrder.PreLoadCharacter();
         theOrder.NotMove();
+        DeleteJsonFile();
     }
 
     // Update is called once per frame
@@ -60,7 +62,7 @@ public class TitleButton : MonoBehaviour
         theTitleUI.SetActive(false);
         theOrder.Move();
         theAudio.Stop("TitleBGM");
-
+        DeleteJsonFile();
 
     }
     public void OpenTitleUI()
@@ -133,6 +135,10 @@ public class TitleButton : MonoBehaviour
             slot.GetComponent<TextMeshProUGUI>().text =
                  "Saved Place : " + data.saved_map + "\n Play Time : " + data.playtime_minute + " Min " + data.playtime_seconds + " Sec";
         }
+        else
+        {
+            slot.GetComponent<TextMeshProUGUI>().text = "Save File " + i;
+        }
     }
     public void CloseLoadUI()
     {
@@ -163,5 +169,19 @@ public class TitleButton : MonoBehaviour
     public bool isFirstGame()
     {
         return first_new;           //테스팅용
+    }
+
+    public void DeleteJsonFile()
+    {
+        string filename;
+        for (int i = 1; i < 4; i++)
+        {
+           
+             filename = "Save_UI_Slot" + i;   // Save_UI_Slot1  -> 파일명
+            string path = Application.dataPath + "/" + filename + ".Json";        //세이브 슬롯의 path
+            bool fileExists = File.Exists(path);
+            if (fileExists)
+                System.IO.File.Delete(path);
+        }
     }
 }

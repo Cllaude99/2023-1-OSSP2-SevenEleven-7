@@ -48,7 +48,6 @@ public class SaveNLoad : MonoBehaviour
     public int SaveFileNum;
     public int item_count;
     public int FileIndex;
-
     public GameObject items;
 
     public void Start()
@@ -89,7 +88,7 @@ public class SaveNLoad : MonoBehaviour
         saveFile[FileIndex].CameraPos = theCamera.transform.position;
         saveFile[FileIndex].NPCPos = theNPC.transform.position;
         saveFile[FileIndex].currentBound = theCamera.bound;
-        
+
         //리스트 초기화
         saveFile[FileIndex].confirmVisit.Clear();
         saveFile[FileIndex].confirmKeySpawn.Clear();
@@ -119,7 +118,7 @@ public class SaveNLoad : MonoBehaviour
 
         //VisitManager
         VisitManager = GameObject.Find("VisitManager");
-        VisitManagerChild = new GameObject[VisitManager.transform.childCount]; 
+        VisitManagerChild = new GameObject[VisitManager.transform.childCount];
         for (int i = 0; i < VisitManager.transform.childCount; i++)
         {
             VisitManagerChild[i] = VisitManager.transform.GetChild(i).gameObject;
@@ -147,7 +146,7 @@ public class SaveNLoad : MonoBehaviour
         //ActiveManager
         ActiveManager = GameObject.Find("ActiveManager");
         ActiveManagerChild = new GameObject[ActiveManager.transform.childCount];
-        for(int i = 0; i < ActiveManager.transform.childCount; i++)
+        for (int i = 0; i < ActiveManager.transform.childCount; i++)
         {
             ActiveManagerChild[i] = ActiveManager.transform.GetChild(i).gameObject;
             saveFile[FileIndex].ObjectActive.Add(ActiveManagerChild[i].activeSelf);
@@ -178,9 +177,9 @@ public class SaveNLoad : MonoBehaviour
         theEventManagerChild = new GameObject[theEventManager.transform.childCount];
         for (int i = 0; i < theEventManager.transform.childCount; i++)
         {
-            theEventManagerChild[i]=theEventManager.transform.GetChild(i).gameObject;
+            theEventManagerChild[i] = theEventManager.transform.GetChild(i).gameObject;
             saveFile[FileIndex].isETCEventEnter.Add(theEventManagerChild[i].GetComponent<EventManager>().is_event_activated);
-        } 
+        }
 
     }
 
@@ -282,12 +281,10 @@ public class SaveNLoad : MonoBehaviour
                 }
                 else
                 {
-                    foreach (Transform child in items.transform)
+                    foreach(Transform child in items.transform)
                     {
-                        // 자식 오브젝트의 이름이 아이템 번호와 같은지 확인
-                        if (child.name == theDatabase.itemList[x].itemID.ToString())
+                        if(child.name == theDatabase.itemList[x].itemID.ToString())
                         {
-                            // 이름이 일치하면 자식 오브젝트를 활성화
                             child.gameObject.SetActive(true);
                         }
                     }
@@ -310,9 +307,9 @@ public class SaveNLoad : MonoBehaviour
         }
 
         Reset_Etc_Event();  //기타 이벤트 bool 초기화
-        for(int i = 0; i <theEventManager.transform.childCount;i++)
+        for (int i = 0; i < theEventManager.transform.childCount; i++)
         {
-            theEventManagerChild[i]=theEventManager.transform.GetChild(i).gameObject;
+            theEventManagerChild[i] = theEventManager.transform.GetChild(i).gameObject;
             theEventManagerChild[i].GetComponent<EventManager>().is_event_activated = saveFile[FileIndex].isETCEventEnter[i];
         }
         Update_Etc_Event();
@@ -369,7 +366,7 @@ public class SaveNLoad : MonoBehaviour
 
     public bool check_save_File_before_load(int i)       //빈 파일이면 true
     {
-        if (saveFile[i].CameraPos.x==0) //빈 세이브파일의 카메라pos -> 0
+        if (saveFile[i].CameraPos.x == 0) //빈 세이브파일의 카메라pos -> 0
             return true;
         else
             return false;
@@ -385,6 +382,7 @@ public class SaveNLoad : MonoBehaviour
 
     public void CallNewGame()               //씬로드후 세이브파일로드
     {
+        ResetAllSaveFiles();
         FileIndex = 3;
         callLoad();
         Debug.Log("디폴트 파일 로드 하고 인덱스는 " + FileIndex);
@@ -393,7 +391,7 @@ public class SaveNLoad : MonoBehaviour
 
     public void Reset_Etc_Event()
     {
-        foreach(EventManager e in etc_Events)
+        foreach (EventManager e in etc_Events)
         {
             e.ResetEventBool();
         }
@@ -404,6 +402,14 @@ public class SaveNLoad : MonoBehaviour
         foreach (EventManager e in etc_Events)
         {
             e.UpdateEventBool();
+        }
+    }
+
+    public void ResetAllSaveFiles()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            saveFile[i].CameraPos.x = 0;
         }
     }
 }
