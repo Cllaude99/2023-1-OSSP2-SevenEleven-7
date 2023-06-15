@@ -12,6 +12,7 @@ public class GhostSpawner : MonoBehaviour
     public GameObject instance;
     public float customlifeTime;
 
+    public Transform GhostList;
     private PlayerManager thePlayer;
 
     // Start is called before the first frame update
@@ -24,6 +25,7 @@ public class GhostSpawner : MonoBehaviour
     {
         Vector3 spawnPoint = SpawnPoint.position;
         instance = Instantiate(GhostPrefab, spawnPoint, Quaternion.identity);
+        instance.transform.SetParent(GhostList);
         instance.GetComponent<GhostManager>().target = thePlayer.transform;
         ghostSpawner.SetActive(false); //한번만 소환
     }
