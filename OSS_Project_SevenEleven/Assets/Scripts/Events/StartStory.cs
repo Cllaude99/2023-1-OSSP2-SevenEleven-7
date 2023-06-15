@@ -70,7 +70,7 @@ public class StartStory : MonoBehaviour
         {
             theOrder.Move("Player", "RIGHT");
         }
-        for (int i = 3; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             theOrder.Move("Player", "UP");
         }
