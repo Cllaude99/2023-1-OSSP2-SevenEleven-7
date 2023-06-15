@@ -38,6 +38,8 @@ public class SaveNLoad : MonoBehaviour
     public GameObject theEventManager;
     public GameObject[] theEventManagerChild;
     public EventManager[] etc_Events;
+
+    public GameObject GhostList;
     //Save N Load File
     public SaveFile[] saveFile;
     public int SaveFileNum;
@@ -81,6 +83,18 @@ public class SaveNLoad : MonoBehaviour
         saveFile[FileIndex].isTextEnter.Clear();
         saveFile[FileIndex].isETCEventEnter.Clear();
 
+        //만약 세이브 시점에 귀신이 하나라도 살아 있다면 true
+
+        GhostList = GameObject.Find("GhostList");
+        if (GhostList.transform.childCount > 0)
+        {
+            saveFile[FileIndex].isGhostLive = true;
+            for (int i = 0; i < GhostList.transform.childCount; i++)
+            {
+                saveFile[FileIndex].GhostPos.Add(GhostList.transform.GetChild(i).position);
+            }
+        }
+        else saveFile[FileIndex].isGhostLive = false;
 
         //VisitManager
         VisitManager = GameObject.Find("VisitManager");
@@ -124,10 +138,7 @@ public class SaveNLoad : MonoBehaviour
         for (int i = 0; i < TextManager.transform.childCount; i++)
         {
             TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
-            if(TextManagerChild[i].GetComponent<TestDialogue>()!=null)
-                saveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
-            else
-                saveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<StartStory>().hasEntered);
+            saveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
         }
 
         saveFile[FileIndex].playerItemInventory.Clear();//
@@ -161,8 +172,21 @@ public class SaveNLoad : MonoBehaviour
         theCamera.maxBound = saveFile[FileIndex].currentBound.bounds.max;
         theCamera.transform.position = saveFile[FileIndex].CameraPos;
 
-        if(thePlayer.ghostlive == true)
-            Destroy(GameObject.Find(GhostPrefab.name));
+        if (!saveFile[FileIndex].isGhostLive)
+        {
+            GhostList = GameObject.Find("GhostList");
+            for (int i = 0; i < GhostList.transform.childCount; i++)
+            {
+                Destroy(GhostList.transform.GetChild(i).gameObject);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < GhostList.transform.childCount; i++)
+            {
+                GhostList.transform.GetChild(i).position = saveFile[FileIndex].GhostPos[i];
+            }
+        }
 
         //VisitManager
         VisitManager = GameObject.Find("VisitManager");
@@ -209,12 +233,8 @@ public class SaveNLoad : MonoBehaviour
         for (int i = 0; i < TextManager.transform.childCount; i++)
         {
             TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
-            if(TextManagerChild[i].GetComponent<TestDialogue>()!=null)
-                TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = saveFile[FileIndex].isTextEnter[i];
-            else
-                TextManagerChild[i].GetComponent<StartStory>().hasEntered = saveFile[FileIndex].isTextEnter[i];
+            TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = saveFile[FileIndex].isTextEnter[i];
         }
-
 
         List<Item> itemList = new List<Item>();
 
