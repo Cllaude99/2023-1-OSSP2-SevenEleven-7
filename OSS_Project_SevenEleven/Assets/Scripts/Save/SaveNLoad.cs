@@ -198,7 +198,6 @@ public class SaveNLoad : MonoBehaviour
         if (saveFile[FileIndex].isShowerGhost)
         {
             ShowerGhostInstance.SetActive(true);
-            ShowerGhostInstance.GetComponent<NPCManager>().SetNotMove();
             ShowerGhostInstance.transform.position = saveFile[FileIndex].ShowerGhostPos;
         }
 
