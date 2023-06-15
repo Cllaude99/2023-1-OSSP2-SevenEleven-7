@@ -17,7 +17,8 @@ public class SaveFile : MonoBehaviour
     public List<bool> GhostSpawn;
     public List<bool> ObjectActive;
     public List<bool> isTextEnter;
-    
+    public List<bool> isETCEventEnter;
+
 
     public List<int> playerItemInventory;//
     public List<int> playerItemInventoryCount;//
