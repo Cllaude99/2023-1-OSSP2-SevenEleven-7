@@ -38,6 +38,8 @@ public class SaveNLoad : MonoBehaviour
     public GameObject theEventManager;
     public GameObject[] theEventManagerChild;
     public EventManager[] etc_Events;
+
+    public GameObject GhostList;
     //Save N Load File
     public SaveFile[] saveFile;
     public int SaveFileNum;
@@ -81,6 +83,11 @@ public class SaveNLoad : MonoBehaviour
         saveFile[FileIndex].isTextEnter.Clear();
         saveFile[FileIndex].isETCEventEnter.Clear();
 
+        //만약 세이브 시점에 귀신이 하나라도 살아 있다면 true
+
+        GhostList = GameObject.Find("GhostList");
+        if (GhostList.transform.childCount > 0) saveFile[FileIndex].isGhostLive = true;
+        else saveFile[FileIndex].isGhostLive = false;
 
         //VisitManager
         VisitManager = GameObject.Find("VisitManager");
@@ -161,8 +168,14 @@ public class SaveNLoad : MonoBehaviour
         theCamera.maxBound = saveFile[FileIndex].currentBound.bounds.max;
         theCamera.transform.position = saveFile[FileIndex].CameraPos;
 
-        if(thePlayer.ghostlive == true)
-            Destroy(GameObject.Find(GhostPrefab.name));
+        if (!saveFile[FileIndex].isGhostLive)
+        {
+            GhostList = GameObject.Find("GhostList");
+            for (int i = 0; i < GhostList.transform.childCount; i++)
+            {
+                Destroy(GhostList.transform.GetChild(i).gameObject);
+            }
+        }
 
         //VisitManager
         VisitManager = GameObject.Find("VisitManager");

@@ -38,7 +38,7 @@ public class GhostManager : MovingObject
         theDeathUI=FindObjectOfType<GameOverButton>();
         Destroy(GameObject.Find(GhostPrefab.name), lifeTime);
 
-        thePlayer.ghostlive = true;
+
 
         BGM.Play(PlayMusicTrack);//생성시 브금 재생
         BGM.Loop();
@@ -132,7 +132,6 @@ public class GhostManager : MovingObject
         {
             BGM.Stop();
             theDeathUI.OpenDeathUI();
-            Destroy(GameObject.Find(GhostPrefab.name));
         }
         
     }
@@ -144,7 +143,6 @@ public class GhostManager : MovingObject
 
     void stopBGM()
     {
-        thePlayer.ghostlive = false;
         BGM.FadeOutMusic();
     }
 
