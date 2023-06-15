@@ -209,7 +209,6 @@ public class SaveNLoad : MonoBehaviour
             TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = saveFile[FileIndex].isTextEnter[i];
         }
 
-
         List<Item> itemList = new List<Item>();
 
         for (int i = 0; i < saveFile[FileIndex].playerItemInventory.Count; i++)

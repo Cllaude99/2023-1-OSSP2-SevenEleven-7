@@ -68,6 +68,7 @@ public class TransferMap : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (PlaceTag != null)
         {
+            PlaceTag.SetActive(false);
             PlaceTag.SetActive(true);
         }
         theOrder.Move();
