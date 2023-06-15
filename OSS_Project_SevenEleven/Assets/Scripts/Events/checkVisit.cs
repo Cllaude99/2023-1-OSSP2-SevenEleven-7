@@ -17,6 +17,7 @@ public class checkVisit : MonoBehaviour
     public string openSound;
 
     private AudioManager theAudio;
+    private PlayerManager thePlayer;
 
     BGMManager bgm;
 
@@ -24,7 +25,8 @@ public class checkVisit : MonoBehaviour
     private void Start()
     {
         theAudio = FindObjectOfType<AudioManager>();
-        bgm = FindObjectOfType<BGMManager>();   
+        bgm = FindObjectOfType<BGMManager>();
+        thePlayer = FindObjectOfType<PlayerManager>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class checkVisit : MonoBehaviour
     {
         if(confirmvisitnum == visitnum)
         {
+            thePlayer.islock = false;
             if (isSound)
             {
                 theAudio.Play(openSound);

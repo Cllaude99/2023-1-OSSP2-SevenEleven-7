@@ -17,7 +17,11 @@ public class SaveFile : MonoBehaviour
     public List<bool> GhostSpawn;
     public List<bool> ObjectActive;
     public List<bool> isTextEnter;
+    public List<bool> ItemsList;
     public List<bool> isETCEventEnter;
+    public List<Item> theItems;
+
+    public bool isLock;
 
     public bool isGhostLive;
     public List<Vector3> GhostPos;

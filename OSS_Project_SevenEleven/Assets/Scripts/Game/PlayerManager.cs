@@ -43,6 +43,7 @@ public class PlayerManager : MovingObject
 
     public bool isDeathPoint = false;
 
+    public bool islock = false;
     private void Awake()
     {
         if (instance == null)
