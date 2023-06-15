@@ -106,4 +106,9 @@ public class BGMManager : MonoBehaviour
         }
     }
 
+    public bool isBGMPlay()
+    {
+        if (source.isPlaying) return true;
+        else return false;
+    }
 }
