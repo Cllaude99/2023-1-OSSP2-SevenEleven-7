@@ -81,6 +81,7 @@ public class GameOverButton : MonoBehaviour
 
     public void CloseDeathUIAndLoadNewGame()
     {
+        thetitle.DeleteJsonFile();
         CloseDeathUI();
         theTestSaveNLoad.CallNewGame();
     }
@@ -105,6 +106,10 @@ public class GameOverButton : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);           //세이브 슬롯이 존재한다면 Json파일 내용을 슬롯에 써준다
             slot.GetComponent<TextMeshProUGUI>().text =
                  "Saved Place : " + data.saved_map + "\n Play Time : " + data.playtime_minute + " Min " + data.playtime_seconds + " Sec";
+        }
+        else
+        {
+            slot.GetComponent<TextMeshProUGUI>().text = "Save File " + i;
         }
     }
 }
