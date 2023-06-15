@@ -170,6 +170,10 @@ public class Menu : MonoBehaviour
             slot.GetComponent<TextMeshProUGUI>().text =
                  "Saved Place : " + data.saved_map + "\n Play Time : " + data.playtime_minute + " Min " + data.playtime_seconds + " Sec";
         }
+        else
+        {
+            slot.GetComponent<TextMeshProUGUI>().text = "Save File " + i;
+        }
 
     }
 
