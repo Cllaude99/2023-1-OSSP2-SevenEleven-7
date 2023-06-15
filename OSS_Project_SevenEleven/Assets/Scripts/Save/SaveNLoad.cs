@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using JetBrains.Annotations;
 
 public class SaveNLoad : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class SaveNLoad : MonoBehaviour
     public NPCManager theNPC;
 
     public DatabaseManager theDatabase; //
-    public Inventory theInven; //
     public List<string> item_id__should_destroy;//
 
     public GameObject VisitManager;
@@ -35,6 +35,9 @@ public class SaveNLoad : MonoBehaviour
     public GameObject TextManager;
     public GameObject[] TextManagerChild;
 
+    public GameObject Items;
+    public GameObject[] ItemsChild;
+
     public GameObject theEventManager;
     public GameObject[] theEventManagerChild;
     public EventManager[] etc_Events;
@@ -43,12 +46,16 @@ public class SaveNLoad : MonoBehaviour
 
     public GameObject ShowerBoothGhost;
     public GameObject ShowerGhostInstance;
+
+    public Inventory theInven;
+
+    public GameObject RedScreen; // 퍼즐 이벤트의 빨간 배경
+
     //Save N Load File
     public SaveFile[] saveFile;
     public int SaveFileNum;
     public int item_count;
     public int FileIndex;
-    public GameObject items;
 
     public void Start()
     {
@@ -68,6 +75,7 @@ public class SaveNLoad : MonoBehaviour
         theDatabase = FindObjectOfType<DatabaseManager>();//
         theInven = FindObjectOfType<Inventory>();//
 
+
         //샤워실 이벤트 사전 작업
         ShowerBoothGhost = GameObject.Find("ShowerBoothGhost");
         ShowerGhostInstance = ShowerBoothGhost.transform.GetChild(0).gameObject;
@@ -78,7 +86,6 @@ public class SaveNLoad : MonoBehaviour
         }
 
         etc_Events=GameObject.FindObjectsOfType<EventManager>();
-        items = GameObject.Find("Items");
     }
 
     private void callSave()
@@ -161,6 +168,21 @@ public class SaveNLoad : MonoBehaviour
             saveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
         }
 
+        //Items
+        Items = GameObject.Find("Items");
+        ItemsChild = new GameObject[Items.transform.childCount];
+        for (int i = 0; i < Items.transform.childCount; i++)
+        {
+            ItemsChild[i] = Items.transform.GetChild(i).gameObject;
+            saveFile[FileIndex].ItemsList.Add(ItemsChild[i].activeSelf);
+        }
+
+        //InventoryList
+        saveFile[FileIndex].theItems = theInven.inventoryItemList;
+
+        saveFile[FileIndex].isLock = thePlayer.islock;
+
+        /*
         saveFile[FileIndex].playerItemInventory.Clear();//
         saveFile[FileIndex].playerItemInventoryCount.Clear();//
 
@@ -171,6 +193,7 @@ public class SaveNLoad : MonoBehaviour
             saveFile[FileIndex].playerItemInventory.Add(itemList[i].itemID);//
             saveFile[FileIndex].playerItemInventoryCount.Add(itemList[i].itemCount);//
         }
+        */
 
         //etc event manager
         theEventManager = GameObject.Find("ETCEventManager");
@@ -268,7 +291,21 @@ public class SaveNLoad : MonoBehaviour
             TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = saveFile[FileIndex].isTextEnter[i];
         }
 
-        List<Item> itemList = new List<Item>();
+        //Items
+        Items = GameObject.Find("Items");
+        ItemsChild = new GameObject[Items.transform.childCount];
+        for (int i = 0; i < Items.transform.childCount; i++)
+        {
+            ItemsChild[i] = Items.transform.GetChild(i).gameObject;
+            ItemsChild[i].SetActive(saveFile[FileIndex].ItemsList[i]);
+        }
+
+        //InventoryList
+        theInven.inventoryItemList = saveFile[FileIndex].theItems;
+
+        if (!saveFile[FileIndex].isLock) RedScreen.SetActive(false);
+
+        /*List<Item> itemList = new List<Item>();
 
         for (int i = 0; i < saveFile[FileIndex].playerItemInventory.Count; i++)
         {
@@ -282,7 +319,7 @@ public class SaveNLoad : MonoBehaviour
                 {
                     foreach(Transform child in items.transform)
                     {
-                        if (child.name == theDatabase.itemList[x].itemID.ToString() && child.name != "10026" && child.name != "10027" && child.name != "10029")
+                        if (child.GetComponent<ItemPickup>().itemID == theDatabase.itemList[x].itemID && child.name != "10026" && child.name != "10027" && child.name != "10029")
                         {
                             child.gameObject.SetActive(true);
                         }
@@ -303,7 +340,7 @@ public class SaveNLoad : MonoBehaviour
         {
             item_id__should_destroy.Add((saveFile[FileIndex].playerItemInventory[i]).ToString());
             item_count++;
-        }
+        }*/
 
         Reset_Etc_Event();  //기타 이벤트 bool 초기화
         for (int i = 0; i < theEventManager.transform.childCount; i++)

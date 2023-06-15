@@ -9,7 +9,7 @@ public class LockDoor : MonoBehaviour
     private AudioManager theAudio;
 
     private FadeManager theFade;
-
+    private PlayerManager thePlayer;
     public string lockingsound; // 문잠기는 소리
 
     BGMManager BGM;
@@ -24,12 +24,14 @@ public class LockDoor : MonoBehaviour
         theFade = FindObjectOfType<FadeManager>();
         BGM = FindObjectOfType<BGMManager>();
         theCount = FindObjectOfType<DeathCount>();
+        thePlayer = FindObjectOfType<PlayerManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player")
         {
+            thePlayer.islock = true;
             for (int i = 0; i< lockdoor.Length; i++)
             {
                 lockdoor[i].SetActive(true);
