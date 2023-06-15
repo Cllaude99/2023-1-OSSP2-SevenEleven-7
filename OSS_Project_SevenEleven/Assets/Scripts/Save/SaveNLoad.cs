@@ -35,7 +35,9 @@ public class SaveNLoad : MonoBehaviour
     public GameObject TextManager;
     public GameObject[] TextManagerChild;
 
-
+    public GameObject theEventManager;
+    public GameObject[] theEventManagerChild;
+    public EventManager[] etc_Events;
     //Save N Load File
     public SaveFile[] saveFile;
     public int SaveFileNum;
@@ -60,7 +62,7 @@ public class SaveNLoad : MonoBehaviour
         theDatabase = FindObjectOfType<DatabaseManager>();//
         theInven = FindObjectOfType<Inventory>();//
 
-        
+        etc_Events=GameObject.FindObjectsOfType<EventManager>();
     }
 
     private void callSave()
@@ -77,7 +79,7 @@ public class SaveNLoad : MonoBehaviour
         saveFile[FileIndex].GhostSpawn.Clear();
         saveFile[FileIndex].ObjectActive.Clear();
         saveFile[FileIndex].isTextEnter.Clear();
-
+        saveFile[FileIndex].isETCEventEnter.Clear();
 
 
         //VisitManager
@@ -138,6 +140,16 @@ public class SaveNLoad : MonoBehaviour
             saveFile[FileIndex].playerItemInventory.Add(itemList[i].itemID);//
             saveFile[FileIndex].playerItemInventoryCount.Add(itemList[i].itemCount);//
         }
+
+        //etc event manager
+        theEventManager = GameObject.Find("ETCEventManager");
+        theEventManagerChild = new GameObject[theEventManager.transform.childCount];
+        for (int i = 0; i < theEventManager.transform.childCount; i++)
+        {
+            theEventManagerChild[i]=theEventManager.transform.GetChild(i).gameObject;
+            saveFile[FileIndex].isETCEventEnter.Add(theEventManagerChild[i].GetComponent<EventManager>().is_event_activated);
+        } 
+
     }
 
     private void callLoad()
@@ -230,6 +242,15 @@ public class SaveNLoad : MonoBehaviour
             item_id__should_destroy.Add((saveFile[FileIndex].playerItemInventory[i]).ToString());
             item_count++;
         }
+
+        Reset_Etc_Event();  //기타 이벤트 bool 초기화
+        for(int i = 0; i <theEventManager.transform.childCount;i++)
+        {
+            theEventManagerChild[i]=theEventManager.transform.GetChild(i).gameObject;
+            theEventManagerChild[i].GetComponent<EventManager>().is_event_activated = saveFile[FileIndex].isETCEventEnter[i];
+        }
+        Update_Etc_Event();
+
     }
 
 
@@ -287,25 +308,7 @@ public class SaveNLoad : MonoBehaviour
         else
             return false;
     }
-    public void callTestLoadFromAnotherScene1()
-    {
-        SceneManager.LoadScene("StartScene");
-        FileIndex = 0;
-        callLoad();
-    }
 
-    public void callTestLoadFromAnotherScene2()
-    {
-        SceneManager.LoadScene("StartScene");
-        FileIndex = 1;
-        callLoad();
-    }
-    public void callTestLoadFromAnotherScene3()
-    {
-        SceneManager.LoadScene("StartScene");
-        FileIndex = 2;
-        callLoad();
-    }
 
     public void MakeDeafultSaveFile()       //디폴트세이브파일생성
     {
@@ -321,4 +324,20 @@ public class SaveNLoad : MonoBehaviour
         Debug.Log("디폴트 파일 로드 하고 인덱스는 " + FileIndex);
     }
 
+
+    public void Reset_Etc_Event()
+    {
+        foreach(EventManager e in etc_Events)
+        {
+            e.ResetEventBool();
+        }
+    }
+
+    public void Update_Etc_Event()
+    {
+        foreach (EventManager e in etc_Events)
+        {
+            e.UpdateEventBool();
+        }
+    }
 }
