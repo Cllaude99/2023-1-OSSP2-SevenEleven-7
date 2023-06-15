@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,6 +37,8 @@ public class GhostManager : MovingObject
         thePlayer = FindObjectOfType<PlayerManager>();
         theDeathUI=FindObjectOfType<GameOverButton>();
         Destroy(GameObject.Find(GhostPrefab.name), lifeTime);
+
+        thePlayer.ghostlive = true;
 
         BGM.Play(PlayMusicTrack);//생성시 브금 재생
         BGM.Loop();
@@ -128,7 +131,6 @@ public class GhostManager : MovingObject
         if (collision.gameObject.name == "Player")
         {
             BGM.Stop();
-            //SceneManager.LoadScene(gameOver); // transferMapName으로 이동
             theDeathUI.OpenDeathUI();
             Destroy(GameObject.Find(GhostPrefab.name));
         }
@@ -142,6 +144,7 @@ public class GhostManager : MovingObject
 
     void stopBGM()
     {
+        thePlayer.ghostlive = false;
         BGM.FadeOutMusic();
     }
 
