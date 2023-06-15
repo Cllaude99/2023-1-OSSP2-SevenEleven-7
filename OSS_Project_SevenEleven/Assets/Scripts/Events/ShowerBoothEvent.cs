@@ -9,10 +9,13 @@ public class ShowerBoothEvent : MonoBehaviour
     private AudioManager theAudio;
     public string screamSound;
 
+    private OrderManager theOrder;
+
     // Start is called before the first frame update
     void Start()
     {
         theAudio = FindObjectOfType<AudioManager>();
+        theOrder = FindObjectOfType<OrderManager>();
     }
 
     // Update is called once per frame
@@ -26,15 +29,26 @@ public class ShowerBoothEvent : MonoBehaviour
         if(collision.gameObject.name == "Player")
         {
             theAudio.Play(screamSound);
-            theGhost.GetComponent<NPCManager>().npc.NPCmove = true;
-            Invoke("removeObject", 1.5f);
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
+            theOrder.Move("ShowerGhost", "LEFT");
             this.gameObject.SetActive(false);
         }
     }
 
-    private void removeObject()
+    IEnumerator RemoveObj()
     {
-        theGhost.GetComponent<NPCManager>().SetNotMove();
+        yield return new WaitForSeconds(3f);
         theGhost.SetActive(false);
     }
+
 }
