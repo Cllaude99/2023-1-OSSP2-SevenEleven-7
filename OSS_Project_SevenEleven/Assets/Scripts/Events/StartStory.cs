@@ -13,7 +13,7 @@ public class StartStory : MonoBehaviour
     private PlayerManager thePlayer;
     private FadeManager theFade; // FadeManager 참조를 위한 추가 변수
 
-    public bool hasEntered = false;
+    public bool Finished = false;
 
     //Use this for initialization
     void Start()
@@ -23,41 +23,22 @@ public class StartStory : MonoBehaviour
         theOrder = FindObjectOfType<OrderManager>();
         thePlayer = FindObjectOfType<PlayerManager>();
         theOrder.PreLoadCharacter();
-        theOrder.NotMove();
     }
 
-    void Update()
+    public void StartNewStory(bool isEnabled)
     {
-        if (!hasEntered)
-        {
-            theOrder.NotMove();
-            theOrder.Turn("Player", "UP");
-            theOrder.Turn("FriendNPC", "UP");
-            theOrder.Move("Player", "UP");
-            theOrder.Move("FriendNPC", "UP");
-            theOrder.Turn("Player", "Right");
-            theOrder.Turn("FriendNPC", "Left");
-            StartCoroutine(Waiting());   //콜라이더 인식후 hasEntered를 바꿔주는동안은 loop가 안돌도록 무한대기
-        }
+        StartCoroutine(EventCoroutine());
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!hasEntered && collision.CompareTag("Player"))
-        {
-            hasEntered = true;
-            StartCoroutine(EventCoroutine());
-        }
-    }
-
-    IEnumerator Waiting()
-    {
-        yield return new WaitForSeconds(9999f);
-    }
-
 
     IEnumerator EventCoroutine()
     {
+        theOrder.NotMove();
+        theOrder.Turn("Player", "UP");
+        theOrder.Turn("FriendNPC", "UP");
+        theOrder.Move("Player", "UP");
+        theOrder.Move("FriendNPC", "UP");
+        theOrder.Turn("Player", "Right");
+        theOrder.Turn("FriendNPC", "Left");
         for (int i=0; i<2; i++)
         {
             theOrder.Move("Player", "UP");
@@ -89,7 +70,7 @@ public class StartStory : MonoBehaviour
         {
             theOrder.Move("Player", "RIGHT");
         }
-        for (int i = 4; i < 7; i++)
+        for (int i = 0; i < 4; i++)
         {
             theOrder.Move("Player", "UP");
         }
@@ -114,6 +95,6 @@ public class StartStory : MonoBehaviour
         theDM.ShowDialogue(dialogue_3);
         yield return new WaitUntil(() => !theDM.talking);
         theOrder.Move();
-
+        Finished = true;
     }
 }

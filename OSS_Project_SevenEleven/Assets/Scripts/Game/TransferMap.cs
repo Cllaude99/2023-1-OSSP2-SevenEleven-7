@@ -16,6 +16,7 @@ public class TransferMap : MonoBehaviour
     public string transferMapName;
     public BoxCollider2D targetBound;
     public Transform NPCtarget;
+    public GameObject PlaceTag;
 
     //Private
     private PlayerManager thePlayer;
@@ -65,6 +66,11 @@ public class TransferMap : MonoBehaviour
 
         theFade.FadeIn();
         yield return new WaitForSeconds(0.5f);
+        if (PlaceTag != null)
+        {
+            PlaceTag.SetActive(false);
+            PlaceTag.SetActive(true);
+        }
         theOrder.Move();
         thePlayer.ghostNotMove = false;
     }
