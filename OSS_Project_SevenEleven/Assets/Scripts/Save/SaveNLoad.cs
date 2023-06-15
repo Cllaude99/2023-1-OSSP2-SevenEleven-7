@@ -122,10 +122,7 @@ public class SaveNLoad : MonoBehaviour
         for (int i = 0; i < TextManager.transform.childCount; i++)
         {
             TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
-            if(TextManagerChild[i].GetComponent<TestDialogue>()!=null)
-                saveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
-            else
-                saveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<StartStory>().hasEntered);
+            saveFile[FileIndex].isTextEnter.Add(TextManagerChild[i].GetComponent<TestDialogue>().hasEntered);
         }
 
         saveFile[FileIndex].playerItemInventory.Clear();//
@@ -197,10 +194,7 @@ public class SaveNLoad : MonoBehaviour
         for (int i = 0; i < TextManager.transform.childCount; i++)
         {
             TextManagerChild[i] = TextManager.transform.GetChild(i).gameObject;
-            if(TextManagerChild[i].GetComponent<TestDialogue>()!=null)
-                TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = saveFile[FileIndex].isTextEnter[i];
-            else
-                TextManagerChild[i].GetComponent<StartStory>().hasEntered = saveFile[FileIndex].isTextEnter[i];
+            TextManagerChild[i].GetComponent<TestDialogue>().hasEntered = saveFile[FileIndex].isTextEnter[i];
         }
 
 

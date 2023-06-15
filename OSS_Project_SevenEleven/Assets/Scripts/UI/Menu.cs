@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
     public GameObject menu_obj;
     public AudioManager theAudio;
     private DialogueManager theDialogueManager;
+    private StartStory theStartStory;
     private Inventory theInventory;
     public TitleButton thetitle;
 
@@ -48,7 +49,7 @@ public class Menu : MonoBehaviour
         theOrder=FindObjectOfType<OrderManager>();
         theAudio= FindObjectOfType<AudioManager>();
         thetitle = FindObjectOfType<TitleButton>();
-
+        theStartStory = FindObjectOfType<StartStory>();
     }
 
     public void ExitToTitle()          //타이틀화면으로 돌아가기
@@ -177,7 +178,7 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((theInventory.activated == false)&&(theDialogueManager.talking == false))
+        if((theInventory.activated == false)&&(theDialogueManager.talking == false)&&(theStartStory.Finished == true))
         {
             if (Input.GetKeyDown(KeyCode.Escape))  //ESC 입력을 받으면 메뉴 화면 ON/OFF
             {
