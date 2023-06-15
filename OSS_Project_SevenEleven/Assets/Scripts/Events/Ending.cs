@@ -9,6 +9,7 @@ public class Ending : MonoBehaviour
     private Camera theCamera;
     public TitleButton thetitle;
     private FadeManager theFade;
+    public NPCManager theNPC;
 
     BGMManager BGM;
     public int EndingSound;
@@ -19,6 +20,7 @@ public class Ending : MonoBehaviour
         thetitle = FindObjectOfType<TitleButton>();
         theFade = FindObjectOfType<FadeManager>();
         BGM = FindObjectOfType<BGMManager>();
+        theNPC = FindObjectOfType<NPCManager>();
 
     }
     public void OnTriggerStay2D(Collider2D collision)
@@ -31,6 +33,7 @@ public class Ending : MonoBehaviour
 
     public void OpenTitleAfterEnding()
     {
+        theNPC.ischase = false;
         BGM.Stop();
         theFade.FadeIn();
         theCamera.GetComponent<CameraManager>().enabled = true;            //카메라 쉐이크에서꺼진거 다시  true
