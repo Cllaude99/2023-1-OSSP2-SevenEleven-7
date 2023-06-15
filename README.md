@@ -25,7 +25,7 @@
 <img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white">
 <br/></br>
 # 🕹 게임 실행 방법
-1. itch.io 회원가입 후 로그인을 진행한다. 
+1. itch.io 회원가입 후 로그인을 진행한다.  
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-SevenEleven-7/assets/127471190/bdc71d37-ffb9-4f65-a054-4d9b459e8da2)  
 2. https://yuuuuurae.itch.io/ossp-team7seveneleven-d-daythe-2d-acadegame 사이트에 접속한다.   
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-SevenEleven-7/assets/127471190/9ef3ca1f-676d-4835-bd91-e685ee0c0faf)  
