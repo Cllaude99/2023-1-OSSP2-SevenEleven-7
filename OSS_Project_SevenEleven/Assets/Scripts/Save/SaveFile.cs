@@ -21,6 +21,8 @@ public class SaveFile : MonoBehaviour
 
     public bool isGhostLive;
     public List<Vector3> GhostPos;
+    public bool isShowerGhost;
+    public Vector3 ShowerGhostPos;
 
     public List<int> playerItemInventory;//
     public List<int> playerItemInventoryCount;//
