@@ -283,7 +283,7 @@ public class SaveNLoad : MonoBehaviour
                 {
                     foreach(Transform child in items.transform)
                     {
-                        if(child.name == theDatabase.itemList[x].itemID.ToString())
+                        if (child.name == theDatabase.itemList[x].itemID.ToString() && child.name != "10026" && child.name != "10027" && child.name != "10029")
                         {
                             child.gameObject.SetActive(true);
                         }
