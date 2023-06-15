@@ -8,7 +8,10 @@ public class SaveNLoad : MonoBehaviour
 {
     // 현재 상태 저장 및 로드를 위한 스크립트
 
+
     //For Initialization
+    public GameObject GhostPrefab;
+
     public PlayerManager thePlayer;
     public CameraManager theCamera;
     public NPCManager theNPC;
@@ -35,13 +38,14 @@ public class SaveNLoad : MonoBehaviour
 
     //Save N Load File
     public SaveFile[] saveFile;
+    public int SaveFileNum;
     public int item_count;
     public int FileIndex;
 
     public void Start()
     {
         //Test Save File
-        saveFile = new SaveFile[4]; //총 3개의 세이브 파일  //4번째 세이브파일은 새로하기용세이브파일
+        saveFile = new SaveFile[SaveFileNum]; //총 3개의 세이브 파일  //4번째 세이브파일은 새로하기용세이브파일
         saveFile = FindObjectsOfType<SaveFile>();
         //세이브 파일 정렬
         Array.Sort(saveFile, (a, b) =>
@@ -144,6 +148,9 @@ public class SaveNLoad : MonoBehaviour
         theCamera.minBound = saveFile[FileIndex].currentBound.bounds.min;
         theCamera.maxBound = saveFile[FileIndex].currentBound.bounds.max;
         theCamera.transform.position = saveFile[FileIndex].CameraPos;
+
+        if(thePlayer.ghostlive == true)
+            Destroy(GameObject.Find(GhostPrefab.name));
 
         //VisitManager
         VisitManager = GameObject.Find("VisitManager");
