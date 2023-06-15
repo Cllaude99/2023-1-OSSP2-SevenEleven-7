@@ -11,6 +11,8 @@ public class ShowerBoothEvent : MonoBehaviour
 
     private OrderManager theOrder;
 
+    public bool isEnter = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,30 +28,32 @@ public class ShowerBoothEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.gameObject.name == "Player" && isEnter)
         {
-            theAudio.Play(screamSound);
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
-            theOrder.Move("ShowerGhost", "LEFT");
+            isEnter = false;
             StartCoroutine(RemoveObj());
-            this.gameObject.SetActive(false);
+
         }
     }
 
     IEnumerator RemoveObj()
     {
-        yield return new WaitForSeconds(3f);
+        theAudio.Play(screamSound);
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        theOrder.Move("ShowerGhost", "LEFT");
+        yield return new WaitForSeconds(3f); 
         theGhost.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
 }
