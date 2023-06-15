@@ -48,6 +48,7 @@ public class SaveNLoad : MonoBehaviour
     public int SaveFileNum;
     public int item_count;
     public int FileIndex;
+    public GameObject items;
 
     public void Start()
     {
@@ -77,6 +78,7 @@ public class SaveNLoad : MonoBehaviour
         }
 
         etc_Events=GameObject.FindObjectsOfType<EventManager>();
+        items = GameObject.Find("Items");
     }
 
     private void callSave()
@@ -276,6 +278,16 @@ public class SaveNLoad : MonoBehaviour
                 if (saveFile[FileIndex].playerItemInventory[i] == theDatabase.itemList[x].itemID)
                 {
                     itemList.Add(theDatabase.itemList[x]);
+                }
+                else
+                {
+                    foreach(Transform child in items.transform)
+                    {
+                        if(child.name == theDatabase.itemList[x].itemID.ToString())
+                        {
+                            child.gameObject.SetActive(true);
+                        }
+                    }
                 }
             }
         }
