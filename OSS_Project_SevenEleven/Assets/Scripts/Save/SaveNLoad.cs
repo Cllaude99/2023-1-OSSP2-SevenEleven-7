@@ -40,6 +40,9 @@ public class SaveNLoad : MonoBehaviour
     public EventManager[] etc_Events;
 
     public GameObject GhostList;
+
+    public GameObject ShowerBoothGhost;
+    public GameObject ShowerGhostInstance;
     //Save N Load File
     public SaveFile[] saveFile;
     public int SaveFileNum;
@@ -66,6 +69,15 @@ public class SaveNLoad : MonoBehaviour
         theDatabase = FindObjectOfType<DatabaseManager>();//
         theInven = FindObjectOfType<Inventory>();//
 
+        //샤워실 이벤트 사전 작업
+        ShowerBoothGhost = GameObject.Find("ShowerBoothGhost");
+        ShowerGhostInstance = ShowerBoothGhost.transform.GetChild(0).gameObject;
+        for (int i = 0; i < saveFile.Length; i++)
+        {
+            saveFile[i].isShowerGhost = true;
+            saveFile[i].ShowerGhostPos = ShowerGhostInstance.transform.position;
+        }
+
         etc_Events=GameObject.FindObjectsOfType<EventManager>();
         items = GameObject.Find("Items");
     }
@@ -85,6 +97,12 @@ public class SaveNLoad : MonoBehaviour
         saveFile[FileIndex].ObjectActive.Clear();
         saveFile[FileIndex].isTextEnter.Clear();
         saveFile[FileIndex].isETCEventEnter.Clear();
+
+        //샤워실 이벤트
+        ShowerBoothGhost = GameObject.Find("ShowerBoothGhost");
+        ShowerGhostInstance = ShowerBoothGhost.transform.GetChild(0).gameObject;
+
+        if (!ShowerGhostInstance.activeSelf) saveFile[FileIndex].isShowerGhost = false;
 
         //만약 세이브 시점에 귀신이 하나라도 살아 있다면 true
 
@@ -175,6 +193,19 @@ public class SaveNLoad : MonoBehaviour
         theCamera.maxBound = saveFile[FileIndex].currentBound.bounds.max;
         theCamera.transform.position = saveFile[FileIndex].CameraPos;
 
+        //샤워실 이벤트
+        ShowerBoothGhost = GameObject.Find("ShowerBoothGhost");
+        ShowerGhostInstance = ShowerBoothGhost.transform.GetChild(0).gameObject;
+        if (saveFile[FileIndex].isShowerGhost)
+        {
+            ShowerGhostInstance.SetActive(true);
+            ShowerGhostInstance.GetComponent<NPCManager>().SetNotMove();
+            ShowerGhostInstance.transform.position = saveFile[FileIndex].ShowerGhostPos;
+        }
+
+
+
+        //귀신 로드
         if (!saveFile[FileIndex].isGhostLive)
         {
             GhostList = GameObject.Find("GhostList");

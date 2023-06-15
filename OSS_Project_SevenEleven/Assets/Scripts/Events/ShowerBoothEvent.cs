@@ -23,15 +23,18 @@ public class ShowerBoothEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        theAudio.Play(screamSound);
-        theGhost.GetComponent<NPCManager>().npc.NPCmove = true;
-        //theGhost.GetComponent<NPCManager>().npc.NPCmove = false;
-        Invoke("removeObject", 3f);
-        this.gameObject.SetActive(false);
+        if(collision.gameObject.name == "Player")
+        {
+            theAudio.Play(screamSound);
+            theGhost.GetComponent<NPCManager>().npc.NPCmove = true;
+            Invoke("removeObject", 1.5f);
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void removeObject()
     {
-        Destroy(theGhost);
+        theGhost.GetComponent<NPCManager>().SetNotMove();
+        theGhost.SetActive(false);
     }
 }
