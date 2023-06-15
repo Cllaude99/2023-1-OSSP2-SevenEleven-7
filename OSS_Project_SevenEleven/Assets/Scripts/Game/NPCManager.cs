@@ -24,7 +24,7 @@ public class NPCManager : MovingObject
     public GameObject current_transfer;
     public bool istransfer = false;
     public string currentMapName;
-
+    public float distance;
     private Rigidbody2D rb;
     private bool NPCCanMove = true;
     private PlayerManager thePlayer;
@@ -71,11 +71,14 @@ public class NPCManager : MovingObject
     }
     IEnumerator Chase()
     {
-        while (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
+        Vector2 targetPosion = target.position;
+        distance = Vector2.Distance(targetPosion, rb.position);
+        while (distance>72f&&distance<144f)
         {
-            Vector2 targetPosion = target.position;
+            targetPosion = target.position;
             Vector2 direction = targetPosion - rb.position;
             direction.Normalize();
+            distance = Vector2.Distance(targetPosion, rb.position);
 
             if (thePlayer.applyRunFlag)
             {

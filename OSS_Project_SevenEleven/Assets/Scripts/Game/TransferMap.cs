@@ -17,7 +17,7 @@ public class TransferMap : MonoBehaviour
     public BoxCollider2D targetBound;
     public Transform NPCtarget;
     public GameObject PlaceTag;
-
+    public NPCManager theNPC;
     //Private
     private PlayerManager thePlayer;
     private CameraManager theCamera;
@@ -32,6 +32,7 @@ public class TransferMap : MonoBehaviour
         theFade = FindObjectOfType<FadeManager>();
         theOrder = FindObjectOfType<OrderManager>();
         theAudio = FindObjectOfType<AudioManager>();
+        theNPC = FindObjectOfType<NPCManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,6 +45,10 @@ public class TransferMap : MonoBehaviour
         {
             theAudio.Play("transfer_sound");
            StartCoroutine(TransferCoroutine());
+            if(theNPC.ischase)
+            {
+                GameObject.Find("FriendNPC").transform.position = NPCtarget.position;
+            }
         }
         
     }
