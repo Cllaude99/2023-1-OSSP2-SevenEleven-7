@@ -25,6 +25,10 @@
 <img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white">
 <br/></br>
 # 🕹 게임 실행 방법
+1. https://yuuuuurae.itch.io/ossp-team7seveneleven-d-daythe-2d-acadegame 사이트에 접속한다.
+2. Download Now 버튼을 누르고 금액을 설정한다. No thanks, just take me to the downloads를 누르면 무료로 다운받을 수 있다.
+3. 새로운 페이지에서 Download 버튼을 눌러 다운받고 압축을 푼다.
+4. OSSP_Team7(SevenEleven)_Dday파일 안에 OSS_Project_SevenEleven 프로그램을 눌러 게임을 실행한다.
 <br/></br>
 # 🕹 게임 조작 방법
 ⬅️⬆️➡️⬇️ or wasd : 캐릭터 방향키  
