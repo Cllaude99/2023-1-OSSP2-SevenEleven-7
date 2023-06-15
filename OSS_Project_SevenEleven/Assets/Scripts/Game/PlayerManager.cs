@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +10,6 @@ public class PlayerManager : MovingObject
 
     //Static
     static public PlayerManager instance; //static으로 선언된 변수의 값을 공유
-
-    // Public
 
     public float runSpeed; // 달리기 속력
 
@@ -31,10 +30,6 @@ public class PlayerManager : MovingObject
     public float decreaseStemina; // 감소시킬 스테미나의 수치
     public float recoverStemina; // 회복 시킬 스테미나의 수치
 
-
-
-    // Private
-
     private float applyRunSpeed; // 실제 적용 RunSpeed
     public bool canMove = true; //코루틴 다중 실행 방지
     public bool applyRunFlag = false;
@@ -47,6 +42,8 @@ public class PlayerManager : MovingObject
     public bool ghostNotMove = false;
 
     public bool isDeathPoint = false;
+
+    public bool ghostlive = false;
     private void Awake()
     {
         if (instance == null)
