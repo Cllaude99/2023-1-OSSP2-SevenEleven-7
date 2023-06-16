@@ -41,7 +41,9 @@ public class TitleButton : MonoBehaviour
         theOrder = FindObjectOfType<OrderManager>();
         theOrder.PreLoadCharacter();
         theOrder.NotMove();
-        DeleteJsonFile();
+        Slot_Refresh_BeforeOpenUI(1, "Load");
+        Slot_Refresh_BeforeOpenUI(2, "Load");
+        Slot_Refresh_BeforeOpenUI(3, "Load");
     }
 
     // Update is called once per frame
