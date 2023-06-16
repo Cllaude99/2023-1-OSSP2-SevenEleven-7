@@ -31,7 +31,7 @@
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-SevenEleven-7/assets/127471190/71cc7de0-dfd2-4c10-a350-a4f260a5dd32)  
 3. 총 4개의 파일을 다운로드 받을 수 있다. 게임 플레이를 원한다면 OSSP_Team7(SevenEleven)_Dday.zip을, 게임 타일맵을 원한다면 Maps.zip을, 캐릭터, 아이템, 기타 img파일을 원한다면 Resources.zip을, 게임 소스코드만을 보고 싶다면 Scripts.zip을 다운받으면 된다. Download버튼을 누르면 자동으로 파일이 다운로드된다.    
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-SevenEleven-7/assets/127471190/72f586a5-24e3-4626-a6f8-d76b57bfd633)  
-4. 다운받은 OSSP_Team7(SevenEleven)_Dday.zip폴더 압축을 해제하고 파일내의 OSS_Project_SevenEleven을 실행시키면 된다.
+4. 다운받은 OSSP_Team7(SevenEleven)_Dday.zip폴더 압축을 해제하고 파일내의 OSS_Project_SevenEleven을 실행시키면 된다.<br>
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-SevenEleven-7/assets/127471190/f6ec922f-f8b7-488f-b78d-87cc2d36841b)  
 <br/></br>
 # 🕹 게임 조작 방법
