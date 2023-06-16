@@ -293,11 +293,15 @@ public class SaveNLoad : MonoBehaviour
 
         //Items
         Items = GameObject.Find("Items");
+        HashSet<string> excludedItems = new HashSet<string> { "10026", "10027", "10029" }; //소모품은 다시 복구시키면 안됨 & 소모품 얻고 죽을일은 없음 (키 사용할때 까지 귀신x, 사용하면 문이 열려지니 롤백x)
         ItemsChild = new GameObject[Items.transform.childCount];
         for (int i = 0; i < Items.transform.childCount; i++)
         {
             ItemsChild[i] = Items.transform.GetChild(i).gameObject;
-            ItemsChild[i].SetActive(saveFile[FileIndex].ItemsList[i]);
+            if (!excludedItems.Contains(ItemsChild[i].name))
+            {
+                ItemsChild[i].SetActive(saveFile[FileIndex].ItemsList[i]);
+            }
         }
 
         //InventoryList
